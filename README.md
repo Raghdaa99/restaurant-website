@@ -31,3 +31,23 @@ npm run dev
 ```sh
 npm run build
 ```
+### Prime vue install in vite way 
+
+```sh
+ npm install primevue @primevue/themes
+```
+
+### flowbit for carousel component 
+ ```sh
+ npm install flowbite
+```
+
+### install fontAowsome
+ ```sh
+npm i --save @fortawesome/kit-KIT_CODE@latest
+npm i --save @fortawesome/free-solid-svg-icons
+npm i --save @fortawesome/free-regular-svg-icons
+npm i --save @fortawesome/free-brands-svg-icons
+ ```
+
+ 
