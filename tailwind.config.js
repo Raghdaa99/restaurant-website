@@ -9,7 +9,10 @@ export default {
         Salsa: ['Salsa', 'sans-serif']
       },
       colors:{
-        primary: '#F5C754'
+        primary: '#F5C754',
+        'primary-dark': '#EAB308',
+        danger: '#f87171',
+        gray: '#405473',
       }
     },
   },
