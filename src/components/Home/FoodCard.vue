@@ -10,7 +10,7 @@
 
       <div class="flex items-center justify-between mt-4">
         <span class="text-xl font-semibold text-primary">${{ price }}</span>
-        <Button title="Add To Cart" icon="shopping-cart"/>
+        <Button title="" icon="shopping-cart"/>
       </div>
     </div>
   </div>

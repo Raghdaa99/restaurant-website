@@ -10,7 +10,7 @@ colors: {
         secondary: "#ff4500",
         "primary-dark": "#EAB308",
         danger: "#f87171",
-        gray: "#405473",
+        // gray: "#405473",
       },
       fontFamily: {
         Poppins: ["Poppins", "sans-serif"],
