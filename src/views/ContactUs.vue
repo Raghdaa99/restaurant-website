@@ -1,5 +1,5 @@
 <template>
-  <div class="lg:container mx-auto px-6 md:px-12 lg:px-28 py-6 md:py-12">
+  <div class="lg:container mt-32 mx-auto px-6 md:px-12 lg:px-28 py-6 md:py-12">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Contact Information Section -->
       <div>

@@ -3,16 +3,12 @@
     <div class="relative">
       <Navbar/>
     </div>
-    <div class="z-0">
-        <Header />
-      </div>
     <router-view />
   </div>
 </template>
 
 <script setup lang="ts">
-import Header from "@/components/Header/index.vue";
-import Navbar from "@/components/Navbar/index.vue";
+import Navbar from "@/components/layouts/Navbar.vue";
 
     
 </script>
