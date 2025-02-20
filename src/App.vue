@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col min-h-screen">
     <div class="relative">
-      <Navbar/>
+      <Navbar />
     </div>
     <router-view />
   </div>
