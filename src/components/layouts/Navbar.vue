@@ -1,7 +1,7 @@
 <template>
   <div
     class="font-Salsa font-medium z-10 absolute text-white backdrop-blur-md border-b-[1px] w-full"
-    :class="{ 'bg-transparent': isHome, 'bg-slate-400  ': !isHome }"
+    :class="{ 'bg-transparent': isHome, 'bg-slate-400 ': !isHome }"
   >
     <nav class="flex justify-between items-center px-5">
       <!-- Logo -->
@@ -57,9 +57,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
-// import logo from "../../assets/images/LazeezLogo.svg";
 import logo from "@/assets/images/LazeezLogo.svg";
-
 
 const isMenuOpen = ref(false);
 const toggleMenu = () => {
