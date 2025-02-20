@@ -1,11 +1,14 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
- <h1 class="text-3xl font-bold text-red-500">hello</h1>
+  <div class="flex flex-col min-h-screen">
+    <!-- <Header /> -->
+    <router-view />
+    <!-- <Footer /> -->
+  </div>
 </template>
 
-<style scoped>
+<script setup lang="ts">
+// import Header from "@/components/Layout/Header.vue";
+// import Footer from "@/components/Layout/Footer.vue";
+</script>
 
-</style>
+
