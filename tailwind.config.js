@@ -8,11 +8,13 @@ export default {
         primary: "#F5C754",
         "primary-light": "#fffbf3",
         secondary: "#ff4500",
+        'primary-dark': '#EAB308',
+        danger: '#f87171',
+        gray: '#405473',
       },
       fontFamily: {
         Poppins: ["Poppins", "sans-serif"],
         Salsa: ["Salsa", "sans-serif"]
-
       },
     },
   },
