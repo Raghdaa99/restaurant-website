@@ -21,6 +21,10 @@
         path: "/signup",
         name: "SignUp", 
         component: () => import("@/components/auth/SignUp.vue"),
+      },{ 
+        path: "/signin",
+        name: "SignIn", 
+        component: () => import("@/components/auth/SignIn.vue"),
       },
     ],
   })

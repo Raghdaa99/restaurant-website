@@ -82,7 +82,7 @@ function handleSubmit() {
       
       <p class="mt-4 text-center text-gray text-sm">
         Already have an account?
-        <a href="/sign-in" class="text-primary hover:text-primary font-semibold">Sign in</a>
+        <a href="/signin" class="text-primary hover:text-primary font-semibold">Sign in</a>
       </p>
     </div>
   </div>
