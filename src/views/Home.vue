@@ -1,4 +1,5 @@
 <template>
+  <div class="min-h-screen bg-gradient-to-b from-white to-gray-50 font-salsa text-black">
    <div class="z-0">
         <HomeHeader />
       </div>
@@ -6,6 +7,7 @@
   <ServicesSection/>
   <CallToActionSection/>
   <TestimonialsSection/>
+</div>
 </template>
 
 <script setup lang="ts">

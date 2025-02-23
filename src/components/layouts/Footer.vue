@@ -4,23 +4,23 @@ const currentYear = new Date().getFullYear();
 </script>
 
 <template>
-  <footer class="font-space-grotesk">
+  <footer class="font-salsa text-white">
     <div class="flex flex-col py-8 px-6 md:py-10 md:px-12 lg:px-20 mx-auto max-w-7xl bg-primary">
       <div class="flex flex-col gap-6">
         <div class="flex flex-col sm:flex-row justify-between gap-4">
-          <a href="#" class="md:min-w-32 lg:min-w-40 text-center text-gray hover:text-gray/80">
-            Catering
+          <a href="/contact" class="md:min-w-32 lg:min-w-40 text-center hover:text-shadow-md  ">
+            Contact Us
           </a>
-          <a href="#" class="md:min-w-32 lg:min-w-40 text-center text-gray hover:text-gray/80">
-            Nutrition
+          <a href="/about" class="md:min-w-32 lg:min-w-40 text-center hover:text-gray/80">
+            About Us
           </a>
-          <a href="#" class="md:min-w-32 lg:min-w-40 text-center text-gray hover:text-gray/80">
-            Gift Cards
+          <a href="/menu" class="md:min-w-32 lg:min-w-40 text-center hover:text-gray/80">
+            Menu
           </a>
-          <a href="#" class="md:min-w-32 lg:min-w-40 text-center text-gray hover:text-gray/80">
+          <a href="#" class="md:min-w-32 lg:min-w-40 text-center hover:text-gray/80">
             Download Our App
           </a>
-          <a href="#" class="md:min-w-32 lg:min-w-40 text-center text-gray hover:text-gray/80">
+          <a href="#" class="md:min-w-32 lg:min-w-40 text-center hover:text-gray/80">
             Careers
           </a>
         </div>

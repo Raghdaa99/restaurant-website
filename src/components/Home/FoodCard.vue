@@ -10,14 +10,14 @@
 
       <div class="flex items-center justify-between mt-4">
         <span class="text-xl font-semibold text-primary">${{ price }}</span>
-        <Button title="" icon="shopping-cart"/>
+        <Button title="" icon="shopping-cart" class="bg-primary hover:text-primary hover:bg-white  hover:border-2 hover:border-primary transition flex items-center "/>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import Button from "@/components/UI/Button.vue";
+import Button from "@/components/ui/Button.vue";
 
 defineProps({
   name: String,
