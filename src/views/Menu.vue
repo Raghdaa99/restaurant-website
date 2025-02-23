@@ -120,7 +120,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import pizza from '@/assets/images/pizza.jpg'
+import pizza from '@/assets/images/foods/pizza.jpg'
 import Header from '@/components/menu/HeaderSection.vue'
 
 // Categories
