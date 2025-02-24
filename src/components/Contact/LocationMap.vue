@@ -15,7 +15,8 @@
 import { computed, defineProps } from 'vue';
 
 const props = defineProps<{
-  height: string;
+  height: string;   
+  class?: string;
 }>();
 
 const containerClass = computed(() => `w-full h-[${props.height}] rounded-lg overflow-hidden shadow-lg`);

@@ -12,7 +12,9 @@
     <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
       Find a Location
     </h2>
-    <LocationMap class="h-[300px] w-full" />
+    <div class="rounded-lg shadow-lg overflow-hidden">
+      <LocationMap class="h-[300px] md:h-[400px] lg:h-[500px] w-full" />
+    </div>
   </div>
   </div>
 </template>
@@ -24,5 +26,5 @@ import ServicesSection from "@/components/home/ServicesSection.vue";
 import MenuSection from "@/components/home/MenuSection.vue";
 import FoodCategoriesSection from "@/components/home/FoodCategoriesSection.vue";
 import HomeHeader from "@/components/layouts/HomeHeader.vue";
-import LocationMap from "@/components/Contact/LocationMap.vue";
+import LocationMap from "@/components/contact/LocationMap.vue";
 </script>

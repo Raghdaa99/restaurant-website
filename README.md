@@ -50,4 +50,9 @@ npm i --save @fortawesome/free-regular-svg-icons
 npm i --save @fortawesome/free-brands-svg-icons
  ```
 
+### install json-server
+ ```sh
+npm install -g json-server
+npm install json-server
+ ```
  
