@@ -1,4 +1,5 @@
 <template>
+ <div class="min-h-screen bg-gradient-to-b from-white to-gray-50 font-salsa text-black">
   <div class="z-0">
     <HomeHeader />
   </div>
@@ -12,6 +13,7 @@
       Find a Location
     </h2>
     <LocationMap class="h-[300px] w-full" />
+  </div>
   </div>
 </template>
 

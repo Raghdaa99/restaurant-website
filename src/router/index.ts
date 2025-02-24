@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+  import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,7 +28,31 @@ const router = createRouter({
       name: "NotFound",
       component: () => import("@/views/ErrorNotFound.vue"),
     },
+    { 
+      path: "/menu",
+      name: "Menu", 
+      component: () => import("@/views/Menu.vue"),
+    },
+    { 
+      path: "/about",
+      name: "About", 
+      component: () => import("@/views/AboutUs.vue"),
+    },
+     { 
+        path: "/reservation",
+        name: "Reservation", 
+        component: () => import("@/views/Reservation.vue"),
+      },  { 
+        path: "/signup",
+        name: "SignUp", 
+        component: () => import("@/components/auth/SignUp.vue"),
+      },{ 
+        path: "/signin",
+        name: "SignIn", 
+        component: () => import("@/components/auth/SignIn.vue"),
+      },
   ],
 })
 
-export default router
+
+  export default router
