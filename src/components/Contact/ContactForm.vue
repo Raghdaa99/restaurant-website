@@ -22,7 +22,7 @@
 
     <!-- Submit Button -->
     <div class="flex justify-center">
-      <Button title="Submit" class="bg-primary" to="#" />
+      <Button title="Submit"/>
     </div>
   </form>
 </template>

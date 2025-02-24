@@ -1,5 +1,5 @@
 <template>
- <footer class="font-salsa text-white">
+ <footer class="font-salsa text-white bg-primary">
       <div class="flex flex-col gap-6">
         <div class="flex flex-col sm:flex-row justify-between gap-4">
           <a
@@ -82,7 +82,6 @@
           @{{ currentYear }} Lazeez
         </div>
       </div>
-    </div>
   </footer>
 </template>
 
