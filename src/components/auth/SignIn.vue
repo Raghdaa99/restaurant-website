@@ -43,11 +43,12 @@
           </p>
         </div>
 
-        <Button
-          title="Sign In"
-          class="w-full flex justify-center items-center button-hover-effect bg-primary"
-          to="/signin"
-        />
+        <button 
+          type="submit"
+          class="w-full flex justify-center items-center button-hover-effect bg-primary text-white py-2 px-4 rounded-lg font-semibold hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+        >
+          Sign In
+        </button>
       </form>
 
       <p class="mt-4 text-center text-gray text-sm">
@@ -64,8 +65,8 @@
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/useUserStore";
-import Button from "@/components/ui/Button.vue";
 import InputField from "@/components/ui/InputField.vue";
+
 const router = useRouter();
 const userStore = useUserStore();
 const loginData = ref({
