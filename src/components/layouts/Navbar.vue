@@ -81,6 +81,7 @@
             >
           </li>
           <li>
+            <router-link to="/cart">
             <Button
               title=""
               icon="shopping-cart"
@@ -92,11 +93,12 @@
               }"
               class="hover:border border-white rounded-md"
             />
+            </router-link>
           </li>
           <li>
+            <router-link to="/signin">
             <Button
               title="Sign In"
-              to="/signin"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -104,6 +106,7 @@
               }"
               class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
             />
+          </router-link>
           </li>
         </ul>
       </div>
