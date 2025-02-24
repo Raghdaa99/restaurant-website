@@ -1,13 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-
-export interface CartItem {
-    id: number;
-    name: string;
-    price: number;
-    quantity: number;
-    image?: string;
-}
+import type { CartItem } from '@/types/food';
 
 export const useCartStore = defineStore('cart', () => {
     const cart = ref<CartItem[]>([]);
@@ -42,7 +35,7 @@ export const useCartStore = defineStore('cart', () => {
         return cart.value.reduce((sum, item) => sum + item.quantity, 0);
     });
 
-    function totalPriceItem (id: number) {
+    function totalPriceItem(id: number) {
         const item = cart.value.find((p) => p.id === id);
         return item ? item.price * item.quantity : 0;
     }

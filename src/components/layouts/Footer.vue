@@ -1,8 +1,5 @@
 <template>
-  <footer class="font-salsa text-white">
-    <div
-      class="flex flex-col py-8 px-6 md:py-3 md:px-12 lg:px-20 mx-auto max-w-7xl bg-primary"
-    >
+ <footer class="font-salsa text-white">
       <div class="flex flex-col gap-6">
         <div class="flex flex-col sm:flex-row justify-between gap-4">
           <a

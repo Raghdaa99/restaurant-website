@@ -1,7 +1,5 @@
 <template>
-  <form @submit.prevent="submitForm"
-        class="mt-4 space-y-6 max-w-4xl mx-auto px-6 w-full bg-white p-6 md:p-8 rounded-lg shadow-md">
-
+  <form @submit.prevent="submitForm" class="mt-4 space-y-6 max-w-4xl mx-auto px-6 w-full bg-white p-6 md:p-8 rounded-lg shadow-md">
     <!-- Name & Email Fields -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
       <InputField label="Name" class="w-full" placeholder="Enter your name" />
@@ -15,14 +13,12 @@
     </div>
 
     <!-- Message Field -->
-    <div>
-      <label class="font-medium text-lg text-gray-700">Message</label>
-      <textarea
-          placeholder="Your message"
-          class="w-full p-3 border border-gray-300 rounded-md focus:border-primary focus:ring-primary focus:ring-1 transition-all"
-          rows="4">
-      </textarea>
-    </div>
+    <TextArea
+      v-model="message"
+      label="Message"
+      placeholder="Your message"
+      :rows="4"
+    />
 
     <!-- Submit Button -->
     <div class="flex justify-center">
@@ -32,10 +28,14 @@
 </template>
 
 <script setup lang="ts">
-import InputField from "@/components/ui/InputField.vue";
-import Button from "@/components/ui/Button.vue";
+import InputField from "@/components/UI/InputField.vue";
+import TextArea from "@/components/UI/TextArea.vue";
+import Button from "@/components/UI/Button.vue";
+import { ref } from 'vue';
+
+const message = ref('');
 
 const submitForm = () => {
-  console.log("Form submitted!");
+  console.log("Form submitted with message:", message.value);
 };
 </script>

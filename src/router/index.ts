@@ -13,6 +13,21 @@ const router = createRouter({
       name: "Contact", 
       component: () => import("@/views/ContactUs.vue"),
     },
+    {
+      path: "/cart",
+      name: "Cart",
+      component: () => import("@/views/Cart.vue"),
+    },
+    {
+      path: "/food/:id",
+      name: "Food-Details",
+      component: () => import("@/views/FoodDetails.vue"),
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "NotFound",
+      component: () => import("@/views/ErrorNotFound.vue"),
+    },
     { 
       path: "/menu",
       name: "Menu", 
