@@ -3,7 +3,7 @@
     <label class="font-medium text-lg text-gray-700">{{ label }}</label>
     <input
       :type="type"
-      class="px-4 py-2 border border-primary rounded-md focus:border-primary focus:ring-primary focus:ring-1 transition-all placeholder-gray-500"
+      class="px-4 py-2 border-gray-300 border rounded-md focus:border-primary focus:ring-primary focus:ring-1 transition-all placeholder-gray-500"
       :placeholder="placeholder"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"

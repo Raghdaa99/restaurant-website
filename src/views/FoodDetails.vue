@@ -54,7 +54,7 @@
             <div class="flex flex-col items-end gap-2">
               <div @click.stop>
                 <template v-if="!isItemInCart(food.id)">
-                  <AddToCartButton :item="cartItem" />
+                  <AddToCartButton :item="cartItem" title="Add to Cart" />
                 </template>
                 <template v-else>
                   <div class="relative group">

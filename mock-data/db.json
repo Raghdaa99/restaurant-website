@@ -175,13 +175,13 @@
       "foodId": 2
     },
     {
-      "id": 1740400437995,
+      "id": 1740396807425,
       "userName": "Anonymous User",
       "userImage": "https://ui-avatars.com/api/?name=Anonymous+User",
-      "rating": 0,
-      "comment": "skldjfl",
-      "date": "2025-02-24T12:33:57.995Z",
-      "foodId": 2
+      "rating": 3,
+      "comment": "wwww",
+      "date": "2025-02-24T11:33:27.425Z",
+      "foodId": 1
     }
   ]
 }
