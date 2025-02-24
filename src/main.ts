@@ -6,11 +6,13 @@ import './index.css'
 import '@fortawesome/fontawesome-free/css/all.css';
 import piniaPersistedState from "pinia-plugin-persistedstate";
 import 'leaflet/dist/leaflet.css'; 
+import Swal from 'sweetalert2';
 const app = createApp(App)
 
 const pinia = createPinia();
 pinia.use(piniaPersistedState);
 app.use(pinia);
 app.use(router);
+window.Swal = Swal;
 
 app.mount('#app')

@@ -5,7 +5,7 @@ const currentYear = new Date().getFullYear();
 
 <template>
   <footer class="font-space-grotesk">
-    <div class="flex flex-col py-8 px-6 md:py-10 md:px-12 lg:px-20 mx-auto max-w-7xl bg-primary">
+    <div class="flex flex-col py-8 px-6 md:py-10 md:px-12 lg:px-20 mx-auto bg-primary">
       <div class="flex flex-col gap-6">
         <div class="flex flex-col sm:flex-row justify-between gap-4">
           <a href="#" class="md:min-w-32 lg:min-w-40 text-center text-gray hover:text-gray/80">

@@ -1,11 +1,18 @@
 <template>
-   <div class="z-0">
-        <HomeHeader />
-      </div>
-  <MenuSection/>
-  <ServicesSection/>
-  <CallToActionSection/>
-  <TestimonialsSection/>
+  <div class="z-0">
+    <HomeHeader />
+  </div>
+  <FoodCategoriesSection />
+  <MenuSection />
+  <ServicesSection />
+  <CallToActionSection />
+  <TestimonialsSection />
+  <div class="container mx-auto px-4 md:px-32 lg:px-32 py-12 mt-15">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
+      Find a Location
+    </h2>
+    <LocationMap class="h-[300px] w-full" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -13,5 +20,7 @@ import TestimonialsSection from "@/components/home/TestimonialsSection.vue";
 import CallToActionSection from "@/components/home/CallToActionSection.vue";
 import ServicesSection from "@/components/home/ServicesSection.vue";
 import MenuSection from "@/components/home/MenuSection.vue";
-import HomeHeader from "@/components/layouts/HomeHeader.vue"
+import FoodCategoriesSection from "@/components/home/FoodCategoriesSection.vue";
+import HomeHeader from "@/components/layouts/HomeHeader.vue";
+import LocationMap from "@/components/Contact/LocationMap.vue";
 </script>
