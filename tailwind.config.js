@@ -12,8 +12,8 @@ colors: {
         danger: "#f87171",
       },
       fontFamily: {
-        Poppins: ["Poppins", "sans-serif"],
-        Salsa: ["Salsa", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
+        salsa: ["Salsa", "sans-serif"],
         "space-grotesk": ["Space Grotesk", "sans-serif"], // تمت إضافته من `tareq-add-font`
       },
     },

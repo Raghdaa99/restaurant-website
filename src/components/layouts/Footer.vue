@@ -4,15 +4,25 @@ const currentYear = new Date().getFullYear();
 </script>
 
 <template>
-  <footer class="font-space-grotesk">
-    <div class="flex flex-col py-6 px-6 md:py-2 md:px-10 lg:px-16 mx-auto max-w-7xl bg-primary text-sm">
-      <div class="flex flex-col space-y-6">
-        <div class="flex flex-wrap justify-center gap-16">
-          <a href="#" class="text-center text-white hover:text-black transition duration-200">Catering</a>
-          <a href="#" class="text-center text-white hover:text-black transition duration-200">Nutrition</a>
-          <a href="#" class="text-center text-white hover:text-black transition duration-200">Gift Cards</a>
-          <a href="#" class="text-center text-white hover:text-black transition duration-200">Download Our App</a>
-          <a href="#" class="text-center text-white hover:text-black transition duration-200">Careers</a>
+  <footer class="font-salsa text-white">
+    <div class="flex flex-col py-8 px-6 md:py-10 md:px-12 lg:px-20 mx-auto max-w-7xl bg-primary">
+      <div class="flex flex-col gap-6">
+        <div class="flex flex-col sm:flex-row justify-between gap-4">
+          <a href="/contact" class="md:min-w-32 lg:min-w-40 text-center hover:text-shadow-md  ">
+            Contact Us
+          </a>
+          <a href="/about" class="md:min-w-32 lg:min-w-40 text-center hover:text-gray/80">
+            About Us
+          </a>
+          <a href="/menu" class="md:min-w-32 lg:min-w-40 text-center hover:text-gray/80">
+            Menu
+          </a>
+          <a href="#" class="md:min-w-32 lg:min-w-40 text-center hover:text-gray/80">
+            Download Our App
+          </a>
+          <a href="#" class="md:min-w-32 lg:min-w-40 text-center hover:text-gray/80">
+            Careers
+          </a> 
         </div>
 
         <div class="flex flex-wrap justify-center gap-24">
