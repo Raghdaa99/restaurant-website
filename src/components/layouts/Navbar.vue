@@ -8,7 +8,7 @@
       <div>
         <a href="/">
           <img
-            class="w-24 h-24 md:w-36 h-20"
+            class="w-24 h-20 md:w-36 md:h-20"
             :src="logo"
             alt="Lazeez Restaurant Logo"
           />
