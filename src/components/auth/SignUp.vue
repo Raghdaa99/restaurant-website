@@ -1,7 +1,6 @@
-
 <template>
   <div
-    class="main-section flex justify-center items-center min-h-screen  pt-48 pb-24 font-salsa"
+    class="main-section flex justify-center items-center min-h-screen pt-48 pb-24 font-salsa"
   >
     <div
       class="w-full max-w-lg p-8 bg-white rounded-lg shadow-md animate-fade-in"
@@ -82,7 +81,8 @@
 
         <Button
           title="Create Account"
-          class="w-full justify-center items-center button-hover-effect bg-primary"
+          class="w-full flex justify-center items-center button-hover-effect bg-primary"
+          to="/signin"
         />
       </form>
 
@@ -100,8 +100,8 @@
 import { ref, computed } from "vue";
 import { useUserStore } from "@/stores/useUserStore";
 import { useRouter } from "vue-router";
-import Button from "@/components/UI/Button.vue";
-import InputField from "@/components/UI/InputField.vue";
+import Button from "@/components/ui/Button.vue";
+import InputField from "@/components/ui/InputField.vue";
 
 const userStore = useUserStore();
 const router = useRouter();

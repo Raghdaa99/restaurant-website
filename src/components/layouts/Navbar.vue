@@ -84,6 +84,7 @@
             <Button
               title=""
               icon="shopping-cart"
+              to="/cart"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -93,17 +94,16 @@
             />
           </li>
           <li>
-            <router-link to="/signin">
-              <Button
-                title="Sign In"
-                :class="{
-                  'text-white': true,
-                  'hover:text-black': !isHome,
-                  'hover:text-primary': isHome,
-                }"
-                class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
-              />
-            </router-link>
+            <Button
+              title="Sign In"
+              to="/signin"
+              :class="{
+                'text-white': true,
+                'hover:text-black': !isHome,
+                'hover:text-primary': isHome,
+              }"
+              class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
+            />
           </li>
         </ul>
       </div>
@@ -159,12 +159,14 @@
             class="hover:border border-white rounded-md p-2"
             title=""
             icon="shopping-cart"
+            to="/cart"
           />
         </li>
         <li>
           <router-link to="/signin">
             <Button
               title="Sign In"
+              to="/signin"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,

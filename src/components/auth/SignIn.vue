@@ -1,13 +1,18 @@
-
 <template>
-  <div class="main-section flex justify-center items-center min-h-screen pt-48 pb-24 font-salsa">
-    <div class="w-full max-w-lg p-8 bg-white rounded-lg shadow-md animate-fade-in">
+  <div
+    class="main-section flex justify-center items-center min-h-screen pt-48 pb-24 font-salsa"
+  >
+    <div
+      class="w-full max-w-lg p-8 bg-white rounded-lg shadow-md animate-fade-in"
+    >
       <img
         class="block mx-auto w-32 my-0 p-0"
         src="../../assets/images/LazeezLogo.svg"
         alt=""
       />
-      <h1 class="text-2xl font-bold text-center text-black mb-4">Sign In to Your Account</h1>
+      <h1 class="text-2xl font-bold text-center text-black mb-4">
+        Sign In to Your Account
+      </h1>
 
       <form @submit.prevent="handleLogin">
         <div class="mb-4">
@@ -16,10 +21,12 @@
             type="tel"
             placeholder="Phone Number"
             :modelValue="loginData.phone"
-            @update:modelValue="val => loginData.phone = val"
+            @update:modelValue="(val) => (loginData.phone = val)"
             @blur="markTouched('phone')"
           />
-          <p v-if="errors.phone" class="text-danger text-sm">Invalid phone number</p>
+          <p v-if="errors.phone" class="text-danger text-sm">
+            Invalid phone number
+          </p>
         </div>
 
         <div class="mb-6">
@@ -28,18 +35,26 @@
             type="password"
             placeholder="Password"
             :modelValue="loginData.password"
-            @update:modelValue="val => loginData.password = val"
+            @update:modelValue="(val) => (loginData.password = val)"
             @blur="markTouched('password')"
           />
-          <p v-if="errors.password" class="text-danger text-sm">Password must be at least 6 characters</p>
+          <p v-if="errors.password" class="text-danger text-sm">
+            Password must be at least 6 characters
+          </p>
         </div>
 
-        <Button title="Sign In" class="w-full justify-center items-center button-hover-effect bg-primary" />
+        <Button
+          title="Sign In"
+          class="w-full flex justify-center items-center button-hover-effect bg-primary"
+          to="/signin"
+        />
       </form>
 
       <p class="mt-4 text-center text-gray text-sm">
-        Don't have an account? 
-        <a href="/signup" class="text-primary hover:text-primary font-semibold">Sign up</a>
+        Don't have an account?
+        <a href="/signup" class="text-primary hover:text-primary font-semibold"
+          >Sign up</a
+        >
       </p>
     </div>
   </div>
@@ -48,9 +63,9 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
-import { useUserStore } from "@/stores/useUserStore"; 
+import { useUserStore } from "@/stores/useUserStore";
 import Button from "@/components/ui/Button.vue";
-import InputField from "@/components/ui/InputField.vue"; 
+import InputField from "@/components/ui/InputField.vue";
 const router = useRouter();
 const userStore = useUserStore();
 const loginData = ref({
@@ -61,8 +76,10 @@ const loginData = ref({
 const touched = ref<{ [key: string]: boolean }>({});
 
 const errors = computed(() => ({
-  phone: touched.value.phone &&
-    (isNaN(parseInt(loginData.value.phone)) || loginData.value.phone.length < 8),
+  phone:
+    touched.value.phone &&
+    (isNaN(parseInt(loginData.value.phone)) ||
+      loginData.value.phone.length < 8),
   password: touched.value.password && loginData.value.password.length < 6,
 }));
 
@@ -72,7 +89,7 @@ function markTouched(field: string) {
 
 function handleLogin() {
   const users = JSON.parse(localStorage.getItem("users") || "[]");
-  const user = users.find(u => u.phone === loginData.value.phone);
+  const user = users.find((u) => u.phone === loginData.value.phone);
 
   if (user) {
     if (user.password === loginData.value.password) {
@@ -88,7 +105,6 @@ function handleLogin() {
 }
 </script>
 
-
 <style scoped>
 @keyframes fadeIn {
   from {
@@ -102,7 +118,7 @@ function handleLogin() {
 }
 
 .animate-fade-in {
-  animation: fadeIn 2.0s ease-out forwards;
+  animation: fadeIn 2s ease-out forwards;
 }
 
 .button-hover-effect {
@@ -114,10 +130,10 @@ function handleLogin() {
 }
 
 .main-section {
-  background-image: url('../../assets/images/signin/background.jpg');
+  background-image: url("../../assets/images/signin/background.jpg");
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; 
+  background-attachment: fixed;
   background-color: white;
   animation: backgroundReveal 2s ease-out forwards;
 }
