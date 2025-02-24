@@ -64,6 +64,18 @@
                 'hover:text-black': !isHome,
                 'hover:text-primary': isHome,
               }"
+              href="/reservation"
+              >reservation</a
+            >
+          </li>
+          <li>
+            <a
+              class="hover:border border-white rounded-md p-2"
+              :class="{
+                'text-white': true,
+                'hover:text-black': !isHome,
+                'hover:text-primary': isHome,
+              }"
               href="/about"
               >about us</a
             >
@@ -134,6 +146,14 @@
             href="/menu"
             @click="closeMenu"
             >menu</a
+          >
+        </li>
+        <li>
+          <a
+            class="hover:border border-white hover:text-primary rounded-md p-2"
+            href="/reservation"
+            @click="closeMenu"
+            >reservation</a
           >
         </li>
         <li>
