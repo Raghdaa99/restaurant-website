@@ -4,7 +4,7 @@
       <Navbar />
     </div>
     <router-view />
-    <div class="mt-32  ">
+    <div>
       <Footer/>
     </div>
     
