@@ -1,7 +1,7 @@
 {
   "foods": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Margherita Pizza",
       "description": "A classic Italian masterpiece featuring a thin, crispy crust topped with San Marzano tomato sauce, fresh buffalo mozzarella, fragrant basil leaves, and a drizzle of extra virgin olive oil. Each pizza is baked to perfection in our wood-fired oven, creating the perfect balance of flavors and textures that transport you straight to Naples.",
       "price": 14.99,
@@ -11,7 +11,7 @@
       "calories": "266 kcal"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Caesar Salad",
       "description": "Our signature Caesar salad features crisp hearts of romaine lettuce, house-made garlic croutons, and shaved Parmigiano-Reggiano cheese. Tossed in our creamy Caesar dressing made from scratch with fresh garlic, anchovy paste, Dijon mustard, and extra virgin olive oil. Optional grilled chicken or shrimp available to make it a complete meal.",
       "price": 8.99,
@@ -21,7 +21,7 @@
       "calories": "320 kcal"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Cordon Bleu",
       "description": "A sophisticated French classic featuring tender chicken breast, carefully butterflied and stuffed with premium Black Forest ham and melted Gruyère cheese. Hand-breaded in seasoned panko crumbs and pan-fried until golden brown. Served with our velvety Dijon cream sauce, roasted fingerling potatoes, and seasonal vegetables.",
       "price": 14.99,
@@ -31,7 +31,7 @@
       "calories": "520 kcal"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Mediterranean Salad",
       "description": "A refreshing blend of crisp romaine lettuce, cherry tomatoes, cucumber, red onions, Kalamata olives, and crumbled feta cheese. Topped with our house-made Greek vinaigrette featuring extra virgin olive oil, red wine vinegar, and Mediterranean herbs. Served with warm pita bread and tzatziki sauce on the side.",
       "price": 8.99,
@@ -41,7 +41,7 @@
       "calories": "280 kcal"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Chicken Schnitzel",
       "description": "A classic chicken schnitzel with a crispy breadcrumb coating and a juicy chicken breast. Served with our creamy Dijon cream sauce, roasted fingerling potatoes, and seasonal vegetables.",
       "price": 14.99,
@@ -53,31 +53,31 @@
   ],
   "categories": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Pizza",
       "image": "/src/assets/images/categories/pizza.jpeg",
       "icon": "fas fa-pizza-slice"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Salad",
       "image": "/src/assets/images/categories/salad.jpeg",
       "icon": "fas fa-leaf"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Dessert",
       "image": "/src/assets/images/categories/dessert.jpeg",
       "icon": "fas fa-ice-cream"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Drinks",
       "image": "/src/assets/images/categories/drinks.jpeg",
       "icon": "fas fa-glass-martini-alt"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Appetizers",
       "image": "/src/assets/images/categories/appetizers.jpeg",
       "icon": "fas fa-cheese"
@@ -85,7 +85,7 @@
   ],
   "reviews": [
     {
-      "id": 1,
+      "id": "1",
       "userName": "John Doe",
       "userImage": "https://ui-avatars.com/api/?name=John+Doe",
       "rating": 5,
@@ -94,7 +94,7 @@
       "foodId": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "userName": "Jane Smith",
       "userImage": "https://ui-avatars.com/api/?name=Jane+Smith",
       "rating": 4,
@@ -103,7 +103,7 @@
       "foodId": 1
     },
     {
-      "id": 3,
+      "id": "3",
       "userName": "Mike Johnson",
       "userImage": "https://ui-avatars.com/api/?name=Mike+Johnson",
       "rating": 5,
@@ -112,7 +112,7 @@
       "foodId": 1
     },
     {
-      "id": 1740368523791,
+      "id": "1740368523791",
       "userName": "Anonymous User",
       "userImage": "https://ui-avatars.com/api/?name=Anonymous+User",
       "rating": 3,
@@ -121,7 +121,7 @@
       "foodId": 2
     },
     {
-      "id": 1740370178925,
+      "id": "1740370178925",
       "userName": "Anonymous User",
       "userImage": "https://ui-avatars.com/api/?name=Anonymous+User",
       "rating": 3,
@@ -139,7 +139,7 @@
       "foodId": 4
     },
     {
-      "id": 1740372239831,
+      "id": "1740372239831",
       "userName": "Anonymous User",
       "userImage": "https://ui-avatars.com/api/?name=Anonymous+User",
       "rating": 3,
@@ -148,7 +148,7 @@
       "foodId": 3
     },
     {
-      "id": 1740372360632,
+      "id": "1740372360632",
       "userName": "Anonymous User",
       "userImage": "https://ui-avatars.com/api/?name=Anonymous+User",
       "rating": 3,
@@ -157,7 +157,7 @@
       "foodId": 3
     },
     {
-      "id": 1740374663663,
+      "id": "1740374663663",
       "userName": "Anonymous User",
       "userImage": "https://ui-avatars.com/api/?name=Anonymous+User",
       "rating": 3,
@@ -166,12 +166,21 @@
       "foodId": 5
     },
     {
-      "id": 1740394280107,
+      "id": "1740394280107",
       "userName": "Anonymous User",
       "userImage": "https://ui-avatars.com/api/?name=Anonymous+User",
       "rating": 3,
       "comment": "ffffff",
       "date": "2025-02-24T10:51:20.107Z",
+      "foodId": 2
+    },
+    {
+      "id": 1740400437995,
+      "userName": "Anonymous User",
+      "userImage": "https://ui-avatars.com/api/?name=Anonymous+User",
+      "rating": 0,
+      "comment": "skldjfl",
+      "date": "2025-02-24T12:33:57.995Z",
       "foodId": 2
     }
   ]
