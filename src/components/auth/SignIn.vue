@@ -52,7 +52,6 @@ function handleLogin() {
       <h1 class="text-2xl font-bold text-center text-black mb-4">Sign In to Your Account</h1>
 
       <form @submit.prevent="handleLogin">
-        <!-- حقل الهاتف المعدل -->
         <div class="mb-4">
           <InputField
             label="Phone Number"
@@ -65,7 +64,6 @@ function handleLogin() {
           <p v-if="errors.phone" class="text-danger text-sm">Invalid phone number</p>
         </div>
 
-        <!-- حقل الباسوورد المعدل -->
         <div class="mb-6">
           <InputField
             label="Password"
