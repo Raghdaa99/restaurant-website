@@ -39,7 +39,7 @@
                 </button>
               </div>
 
-              <form @submit.prevent="handleSubmit" class="space-y-8">
+              <form  class="space-y-8">
                 <!-- Rating Selection -->
                 <div>
                   <label class="font-medium text-lg text-gray-700 block mb-3"
@@ -84,7 +84,7 @@
                   >
                     Cancel
                   </button>
-                  <Button title="Submit" icon="paper-plane" />
+                  <Button title="Submit" icon="paper-plane" @click="handleSubmit" />
                 </div>
               </form>
             </DialogPanel>
@@ -136,7 +136,7 @@ const handleSubmit = () => {
   date: new Date().toISOString(),
   foodId: props.foodId,
 };
-
+console.log(review);
   try {
     emit("submit", review);
     handleClose();
