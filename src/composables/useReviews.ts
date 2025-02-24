@@ -9,7 +9,8 @@ export function useReviews(foodId: number) {
   const loadReviews = async () => {
     try {
       const allReviews = await fetchReviews();
-      reviews.value = allReviews.filter((review: Review) => review.foodId === foodId);
+      reviews.value = allReviews.filter((review: Review) => review.foodId === foodId)
+      .sort((a: Review, b: Review) => new Date(b.date).getTime() - new Date(a.date).getTime());
       calculateAverageRating();
     } catch (error) {
       console.error('Error loading reviews:', error);
@@ -28,7 +29,7 @@ export function useReviews(foodId: number) {
   const submitReview = async (review: Review) => {
     try {
       const newReview = await addReview({ ...review, foodId });
-      reviews.value.push(newReview);
+      reviews.value.unshift(newReview);
       calculateAverageRating();
     } catch (error) {
       console.error('Error adding review:', error);
