@@ -43,8 +43,7 @@
 
       <!-- Location Map Section -->
       <div class="w-full h-full">
-        <!-- <LocationMap class="h-[500px] w-full" /> -->
-        
+        <LocationMap height="500px" />
       </div>
     </div>
 
@@ -65,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-// import LocationMap from "@/components/contact/LocationMap.vue";
+import LocationMap from "@/components/contact/LocationMap.vue";
 import ContactInfoItem from "@/components/contact/ContactInfoItem.vue";
 import SocialItem from "@/components/contact/SocialItem.vue";
 import ContactForm from "@/components/contact/ContactForm.vue";
