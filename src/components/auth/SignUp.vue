@@ -79,11 +79,12 @@
           </p>
         </div>
 
-        <Button
-          title="Create Account"
-          class="w-full flex justify-center items-center button-hover-effect bg-primary"
-          to="/signin"
-        />
+        <button 
+  type="submit"
+  class="w-full flex justify-center items-center button-hover-effect bg-primary text-white py-2 px-4 rounded-lg font-semibold hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+>
+  <span>Create Account</span>
+</button>
       </form>
 
       <p class="mt-4 text-center text-gray text-sm">
@@ -100,7 +101,6 @@
 import { ref, computed } from "vue";
 import { useUserStore } from "@/stores/useUserStore";
 import { useRouter } from "vue-router";
-import Button from "@/components/ui/Button.vue";
 import InputField from "@/components/ui/InputField.vue";
 
 const userStore = useUserStore();
@@ -160,12 +160,14 @@ function handleSubmit() {
   animation: fadeIn 2s ease-out forwards;
 }
 
-.button-hover-effect {
+.button {
+  background-color: var(--primary-color);
   transition: transform 0.2s ease-in-out;
 }
 
-.button-hover-effect:hover {
+.button:hover {
   transform: scale(1.05);
+  background-color: var(--primary-dark-color);
 }
 
 .main-section {
