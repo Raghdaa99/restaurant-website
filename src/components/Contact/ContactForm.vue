@@ -26,14 +26,14 @@
 
     <!-- Submit Button -->
     <div class="flex justify-center">
-      <Button title="Submit" />
+      <Button title="Submit" class="bg-primary" />
     </div>
   </form>
 </template>
 
 <script setup lang="ts">
-import InputField from "@/components/UI/InputField.vue";
-import Button from "@/components/UI/Button.vue";
+import InputField from "@/components/ui/InputField.vue";
+import Button from "@/components/ui/Button.vue";
 
 const submitForm = () => {
   console.log("Form submitted!");

@@ -1,5 +1,5 @@
 <template>
-  <div class="lg:container mt-32 mx-auto px-6 md:px-12 lg:px-28 py-6 md:py-12">
+  <div class="lg:container mt-32 mx-auto px-6 md:px-12 lg:px-28 py-6 md:py-12 font-salsa">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Contact Information Section -->
       <div>
@@ -64,10 +64,10 @@
 </template>
 
 <script setup lang="ts">
-import LocationMap from "@/components/Contact/LocationMap.vue";
-import ContactInfoItem from "@/components/Contact/ContactInfoItem.vue";
-import SocialItem from "@/components/Contact/SocialItem.vue";
-import ContactForm from "@/components/Contact/ContactForm.vue";
+import LocationMap from "@/components/contact/LocationMap.vue";
+import ContactInfoItem from "@/components/contact/ContactInfoItem.vue";
+import SocialItem from "@/components/contact/SocialItem.vue";
+import ContactForm from "@/components/contact/ContactForm.vue";
 const socialLinks = [
   { icon: "facebook", title: "Facebook" },
   { icon: "twitter", title: "Twitter" },

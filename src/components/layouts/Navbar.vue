@@ -93,15 +93,17 @@
             />
           </li>
           <li>
-            <Button
-              title="Sign In"
-              :class="{
-                'text-white': true,
-                'hover:text-black': !isHome,
-                'hover:text-primary': isHome,
-              }"
-              class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
-            />
+            <router-link to="/signin">
+              <Button
+                title="Sign In"
+                :class="{
+                  'text-white': true,
+                  'hover:text-black': !isHome,
+                  'hover:text-primary': isHome,
+                }"
+                class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
+              />
+            </router-link>
           </li>
         </ul>
       </div>
@@ -160,15 +162,17 @@
           />
         </li>
         <li>
-          <Button
-            title="Sign In"
-            :class="{
-              'text-white': true,
-              'hover:text-black': !isHome,
-              'hover:text-primary': isHome,
-            }"
-            class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
-          />
+          <router-link to="/signin">
+            <Button
+              title="Sign In"
+              :class="{
+                'text-white': true,
+                'hover:text-black': !isHome,
+                'hover:text-primary': isHome,
+              }"
+              class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
+            />
+          </router-link>
         </li>
       </ul>
     </div>
@@ -177,7 +181,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, RouterLink } from "vue-router";
 import logo from "@/assets/images/LazeezLogo.svg";
 import Button from "../ui/Button.vue";
 const isMenuOpen = ref(false);
