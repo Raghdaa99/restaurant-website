@@ -39,7 +39,7 @@
                 </button>
               </div>
 
-              <form  class="space-y-8">
+              <form  class="space-y-4 px-4">
                 <!-- Rating Selection -->
                 <div>
                   <label class="font-medium text-lg text-gray-700 block mb-3"
@@ -74,7 +74,11 @@
                   placeholder="Share your experience with this dish..."
                   :rows="4"
                 />
-
+                <InputField
+                  v-model="userName"
+                  label="Your Name (Optional)"
+                  placeholder="Enter your name"
+                />
                 <!-- Submit Button -->
                 <div class="flex justify-end gap-4 pt-4">
                   <button
@@ -84,7 +88,7 @@
                   >
                     Cancel
                   </button>
-                  <Button title="Submit" icon="paper-plane" @click="handleSubmit" />
+                  <Button title="Submit" icon="paper-plane" @click.prevent="handleSubmit" />
                 </div>
               </form>
             </DialogPanel>
@@ -107,6 +111,7 @@ import {
 import type { Review } from "@/types/food";
 import TextArea from "@/components/UI/TextArea.vue";
 import Button from "@/components/UI/Button.vue";
+import InputField from "@/components/UI/InputField.vue";
 const props = defineProps<{
   isOpen: boolean;
   foodId: number;
@@ -120,6 +125,7 @@ const emit = defineEmits<{
 const rating = ref(0);
 const hoverRating = ref(0);
 const comment = ref("");
+const userName = ref("");
 
 const handleClose = () => {
   emit("close");
@@ -129,8 +135,8 @@ const handleClose = () => {
 const handleSubmit = () => {
   const review = {
   id: Date.now(),
-  userName: "Anonymous User",
-  userImage: "https://ui-avatars.com/api/?name=Anonymous+User",
+  userName: userName.value || "Anonymous User",
+  userImage: "https://ui-avatars.com/api/?name=" + userName.value || "Anonymous User",
   rating: rating.value,
   comment: comment.value.trim(),
   date: new Date().toISOString(),

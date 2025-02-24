@@ -14,7 +14,7 @@
     >
       <i class="fas fa-trash"></i>
     </button>
-    <span class="w-8 sm:w-12 text-center bg-primary text-white py-1 sm:py-2">
+    <span class="w-8 px-2 py-1 text-center bg-primary text-white">
       {{ quantity }}
     </span>
     <button
@@ -40,6 +40,6 @@ defineEmits<{
 
 <style scoped>
 .quantity-btn {
-  @apply px-2 sm:px-3 py-1 sm:py-2 bg-primary text-white transition-colors hover:bg-primary/80;
+  @apply px-3 py-1 bg-primary text-white transition-colors hover:bg-primary/80;
 }
 </style> 

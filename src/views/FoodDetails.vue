@@ -100,12 +100,17 @@
         
         <div class="space-y-8">
           <ReviewCard 
-            v-for="review in reviews" 
+            v-for="review in displayedReviews" 
             :key="review.id" 
             :review="review" 
           />
         </div>
-        
+        <div class="flex justify-center" v-if="!showAllReviews && reviews.length > 2">
+          <button @click="viewAllReviews" class="px-5 py-2.5 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 
+                   transition-colors font-medium flex items-center gap-2">
+            View All Reviews <i class="fas fa-arrow-right ml-2"></i>
+          </button>
+        </div>
         <div v-if="reviews.length === 0" class="text-center py-8">
           <p class="text-gray-500 text-lg">No reviews yet. Be the first to write a review!</p>
         </div>
@@ -154,6 +159,7 @@ const route = useRoute();
 const food = ref<Food | null>(null);
 const isReviewModalOpen = ref(false);
 const foods = ref<Food[]>([]);
+const showAllReviews = ref(false);
 
 const { 
   isItemInCart, 
@@ -184,6 +190,10 @@ const relatedFoods = computed(() => {
     .slice(0, 4);
 });
 
+const displayedReviews = computed(() => {
+  return showAllReviews.value ? reviews.value : reviews.value.slice(0, 2);
+});
+
 const loadFoodDetails = async (id: number) => {
   try {
     foods.value = await fetchFoods();
@@ -209,6 +219,10 @@ const handleAddReview = async (review: Omit<Review, 'id'>) => {
   } catch (error) {
     console.error('Error adding review:', error);
   }
+};
+
+const viewAllReviews = () => {
+  showAllReviews.value = true;
 };
 
 </script>

@@ -7,13 +7,15 @@
     />
     <div class="flex flex-col p-4 h-full">
       <div class="text-start">
+        <div class="flex items-center justify-between">
         <h3 class="text-lg font-semibold text-gray-800">{{ food.name }}</h3>
+      </div>
         <p class="text-sm text-gray-500 mt-1">
           {{ `${food.description.slice(0, 100)}...` }}
         </p>
       </div>
 
-      <div class="flex items-center justify-between mt-4">
+      <div class="flex items-center justify-between mt-2">
         <span class="text-xl font-semibold text-primary">${{ food.price }}</span>
 
         <!-- Cart Controls -->
@@ -71,7 +73,7 @@ const navigateToFoodDetails = (id: number) => {
 
 <style scoped>
 .food-item-card {
-  @apply rounded-lg shadow-lg border border-gray-200 
+  @apply rounded-lg shadow-lg border border-gray-200
          transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-xl;
 }
 </style>
