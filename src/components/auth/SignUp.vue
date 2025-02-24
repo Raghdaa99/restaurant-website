@@ -138,7 +138,7 @@ function handleSubmit() {
   const success = userStore.saveUser(userStore.userData);
   if (success) {
     alert("Account created successfully!");
-    router.push({ name: "Home" });
+    router.push({ name: "SignIn" });
     window.scrollTo(0, 0);
   }
 }
