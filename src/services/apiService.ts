@@ -24,6 +24,16 @@ export const fetchFoods = async () => {
   }
 };
 
+export const fetchFoodById = async (id: string) => {
+  try {
+    const response = await apiClient.get(`/foods/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching food by id:', error);
+    throw error;
+  }
+};
+
 export const fetchCategories = async () => {
   try {
     const response = await apiClient.get('/categories');

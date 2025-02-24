@@ -142,7 +142,7 @@
 import { ref, computed, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useCart } from "@/composables/useCart";
-import { fetchFoods } from '@/services/apiService';
+import { fetchFoods, fetchFoodById } from '@/services/apiService';
 import { useReviews } from '@/composables/useReviews';
 import type { Food, Review } from '@/types/food';
 
@@ -196,8 +196,7 @@ const displayedReviews = computed(() => {
 
 const loadFoodDetails = async (id: number) => {
   try {
-    foods.value = await fetchFoods();
-    food.value = foods.value.find(item => Number(item.id) === id) || null;
+    food.value = await fetchFoodById(id);
     await loadReviews();
   } catch (error) {
     console.error('Error fetching food details:', error);
