@@ -89,19 +89,22 @@ function markTouched(field: string) {
 }
 
 function handleLogin() {
-  const users = JSON.parse(localStorage.getItem("users") || "[]");
-  const user = users.find((u) => u.phone === loginData.value.phone);
+  // تحقق من الأخطاء قبل محاولة تسجيل الدخول
+  Object.keys(loginData.value).forEach(markTouched);
+  if (Object.values(errors.value).some((err) => err)) {
+    alert("Please fix errors before submitting.");
+    return;
+  }
 
-  if (user) {
-    if (user.password === loginData.value.password) {
-      alert("Login Successful!");
-      router.push("/");
-      window.scrollTo(0, 0);
-    } else {
-      alert("Invalid password");
-    }
+  // استخدام وظيفة login من متجر المستخدم
+  const success = userStore.login(loginData.value.phone, loginData.value.password);
+  
+  if (success) {
+    alert("Login Successful!");
+    router.push("/");
+    window.scrollTo(0, 0);
   } else {
-    alert("No user found. Please sign up first.");
+    alert("Invalid phone number or password");
   }
 }
 </script>
