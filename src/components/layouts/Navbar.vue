@@ -107,10 +107,23 @@
             />
             </router-link>
           </li>
-          <li>
+          <li v-if="!userStore.isAuthenticated">
             <router-link to="/signin">
+              <Button
+                title="Sign In"
+                :class="{
+                  'text-white': true,
+                  'hover:text-black': !isHome,
+                  'hover:text-primary': isHome,
+                }"
+                class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
+              />
+            </router-link>
+          </li>
+          <li v-else>
             <Button
-              title="Sign In"
+              @click="handleLogout"
+              title="Logout"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -118,7 +131,6 @@
               }"
               class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
             />
-          </router-link>
           </li>
         </ul>
       </div>
@@ -185,11 +197,10 @@
             to="/cart"
           />
         </li>
-        <li>
+        <li v-if="!userStore.isAuthenticated">
           <router-link to="/signin">
             <Button
               title="Sign In"
-              to="/signin"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -199,6 +210,18 @@
             />
           </router-link>
         </li>
+        <li v-else>
+          <Button
+            @click="handleLogout"
+            title="Logout"
+            :class="{
+              'text-white': true,
+              'hover:text-black': !isHome,
+              'hover:text-primary': isHome,
+            }"
+            class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
+          />
+        </li>
       </ul>
     </div>
   </div>
@@ -206,9 +229,12 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { useRoute, RouterLink } from "vue-router";
+import { useRoute, RouterLink, useRouter } from "vue-router";
 import logo from "@/assets/images/LazeezLogo.svg";
 import Button from "../ui/Button.vue";
+import { useUserStore } from '@/stores/useUserStore'
+import Swal from 'sweetalert2'
+
 const isMenuOpen = ref(false);
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
@@ -218,5 +244,56 @@ const closeMenu = () => {
 };
 
 const route = useRoute();
+const router = useRouter();
 const isHome = computed(() => route.name === "Home");
+
+const userStore = useUserStore()
+const isUserMenuOpen = ref(false)
+
+const navigationItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Menu', path: '/menu' },
+  { name: 'About', path: '/about' },
+  { name: 'Contact', path: '/contact' }
+]
+
+function isCurrentRoute(path: string): boolean {
+  return route.path === path
+}
+
+function toggleUserMenu() {
+  isUserMenuOpen.value = !isUserMenuOpen.value
+}
+
+const handleLogout = () => {
+  Swal.fire({
+    title: 'Logout',
+    text: 'Are you sure you want to logout?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes',
+    cancelButtonText: 'Cancel'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      userStore.logout();
+      router.push('/');
+      closeMenu();
+      Swal.fire({
+        title: 'Logged Out',
+        text: 'You have been successfully logged out',
+        icon: 'success',
+        timer: 1500,
+        showConfirmButton: false
+      });
+    }
+  });
+};
 </script>
+
+<style scoped>
+.router-link-active {
+  color: var(--primary-color);
+}
+</style>
