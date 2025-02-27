@@ -1,8 +1,8 @@
 <template>
-  <div class="lg:container mt-32 mx-auto px-6 md:px-12 lg:px-28 py-6 md:py-12 font-salsa">
+  <div class="lg:container mt-32 mx-auto px-6 md:px-12 lg:px-28 py-6 md:py-12 font-salsa" :class="$darkClass">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Contact Information Section -->
-      <div>
+      <div  class="dark:text-white">
         <h2 class="text-2xl md:text-3xl font-bold">Contact Us</h2>
         <h3 class="text-lg md:text-xl font-semibold mt-2">
           We're here to help
@@ -15,16 +15,18 @@
               :icon="info.icon"
               :title="info.title"
               :content="info.content"
+              
           />
         </div>
 
         <h3 class="text-lg md:text-xl font-semibold mt-6">
           Visit Us at Our Headquarters
         </h3>
-        <ContactInfoItem
+        <ContactInfoItem 
             icon="map-marker-alt"
             title="Address"
             content="Lazeez, Inc. 1234 Main Street, Suite 500, Toronto, Canada"
+            
         />
         <h3 class="text-lg md:text-xl font-semibold mt-6">
           Connect with Us on Social Media
@@ -37,6 +39,7 @@
               :key="index"
               :icon="social.icon"
               :title="social.title"
+              class="dark:text-white"
           />
         </div>
       </div>
@@ -54,7 +57,7 @@
 
     <!-- Contact Form Title -->
     <h3
-        class="text-2xl md:text-3xl font-semibold text-center text-gray-800 mb-6">
+        class="text-2xl md:text-3xl font-semibold text-center text-gray-800 mb-6 dark:text-white">
       Send Us a Message
     </h3>
 

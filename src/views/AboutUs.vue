@@ -1,5 +1,5 @@
 <template>
-  <div class="font-salsa">
+  <div class="font-salsa" :class="$darkClass">
     <!-- Hero Section with Parallax -->
     <section
       class="relative h-[100vh] overflow-hidden bg-cover bg-center bg-[url('@/assets/images/restaurant/RestaurantPlace.jpeg')]"

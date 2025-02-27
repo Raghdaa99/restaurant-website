@@ -1,5 +1,5 @@
 <template>
-  <div class="py-16 bg-gray-100 px-4">
+  <div class="py-16 bg-gray-100 px-4" :class="darkClass">
     <h2 class="text-3xl font-bold text-center text-primary mb-10">What Our Customers Say</h2>
     <div class="relative max-w-4xl mx-auto">
       <!-- Swiper Carousel -->
@@ -30,6 +30,7 @@ import TestimonialCard from "./TestimonialCard.vue";
 import user1Image from "@/assets/images/customers/user1.jpg";
 import user2Image from "@/assets/images/customers/user2.jpg";
 import user3Image from "@/assets/images/customers/user3.jpg";
+import { darkClass } from "@/utils/theme";
 
 const testimonials = ref([
   {
