@@ -21,6 +21,7 @@
     "@heroicons/vue": "^2.2.0",
     "@primevue/themes": "^4.2.5",
     "@tailwindcss/typography": "^0.5.16",
+    "@vueuse/core": "^12.7.0",
     "axios": "^1.7.9",
     "flowbite": "^3.1.2",
     "json-server": "^1.0.0-beta.3",

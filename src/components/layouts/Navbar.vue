@@ -132,6 +132,32 @@
               class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
             />
           </li>
+          <li>
+  <button 
+    @click="toggleDark()" 
+    class="p-2 rounded-md hover:border border-white"
+    :class="{
+      'text-white': true,
+      'hover:text-black': !isHome,
+      'hover:text-primary': isHome,
+    }"
+  >
+    <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg v-else xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
+</li>
         </ul>
       </div>
     </nav>
@@ -185,6 +211,29 @@
           >
         </li>
         <li>
+  <button 
+    @click="toggleDark()" 
+    class="flex items-center space-x-2 hover:border border-white hover:text-primary rounded-md p-2"
+  >
+    <span v-if="isDark">Light Mode</span>
+    <span v-else>Dark Mode</span>
+    <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg v-else xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
+</li>
+        <li>
           <Button
             :class="{
               'text-white': true,
@@ -197,6 +246,7 @@
             to="/cart"
           />
         </li>
+        
         <li v-if="!userStore.isAuthenticated">
           <router-link to="/signin">
             <Button
@@ -210,6 +260,7 @@
             />
           </router-link>
         </li>
+        
         <li v-else>
           <Button
             @click="handleLogout"
@@ -222,6 +273,7 @@
             class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
           />
         </li>
+
       </ul>
     </div>
   </div>
@@ -234,6 +286,9 @@ import logo from "@/assets/images/LazeezLogo.svg";
 import Button from "../ui/Button.vue";
 import { useUserStore } from '@/stores/useUserStore'
 import Swal from 'sweetalert2'
+import { useDark, useToggle } from "@vueuse/core";
+const isDark = useDark();
+const toggleDark = useToggle(isDark); 
 
 const isMenuOpen = ref(false);
 const toggleMenu = () => {
