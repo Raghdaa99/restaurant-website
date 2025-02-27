@@ -1,5 +1,5 @@
 <template>
-  <Button :title="title" icon="shopping-cart" @click="handleAddToCart" :click="$" />
+  <Button :title="title" icon="shopping-cart" @click="handleAddToCart"/>
 </template>
 
 <script setup lang="ts">
