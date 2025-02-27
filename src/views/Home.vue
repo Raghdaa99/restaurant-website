@@ -1,5 +1,5 @@
 <template>
- <div class="min-h-screen bg-gradient-to-b from-white to-gray-50 font-salsa text-black">
+ <div class="min-h-screen bg-gradient-to-b from-white to-gray-50 font-salsa text-black" :class="$darkClass">
   <div class="z-0">
     <HomeHeader />
   </div>

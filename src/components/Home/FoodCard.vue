@@ -1,5 +1,5 @@
 <template>
-  <div class="food-item-card" @click.stop="navigateToFoodDetails(food.id)">
+  <div class="food-item-card" @click.stop="navigateToFoodDetails(food.id)" :class='$darkClass'>
     <img
       :src="food.image"
       :alt="food.name"

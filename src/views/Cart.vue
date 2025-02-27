@@ -1,12 +1,12 @@
 <template>
-  <div class="min-h-screen bg-slate-100">
+  <div class="min-h-screen bg-slate-100" :class="$darkClass">
     <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32 py-12 mt-24">
       <!-- Header -->
       <div class="flex items-center gap-4 mb-8">
         <div class="bg-primary/10 p-3 rounded-full">
           <i class="fas fa-shopping-cart text-xl sm:text-2xl text-primary"></i>
         </div>
-        <h1 class="text-2xl sm:text-3xl font-bold text-slate-800">Shopping Cart</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white">Shopping Cart</h1>
       </div>
 
       <!-- Cart -->

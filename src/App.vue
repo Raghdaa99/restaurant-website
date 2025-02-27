@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen font-salsa" >
+  <div class="flex flex-col min-h-screen font-salsa dark:bg-slate-900" >
     <div class="relative">
       <Navbar />
     </div>
@@ -16,3 +16,4 @@ import Navbar from "@/components/layouts/Navbar.vue";
 import Footer from "@/components/layouts/Footer.vue"
 import ChatBot from "@/components/layouts/ChatBot.vue"
 </script>
+
