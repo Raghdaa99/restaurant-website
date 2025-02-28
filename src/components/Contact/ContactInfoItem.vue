@@ -7,8 +7,8 @@
 
     <!-- Content Section -->
     <div>
-      <h4 class="text-gray-800 text-lg sm:text-xl font-semibold">{{ title }}</h4>
-      <p class="text-gray-600 text-sm sm:text-base leading-relaxed">{{ content }}</p>
+      <h4 class="text-gray-800 text-lg sm:text-xl font-semibold  dark:text-gray-300">{{ title }}</h4>
+      <p class="text-gray-600 text-sm sm:text-base leading-relaxed  dark:text-gray-300">{{ content }}</p>
     </div>
   </div>
 </template>

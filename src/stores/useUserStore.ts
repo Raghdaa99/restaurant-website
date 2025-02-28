@@ -1,52 +1,124 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import { authApi } from "@/services/apiService";
 
-interface UserData {
+interface UserState {
+  id: string;
   firstname: string;
   lastname: string;
   phone: string;
-  password: string;
-  timestamp?: string;
 }
 
-export const useUserStore = defineStore("user", () => {
-  const userData = ref<UserData>({
-    firstname: "",
-    lastname: "",
-    phone: "",
-    password: "",
-  });
+export const useUserStore = defineStore(
+  "user",
+  () => {
+    const isAuthenticated = ref(false);
+    const userData = ref<UserState | null>(null);
+    const token = ref<string | null>(null);
 
-  const getStoredUsers = (): UserData[] => {
-    try {
-      return JSON.parse(localStorage.getItem("users") || "[]");
-    } catch (error) {
-      console.error("Error loading users:", error);
-      return [];
-    }
-  };
+    // التحقق من حالة المصادقة عند بدء التطبيق
+    const initAuth = async () => {
+      const savedUserId = localStorage.getItem("userId");
+      const savedToken = localStorage.getItem("token");
 
-  const saveUser = (newUser: UserData): boolean => {
-    try {
-      const users = getStoredUsers();
+      if (savedUserId && savedToken) {
+        const isValid = await authApi.verifyToken(savedUserId, savedToken);
+        if (isValid) {
+          isAuthenticated.value = true;
+          token.value = savedToken;
+          // استرجاع بيانات المستخدم
+          const response = await authApi.getUser(savedUserId);
+          userData.value = response;
+        } else {
+          // مسح البيانات غير الصالحة
+          localStorage.removeItem("userId");
+          localStorage.removeItem("token");
+        }
+      }
+    };
 
-      const userExists = users.some((user) => user.phone === newUser.phone);
-      if (userExists) {
-        alert("This phone number is already registered.");
+    const login = async (phone: string, password: string): Promise<boolean> => {
+      try {
+        const response = await authApi.login(phone, password);
+
+        if (response) {
+          userData.value = response.user;
+          token.value = response.token;
+          isAuthenticated.value = true;
+
+          // حفظ البيانات في localStorage
+          localStorage.setItem("userId", response.user.id);
+          localStorage.setItem("token", response.token);
+
+          return true;
+        }
+        return false;
+      } catch (error) {
+        console.error("Login error:", error);
         return false;
       }
+    };
 
-      newUser.timestamp = new Date().toISOString();
-      users.push(newUser);
+    const register = async (newUser: {
+      firstname: string;
+      lastname: string;
+      phone: string;
+      password: string;
+    }): Promise<{ success: boolean; error?: string }> => {
+      try {
+        const response = await authApi.register(newUser);
 
-      localStorage.setItem("users", JSON.stringify(users));
+        if (response) {
+          // لا نقوم بتخزين أي بيانات في localStorage
+          // ولا نقوم بتعيين حالة المصادقة
+          return { success: true };
+        }
+        return { success: false, error: "Failed to create account" };
+      } catch (error) {
+        console.error("Registration error:", error);
+        return {
+          success: false,
+          error:
+            error instanceof Error
+              ? error.message
+              : "An error occurred during registration",
+        };
+      }
+    };
 
-      return true;
-    } catch (error) {
-      console.error("Error saving user data:", error);
-      return false;
-    }
-  };
+    const logout = async () => {
+      try {
+        if (userData.value?.id) {
+          await authApi.logout(userData.value.id);
+        }
 
-  return { userData, saveUser };
-});
+        // مسح البيانات المحلية
+        userData.value = null;
+        token.value = null;
+        isAuthenticated.value = false;
+        localStorage.removeItem("userId");
+        localStorage.removeItem("token");
+      } catch (error) {
+        console.error("Logout error:", error);
+      }
+    };
+
+    const checkAuth = (): boolean => {
+      return isAuthenticated.value && token.value !== null;
+    };
+
+    return {
+      userData,
+      isAuthenticated,
+      token,
+      login,
+      register,
+      logout,
+      checkAuth,
+      initAuth,
+    };
+  },
+  {
+    persist: true,
+  }
+);

@@ -11,11 +11,14 @@ import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 
 const app = createApp(App)
+import { darkClass } from "@/utils/theme"; 
 
+const app = createApp(App)
 const pinia = createPinia();
 pinia.use(piniaPersistedState);
 app.use(pinia);
 app.use(router);
 window.Swal = Swal;
 window.toastr = toastr;
+app.config.globalProperties.$darkClass = darkClass;
 app.mount('#app')

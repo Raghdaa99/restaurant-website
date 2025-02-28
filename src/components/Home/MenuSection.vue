@@ -1,5 +1,5 @@
 <template>
-  <div class="relative overflow-hidden">
+  <div class="relative overflow-hidden" :class="$darkClass">
     <BackgroundImages />
     <!-- Cards Section -->
     <div class="container mx-auto px-4 sm:px-2 md:px-12 lg:px-16 xl:px-40 py-12 text-center">

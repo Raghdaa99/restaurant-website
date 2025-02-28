@@ -1,5 +1,5 @@
 <template>
- <footer class="font-salsa text-white bg-primary">
+ <footer class="font-salsa text-white bg-primary dark:border-t border-t-white" :class="$darkClass">
       <div class="flex flex-col gap-6">
         <div class="flex flex-col sm:flex-row justify-between gap-4">
           <a

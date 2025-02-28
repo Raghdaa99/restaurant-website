@@ -66,6 +66,7 @@ import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/useUserStore";
 import InputField from "@/components/ui/InputField.vue";
+import Swal from "sweetalert2";
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -88,20 +89,47 @@ function markTouched(field: string) {
   touched.value[field] = true;
 }
 
-function handleLogin() {
-  const users = JSON.parse(localStorage.getItem("users") || "[]");
-  const user = users.find((u) => u.phone === loginData.value.phone);
+async function handleLogin() {
+  Object.keys(loginData.value).forEach(markTouched);
+  if (Object.values(errors.value).some((err) => err)) {
+    await Swal.fire({
+      icon: "error",
+      title: "Validation Error",
+      text: "Please fix the errors before submitting.",
+      confirmButtonColor: "#c70039",
+    });
+    return;
+  }
 
-  if (user) {
-    if (user.password === loginData.value.password) {
-      alert("Login Successful!");
+  try {
+    // انتظار نتيجة تسجيل الدخول
+    const success = await userStore.login(loginData.value.phone, loginData.value.password);
+    
+    if (success) {
+      await Swal.fire({
+        icon: "success",
+        title: "Welcome Back!",
+        text: "You have successfully logged in.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
       router.push("/");
       window.scrollTo(0, 0);
     } else {
-      alert("Invalid password");
+      await Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: "Invalid phone number or password.",
+        confirmButtonColor: "#c70039",
+      });
     }
-  } else {
-    alert("No user found. Please sign up first.");
+  } catch (error) {
+    await Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "An error occurred during login. Please try again.",
+      confirmButtonColor: "#c70039",
+    });
   }
 }
 </script>

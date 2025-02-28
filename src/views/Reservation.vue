@@ -7,8 +7,10 @@ import { useReservation } from '@/composables/useReservation';
 const router = useRouter();
 const { formData, errors, touched, markTouched, saveReservation } = useReservation();
 
+
+
 const handleSubmit = async () => {
-  ['firstName', 'lastName', 'phoneNumber', 'reservationDate', 'hours', 'minutes', 'tableNumber'].forEach(field => {
+  ['firstName', 'lastName', 'phoneNumber', 'reservationDateTime', 'peopleCount'].forEach(field => {
     markTouched(field);
   });
 
@@ -86,7 +88,7 @@ const handleSubmit = async () => {
               Phone Number <span class="text-red-500">*</span>
             </label>
             <InputField
-              type="tel"
+              type="number"
               v-model="formData.phoneNumber"
               placeholder="Enter your phone number"
               @blur="markTouched('phoneNumber')"
@@ -100,87 +102,27 @@ const handleSubmit = async () => {
 
           <div class="mb-2">
             <label class="font-medium text-lg text-gray-700 block mb-1">
-              Reservation Date <span class="text-red-500">*</span>
+              Reservation Date & Time <span class="text-red-500">*</span>
             </label>
             <input 
-              type="date"
-              v-model="formData.reservationDate"
-              @blur="markTouched('reservationDate')"
+              type="datetime-local"
+              v-model="formData.reservationDateTime"
               class="w-full px-4 py-2 border border-primary rounded-md focus:border-primary focus:ring-primary focus:ring-1 transition-all"
-              :class="{'border-red-500': errors.reservationDate}"
-              :min="new Date().toISOString().split('T')[0]"
+              required
             />
-            <div class="h-2">
-              <p v-if="errors.reservationDate" class="text-red-500 text-sm">
-                Please select a valid future date
-              </p>
-            </div>
           </div>
 
           <div class="mb-2">
             <label class="font-medium text-lg text-gray-700 block mb-1">
-              Reservation Time <span class="text-red-500">*</span>
+              Number of Guests <span class="text-red-500">*</span>
             </label>
-            <div class="flex gap-2">
-              <div class="flex-1">
-                <InputField
-                  v-model="formData.hours"
-                  placeholder="Hour (1-12)"
-                  @blur="markTouched('hours')"
-                />
-                <div class="h-2">
-                  <p v-if="errors.hours" class="text-red-500 text-sm">
-                    Enter valid hour (1-12)
-                  </p>
-                </div>
-              </div>
-              
-              <div class="flex-1">
-                <InputField
-                  v-model="formData.minutes"
-                  placeholder="Min (0-59)"
-                  @blur="markTouched('minutes')"
-                />
-                <div class="h-2">
-                  <p v-if="errors.minutes" class="text-red-500 text-sm">
-                    Enter valid minute (0-59)
-                  </p>
-                </div>
-              </div>
-              
-              <select
-                v-model="formData.period"
-                class="px-4 py-2 border border-primary rounded-md focus:border-primary focus:ring-primary focus:ring-1 transition-all"
-              >
-                <option value="AM">AM</option>
-                <option value="PM">PM</option>
-              </select>
-            </div>
-            <div class="h-2">
-              <p v-if="errors.time && !errors.hours && !errors.minutes" class="text-red-500 text-sm">
-                Please select a valid future time
-              </p>
-            </div>
-          </div>
-
-          <div class="mb-2">
-            <label class="font-medium text-lg text-gray-700 block mb-1">
-              Table Number <span class="text-red-500">*</span>
-            </label>
-            <select
-              v-model="formData.tableNumber"
-              @blur="markTouched('tableNumber')"
-              class="w-full px-4 py-2 border border-primary rounded-md focus:border-primary focus:ring-primary focus:ring-1 transition-all"
-              :class="{'border-red-500': errors.tableNumber}"
-            >
-              <option value="" disabled>Select a table</option>
-              <option v-for="number in 29" :key="number" :value="number">{{ number }}</option>
-            </select>
-            <div class="h-2">
-              <p v-if="errors.tableNumber" class="text-red-500 text-sm">
-                Please select a table number
-              </p>
-            </div>
+            <InputField
+              type="number"
+              v-model="formData.peopleCount"
+              placeholder="Enter number of guests"
+              required
+              @blur="markTouched('peopleCount')"
+            />
           </div>
 
           <div class="mb-2">
