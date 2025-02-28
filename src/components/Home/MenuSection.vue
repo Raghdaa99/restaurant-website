@@ -3,7 +3,7 @@
     <BackgroundImages />
     <!-- Cards Section -->
     <div class="container mx-auto px-4 sm:px-2 md:px-12 lg:px-16 xl:px-40 py-12 text-center">
-      <h2 class="text-3xl font-semibold mb-8">Our Special Menu</h2>
+      <h2 class="text-3xl font-semibold mb-8 dark:text-white">Our Special Menu</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <FoodCard
             v-for="(item, index) in foodItems.slice(0, 4)"

@@ -58,7 +58,7 @@
 
     <!-- Director Section with Hover Effects -->
     <section class="py-24 px-4 bg-white">
-      <div class="container mx-auto">
+      <div class="container mx-auto ">
         <h2 class="text-4xl font-bold text-center mb-16 animate-fade-in">
           Meet Our Director
         </h2>
@@ -94,7 +94,7 @@
     <!-- Chefs Section with Card Animations -->
     <section class="py-24 px-4">
       <div class="container mx-auto">
-        <h2 class="text-4xl font-bold text-center mb-16 animate-fade-in">
+        <h2 class="text-4xl font-bold text-center mb-16 animate-fade-in dark:text-white">
           Our Expert Chefs
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

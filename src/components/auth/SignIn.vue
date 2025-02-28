@@ -20,8 +20,7 @@
             label="Phone Number"
             type="tel"
             placeholder="Phone Number"
-            :modelValue="loginData.phone"
-            @update:modelValue="(val) => (loginData.phone = val)"
+            v-model="loginData.phone"
             @blur="markTouched('phone')"
           />
           <p v-if="errors.phone" class="text-danger text-sm">
@@ -34,8 +33,7 @@
             label="Password"
             type="password"
             placeholder="Password"
-            :modelValue="loginData.password"
-            @update:modelValue="(val) => (loginData.password = val)"
+            v-model="loginData.password"
             @blur="markTouched('password')"
           />
           <p v-if="errors.password" class="text-danger text-sm">
@@ -102,7 +100,6 @@ async function handleLogin() {
   }
 
   try {
-    // انتظار نتيجة تسجيل الدخول
     const success = await userStore.login(loginData.value.phone, loginData.value.password);
     
     if (success) {
