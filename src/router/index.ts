@@ -75,7 +75,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.name === "Checkout" || to.name === "Payment" || to.name === "OrderConfirmation") {
+  if (to.name === "Checkout" || to.name === "Payment") {
     const { validateCheckoutAccess } = useCheckoutGuard();
     if (validateCheckoutAccess()) {
       next();
