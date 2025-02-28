@@ -2,7 +2,7 @@
   <div class="bg-white shadow-xl rounded-lg p-6 text-center transition-all duration-300 hover:scale-105"  :class="$darkClass">
     <img :src="testimonial.image" class="w-16 h-16 rounded-full mx-auto mb-4" alt="Customer" />
     <h3 class="text-lg font-semibold text-primary">{{ testimonial.name }}</h3>
-    <p class="text-gray-600 mt-2">{{ testimonial.review }}</p>
+    <p class="text-gray-600 mt-2 dark:text-gray-300">{{ testimonial.review }}</p>
     <div class="flex justify-center my-3">
       <span v-for="star in 5" :key="star">
         <svg

@@ -8,8 +8,8 @@
   <ServicesSection />
   <CallToActionSection />
   <TestimonialsSection />
-  <div class="container mx-auto px-4 md:px-32 lg:px-32 py-12 mt-15">
-    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
+  <div class="container mx-auto px-4 md:px-32 lg:px-32 py-12 mt-15 dark:bg-slate-900 ">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 dark:text-white">
       Find a Location
     </h2>
     <div class="rounded-lg shadow-lg overflow-hidden">
