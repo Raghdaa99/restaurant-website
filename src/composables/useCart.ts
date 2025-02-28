@@ -1,9 +1,10 @@
 import { computed } from 'vue'
 import { useCartStore } from '@/stores/cart'
+import { useRouter } from "vue-router";
 
 export function useCart() {
     const cartStore = useCartStore()
-
+    const router = useRouter();
     const subtotal = computed(() => cartStore.totalPrice)
     const tax = computed(() => subtotal.value * 0.1)
     const total = computed(() => subtotal.value + tax.value)
@@ -31,8 +32,8 @@ export function useCart() {
     }
 
     const handleCheckout = () => {
-        console.log('Proceeding to checkout...')
-        // router.push('/checkout')
+        router.push('/checkout')
+        // console.log('Proceeding to checkout...')
     }
 
     return {

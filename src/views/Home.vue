@@ -13,7 +13,7 @@
       Find a Location
     </h2>
     <div class="rounded-lg shadow-lg overflow-hidden">
-      <LocationMap height="300px md:400px lg:500px" class="max-w-full" />
+      <LocationMap/>
     </div>
   </div>
   </div>

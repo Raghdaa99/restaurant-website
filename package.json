@@ -20,7 +20,9 @@
     "@headlessui/vue": "^1.7.23",
     "@heroicons/vue": "^2.2.0",
     "@primevue/themes": "^4.2.5",
+    "@stripe/stripe-js": "^5.7.0",
     "@tailwindcss/typography": "^0.5.16",
+    "@vue-stripe/vue-stripe": "^4.5.0",
     "@vueuse/core": "^12.7.0",
     "axios": "^1.7.9",
     "flowbite": "^3.1.2",
@@ -31,8 +33,10 @@
     "primevue": "^4.2.5",
     "sweetalert2": "^11.17.2",
     "swiper": "^11.2.4",
+    "toastr": "^2.1.4",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
+    "vue-stripe-js": "^2.0.2",
     "vue3-leaflet": "^1.0.50"
   },
   "devDependencies": {

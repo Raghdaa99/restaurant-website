@@ -52,7 +52,7 @@
           </div>
         </div>
 
-        <!-- Order Summary Card -->
+        <!-- Cart Summary Card -->
         <div class="mt-4 lg:mt-0">
           <CartSummary 
             :subtotal="subtotal"

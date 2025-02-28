@@ -1,5 +1,7 @@
+import { useCheckoutGuard } from "@/composables/useCheckoutGuard";
 import { createRouter, createWebHistory } from "vue-router";
 import { useUserStore } from "@/stores/useUserStore";
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -43,14 +45,21 @@ const router = createRouter({
       path: "/reservation",
       name: "Reservation",
       component: () => import("@/views/Reservation.vue"),
-      beforeEnter: (to, from, next) => {
-        const userStore = useUserStore();
-        if (!userStore.isAuthenticated) {
-          next("/signin");
-        } else {
-          next();
-        }
-      },
+    },
+    {
+      path: "/checkout",
+      name: "Checkout",
+      component: () => import("@/views/Checkout.vue"),
+    },
+    {
+      path: "/payment",
+      name: "Payment",
+      component: () => import("@/views/Payment.vue"),
+    },
+    {
+      path: "/order-confirmation",
+      name: "OrderConfirmation",
+      component: () => import("@/views/OrderConfirmation.vue"),
     },
     {
       path: "/signup",
@@ -65,4 +74,16 @@ const router = createRouter({
   ],
 });
 
+router.beforeEach((to, from, next) => {
+  if (to.name === "Checkout" || to.name === "Payment" || to.name === "OrderConfirmation") {
+    const { validateCheckoutAccess } = useCheckoutGuard();
+    if (validateCheckoutAccess()) {
+      next();
+    } else {
+      next(false);
+    }
+  } else {
+    next(); 
+  }
+});
 export default router;
