@@ -16,7 +16,7 @@
       </div>
 
       <!-- Mobile Menu Button (bar icon) -->
-      <div class="h-10 w-10 md:hidden cursor-pointer" @click="toggleMenu">
+      <div class="h-10 w-10 md:hidden cursor-pointer " @click="toggleMenu">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
@@ -31,10 +31,10 @@
 
       <!-- Desktop Menu -->
       <div class="hidden md:flex space-x-9">
-        <ul class="md:flex items-center space-x-9 capitalize">
+        <ul class="md:flex items-center space-x-9 capitalize dark:hover:text-white">
           <li>
             <a
-              class="hover:border border-white rounded-md p-2"
+              class="hover:border border-white rounded-md p-2 hover:border border-white rounded-md p-2 dark:hover:text-slate-500"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -46,7 +46,7 @@
           </li>
           <li>
             <a
-              class="hover:border border-white rounded-md p-2"
+              class="hover:border border-white rounded-md p-2 dark:hover:text-slate-500"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -58,7 +58,7 @@
           </li>
           <li>
             <a
-              class="hover:border border-white rounded-md p-2"
+              class="hover:border border-white rounded-md p-2 hover:border border-white rounded-md p-2 dark:hover:text-slate-500"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -70,7 +70,7 @@
           </li>
           <li>
             <a
-              class="hover:border border-white rounded-md p-2"
+              class="hover:border border-white rounded-md p-2 hover:border border-white rounded-md p-2 dark:hover:text-slate-500"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -82,7 +82,7 @@
           </li>
           <li>
             <a
-              class="hover:border border-white rounded-md p-2"
+              class="hover:border border-white rounded-md p-2 hover:border border-white rounded-md p-2 dark:hover:text-slate-500"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -135,7 +135,7 @@
           <li>
   <button 
     @click="toggleDark()" 
-    class="p-2 rounded-md hover:border border-white"
+    class="p-2 rounded-md hover:border border-white hover:border border-white rounded-md p-2 dark:hover:text-slate-500"
     :class="{
       'text-white': true,
       'hover:text-black': !isHome,
@@ -196,7 +196,7 @@
         </li>
         <li>
           <a
-            class="hover:border border-white hover:text-primary rounded-md p-2"
+            class="hover:border border-white hover:text-primary rounded-md p-2 "
             href="/about"
             @click="closeMenu"
             >about us</a
