@@ -13,7 +13,6 @@ import "toastr/build/toastr.min.css";
 const app = createApp(App)
 import { darkClass } from "@/utils/theme"; 
 
-const app = createApp(App)
 const pinia = createPinia();
 pinia.use(piniaPersistedState);
 app.use(pinia);
