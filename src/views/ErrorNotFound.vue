@@ -19,20 +19,17 @@
 
       <!-- Action Buttons -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button 
+        <Button 
           @click="router.go(-1)"
+          title="Go Back"
+          icon="fa-solid fa-arrow-left"
           class="error-button error-button--secondary"
-        >
-          <i class="fas fa-arrow-left mr-2"></i>
-          Go Back
-        </button>
-        <router-link 
-          to="/" 
-          class="error-button error-button--primary"
-        >
-          <i class="fas fa-home mr-2"></i>
-          Return Home
-        </router-link>
+        />
+        <Button 
+          title="Return Home"
+          icon="fa-solid fa-house"
+          @click="router.push('/')"
+        />
       </div>
     </div>
   </div>
@@ -40,7 +37,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-
+import Button from '@/components/UI/Button.vue'
 const router = useRouter()
 </script>
 
@@ -52,14 +49,6 @@ const router = useRouter()
 
   &-button {
     @apply px-6 py-3 rounded-lg transition-colors flex items-center justify-center;
-
-    &--primary {
-      @apply bg-primary text-white;
-      
-      &:hover {
-        @apply bg-primary/90;
-      }
-    }
 
     &--secondary {
       @apply bg-gray-200 text-gray-800;

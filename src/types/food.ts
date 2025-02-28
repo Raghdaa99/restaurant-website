@@ -27,3 +27,20 @@ export interface CartItem {
   quantity: number;
   image?: string;
 } 
+
+export interface OrderInfo {
+  id: number;
+  userId: number;
+  items: CartItem[];
+  total: number;
+  status: string; // 'Processing', 'Paid', 'Pending'
+  address: string;
+  name: string;
+  phone: string;
+  city: string;
+  zip: string;
+  country: string;
+  paymentMethod: string; // 'credit-card', 'paypal',  'cash-on-delivery'
+  paymentStatus: string; // 'Success', 'Pending', 'Failed'
+  createdAt: string;
+}

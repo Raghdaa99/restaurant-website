@@ -43,7 +43,7 @@
 
       <!-- Location Map Section -->
       <div class="w-full h-full">
-        <LocationMap height="500px" />
+        <LocationMap/>
       </div>
     </div>
 
