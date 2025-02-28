@@ -1,7 +1,10 @@
 <template>
-  <div
-    class="font-salsa scroll-m-6 fixed p-1 font-medium z-10 text-white backdrop-blur-md border-b-[1px] w-full"
-    :class="{ 'bg-transparent': isHome, ' bg-primary': !isHome },$darkClass"
+  <div id="navbar"
+    class="font-salsa scroll-m-6 fixed p-1 font-medium z-40 text-white backdrop-blur-md border-b-[1px] w-full transition-all duration-500 ease-in-out"
+    :class="{
+      'bg-transparent': isHome && !isScrolled,
+      'bg-primary': (isHome && isScrolled) || !isHome,
+    }"
   >
     <nav class="flex justify-between items-center px-5">
       <!-- Logo -->
@@ -37,8 +40,9 @@
               class="hover:border border-white rounded-md p-2"
               :class="{
                 'text-white': true,
-                'hover:text-black': !isHome,
-                'hover:text-primary': isHome,
+                'hover:text-black': !isHome || (isHome && isScrolled),
+                'hover:text-primary': isHome && !isScrolled,
+
               }"
               href="/"
               >home</a
@@ -49,8 +53,8 @@
               class="hover:border border-white rounded-md p-2"
               :class="{
                 'text-white': true,
-                'hover:text-black': !isHome,
-                'hover:text-primary': isHome,
+                'hover:text-black': !isHome || (isHome && isScrolled),
+                'hover:text-primary': isHome && !isScrolled,
               }"
               href="/menu"
               >menu</a
@@ -61,8 +65,8 @@
               class="hover:border border-white rounded-md p-2"
               :class="{
                 'text-white': true,
-                'hover:text-black': !isHome,
-                'hover:text-primary': isHome,
+                'hover:text-black': !isHome || (isHome && isScrolled),
+                'hover:text-primary': isHome && !isScrolled,
               }"
               href="/reservation"
               >reservation</a
@@ -73,8 +77,8 @@
               class="hover:border border-white rounded-md p-2"
               :class="{
                 'text-white': true,
-                'hover:text-black': !isHome,
-                'hover:text-primary': isHome,
+                'hover:text-black': !isHome || (isHome && isScrolled),
+                'hover:text-primary': isHome && !isScrolled,
               }"
               href="/about"
               >about us</a
@@ -85,8 +89,8 @@
               class="hover:border border-white rounded-md p-2"
               :class="{
                 'text-white': true,
-                'hover:text-black': !isHome,
-                'hover:text-primary': isHome,
+                'hover:text-black': !isHome || (isHome && isScrolled),
+                'hover:text-primary': isHome && !isScrolled,
               }"
               href="/contact"
               >contact us</a
@@ -94,17 +98,17 @@
           </li>
           <li>
             <router-link to="/cart">
-            <Button
-              title=""
-              icon="shopping-cart"
-              to="/cart"
-              :class="{
-                'text-white': true,
-                'hover:text-black': !isHome,
-                'hover:text-primary': isHome,
-              }"
-              class="hover:border border-white rounded-md"
-            />
+              <Button
+                title=""
+                icon="shopping-cart"
+                to="/cart"
+                :class="{
+                  'text-white': true,
+                  'hover:text-black': !isHome || (isHome && isScrolled),
+                  'hover:text-primary': isHome && !isScrolled,
+                }"
+                class="hover:border border-white rounded-md"
+              />
             </router-link>
           </li>
           <li v-if="!userStore.isAuthenticated">
@@ -113,8 +117,8 @@
                 title="Sign In"
                 :class="{
                   'text-white': true,
-                  'hover:text-black': !isHome,
-                  'hover:text-primary': isHome,
+                  'hover:text-black': !isHome || (isHome && isScrolled),
+                  'hover:text-primary': isHome && !isScrolled,
                 }"
                 class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
               />
@@ -126,38 +130,60 @@
               title="Logout"
               :class="{
                 'text-white': true,
-                'hover:text-black': !isHome,
-                'hover:text-primary': isHome,
+                'hover:text-black': !isHome || (isHome && isScrolled),
+                'hover:text-primary': isHome && !isScrolled,
               }"
               class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
             />
           </li>
           <li>
-  <button 
-    @click="toggleDark()" 
-    class="p-2 rounded-md hover:border border-white"
-    :class="{
-      'text-white': true,
-      'hover:text-black': !isHome,
-      'hover:text-primary': isHome,
-    }"
-  >
-    <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-    <svg v-else xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-    </svg>
-  </button>
-</li>
+            <button
+              @click="toggleDark()"
+              class="p-2 rounded-md hover:border border-white"
+              :class="{
+                'text-white': true,
+                'hover:text-black': !isHome || (isHome && isScrolled),
+                'hover:text-primary': isHome && !isScrolled,
+              }"
+            >
+              <svg
+                v-if="isDark"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <svg
+                v-else
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                ></path>
+              </svg>
+            </button>
+          </li>
         </ul>
       </div>
     </nav>
@@ -211,28 +237,48 @@
           >
         </li>
         <li>
-  <button 
-    @click="toggleDark()" 
-    class="flex items-center space-x-2 hover:border border-white hover:text-primary rounded-md p-2"
-  >
-    <span v-if="isDark">Light Mode</span>
-    <span v-else>Dark Mode</span>
-    <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-    <svg v-else xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-    </svg>
-  </button>
-</li>
+          <button
+            @click="toggleDark()"
+            class="flex items-center space-x-2 hover:border border-white hover:text-primary rounded-md p-2"
+          >
+            <span v-if="isDark">Light Mode</span>
+            <span v-else>Dark Mode</span>
+            <svg
+              v-if="isDark"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg
+              v-else
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+        </li>
         <li>
           <Button
             :class="{
@@ -246,7 +292,7 @@
             to="/cart"
           />
         </li>
-        
+
         <li v-if="!userStore.isAuthenticated">
           <router-link to="/signin">
             <Button
@@ -260,7 +306,7 @@
             />
           </router-link>
         </li>
-        
+
         <li v-else>
           <Button
             @click="handleLogout"
@@ -273,22 +319,21 @@
             class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
           />
         </li>
-
       </ul>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useRoute, RouterLink, useRouter } from "vue-router";
 import logo from "@/assets/images/LazeezLogo.svg";
 import Button from "../ui/Button.vue";
-import { useUserStore } from '@/stores/useUserStore'
-import Swal from 'sweetalert2'
+import { useUserStore } from "@/stores/useUserStore";
+import Swal from "sweetalert2";
 import { useDark, useToggle } from "@vueuse/core";
 const isDark = useDark();
-const toggleDark = useToggle(isDark); 
+const toggleDark = useToggle(isDark);
 
 const isMenuOpen = ref(false);
 const toggleMenu = () => {
@@ -302,45 +347,66 @@ const route = useRoute();
 const router = useRouter();
 const isHome = computed(() => route.name === "Home");
 
-const userStore = useUserStore()
-const isUserMenuOpen = ref(false)
+const userStore = useUserStore();
+const isUserMenuOpen = ref(false);
+
+// Change navbar background color when scrolling
+const isScrolled = ref(false);
+const handleScroll = () => {
+  const heroSection = document.getElementById("indicators-carousel");
+  const navbar = document.getElementById("navbar");
+  if (heroSection && navbar) {
+    const heroHeight = heroSection.offsetHeight;
+    const navbarHeight = navbar.offsetHeight;
+    isScrolled.value = window.scrollY > heroHeight - navbarHeight;
+  }
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
+
 
 const navigationItems = [
-  { name: 'Home', path: '/' },
-  { name: 'Menu', path: '/menu' },
-  { name: 'About', path: '/about' },
-  { name: 'Contact', path: '/contact' }
-]
+  { name: "Home", path: "/" },
+  { name: "Menu", path: "/menu" },
+  { name: "About", path: "/about" },
+  { name: "Contact", path: "/contact" },
+];
 
 function isCurrentRoute(path: string): boolean {
-  return route.path === path
+  return route.path === path;
 }
 
 function toggleUserMenu() {
-  isUserMenuOpen.value = !isUserMenuOpen.value
+  isUserMenuOpen.value = !isUserMenuOpen.value;
 }
 
 const handleLogout = () => {
   Swal.fire({
-    title: 'Logout',
-    text: 'Are you sure you want to logout?',
-    icon: 'question',
+    title: "Logout",
+    text: "Are you sure you want to logout?",
+    icon: "question",
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes',
-    cancelButtonText: 'Cancel'
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes",
+    cancelButtonText: "Cancel",
   }).then((result) => {
     if (result.isConfirmed) {
       userStore.logout();
-      router.push('/');
+      router.push("/");
       closeMenu();
       Swal.fire({
-        title: 'Logged Out',
-        text: 'You have been successfully logged out',
-        icon: 'success',
+        title: "Logged Out",
+        text: "You have been successfully logged out",
+        icon: "success",
         timer: 1500,
-        showConfirmButton: false
+        showConfirmButton: false,
       });
     }
   });
