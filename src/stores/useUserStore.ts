@@ -16,7 +16,6 @@ export const useUserStore = defineStore(
     const userData = ref<UserState | null>(null);
     const token = ref<string | null>(null);
 
-    // التحقق من حالة المصادقة عند بدء التطبيق
     const initAuth = async () => {
       const savedUserId = localStorage.getItem("userId");
       const savedToken = localStorage.getItem("token");
@@ -26,11 +25,9 @@ export const useUserStore = defineStore(
         if (isValid) {
           isAuthenticated.value = true;
           token.value = savedToken;
-          // استرجاع بيانات المستخدم
           const response = await authApi.getUser(savedUserId);
           userData.value = response;
         } else {
-          // مسح البيانات غير الصالحة
           localStorage.removeItem("userId");
           localStorage.removeItem("token");
         }
@@ -46,7 +43,6 @@ export const useUserStore = defineStore(
           token.value = response.token;
           isAuthenticated.value = true;
 
-          // حفظ البيانات في localStorage
           localStorage.setItem("userId", response.user.id);
           localStorage.setItem("token", response.token);
 
@@ -69,8 +65,7 @@ export const useUserStore = defineStore(
         const response = await authApi.register(newUser);
 
         if (response) {
-          // لا نقوم بتخزين أي بيانات في localStorage
-          // ولا نقوم بتعيين حالة المصادقة
+      
           return { success: true };
         }
         return { success: false, error: "Failed to create account" };
@@ -92,7 +87,6 @@ export const useUserStore = defineStore(
           await authApi.logout(userData.value.id);
         }
 
-        // مسح البيانات المحلية
         userData.value = null;
         token.value = null;
         isAuthenticated.value = false;
