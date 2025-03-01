@@ -34,7 +34,7 @@
         <ul class="md:flex items-center space-x-9 capitalize dark:hover:text-white">
           <li>
             <a
-              class="hover:border border-white rounded-md p-2 hover:border border-white rounded-md p-2 dark:hover:text-slate-500"
+              class="dark:hover:text-slate-500"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -46,7 +46,7 @@
           </li>
           <li>
             <a
-              class="hover:border border-white rounded-md p-2 dark:hover:text-slate-500"
+              class="dark:hover:text-slate-500"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -58,7 +58,7 @@
           </li>
           <li>
             <a
-              class="hover:border border-white rounded-md p-2 hover:border border-white rounded-md p-2 dark:hover:text-slate-500"
+              class="dark:hover:text-slate-500"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -70,7 +70,7 @@
           </li>
           <li>
             <a
-              class="hover:border border-white rounded-md p-2 hover:border border-white rounded-md p-2 dark:hover:text-slate-500"
+              class="dark:hover:text-slate-500"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -82,7 +82,7 @@
           </li>
           <li>
             <a
-              class="hover:border border-white rounded-md p-2 hover:border border-white rounded-md p-2 dark:hover:text-slate-500"
+              class="dark:hover:text-slate-500"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -97,13 +97,12 @@
             <Button
               title=""
               icon="shopping-cart"
-              to="/cart"
               :class="{
                 'text-white': true,
-                'hover:text-black': !isHome,
+                'hover:text-black': isHome,
                 'hover:text-primary': isHome,
               }"
-              class="hover:border border-white rounded-md"
+              class="hover:bg-transparent bg-transparent border-none"
             />
             </router-link>
           </li>
@@ -116,7 +115,7 @@
                   'hover:text-black': !isHome,
                   'hover:text-primary': isHome,
                 }"
-                class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
+                class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize "
               />
             </router-link>
           </li>
@@ -129,13 +128,13 @@
                 'hover:text-black': !isHome,
                 'hover:text-primary': isHome,
               }"
-              class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
+              class="flex justify-center items-center w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
             />
           </li>
           <li>
   <button 
     @click="toggleDark()" 
-    class="p-2 rounded-md hover:border border-white hover:border border-white rounded-md p-2 dark:hover:text-slate-500"
+    class="dark:hover:text-slate-500"
     :class="{
       'text-white': true,
       'hover:text-black': !isHome,
@@ -256,7 +255,7 @@
                 'hover:text-black': !isHome,
                 'hover:text-primary': isHome,
               }"
-              class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
+              class="flex justify-center items-center w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-whit"
             />
           </router-link>
         </li>
