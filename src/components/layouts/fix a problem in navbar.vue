@@ -95,25 +95,23 @@
             >
           </li>
           <li>
-            <router-link to="/cart">
-              <Button
-                title=""
-                icon="shopping-cart"
-                to="/cart"
-                :class="{
-                  'text-white': true,
-                  'hover:text-black': !isHome,
-                  'hover:text-primary': isHome,
-                }"
-                class="hover:border border-white rounded-md"
-              />
-            </router-link>
+            <a
+              href="/cart"
+              class="hover:border border-white rounded-md"
+              :class="{
+                'text-white': true,
+                'hover:text-black': !isHome,
+                'hover:text-primary': isHome,
+              }"
+            >
+              <Button title="" icon="shopping-cart" />
+            </a>
           </li>
+
           <li v-if="!userStore.isAuthenticated">
             <a
               href="/signin"
-              class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white text-white hover:text-black"
-              :class="{ 'hover:text-primary': isHome }"
+              class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white text-white hover:text-black bg-primary"
             >
               Sign In
             </a>
