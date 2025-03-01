@@ -1,8 +1,8 @@
 <template>
-  <footer class="bg-[#fcf3e8] text-black px-20 py-10">
+  <footer class="bg-[#fcf3e8] text-black px-20 py-10 border-t-2 border-white" :class="$darkClass">
     <div class="container mx-auto px-6">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-20">        <div class="space-y-3">
-          <img src="@/assets/images/LazeezLogo.svg" alt="Lazeez Logo" class="w-20 h-20">
+          <img src="@/assets/images/LazeezLogo.svg" alt="Lazeez Logo" class="w-20 h-20 ">
           <h2 class="text-xl font-semibold">{{ $t('footer.welcome_to_lazeez_restaurant') }}</h2>
           <p class="text-sm opacity-80">
             {{ $t('footer.welcome_to_lazeez_restaurant_description') }}
@@ -38,17 +38,17 @@
             <p class="text-sm opacity-80">{{ $t('footer.phone') }}: {{ $t('footer.phone_details') }}</p>
 
             <!-- Social Links -->
-            <div class="flex gap-4 mt-4">
-              <a href="#" class="text-black hover:text-primary transition">
+            <div class="flex gap-4 mt-4 ">
+              <a href="#" class="text-black hover:text-primary transition dark:text-white">
                 <Facebook class="w-5 h-5" />
               </a>
-              <a href="#" class="text-black hover:text-primary transition">
+              <a href="#" class="text-black hover:text-primary transition dark:text-white">
                 <Twitter class="w-5 h-5" />
               </a>
-              <a href="#" class="text-black hover:text-primary transition">
+              <a href="#" class="text-black hover:text-primary transition dark:text-white">
                 <Instagram class="w-5 h-5" />
               </a>
-              <a href="#" class="text-black hover:text-primary transition">
+              <a href="#" class="text-black hover:text-primary transition dark:text-white ">
                 <Youtube class="w-5 h-5" />
               </a>
             </div>

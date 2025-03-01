@@ -108,13 +108,13 @@ const handleCheckout = async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-slate-100">
+  <div class="min-h-screen bg-slate-100  dark:bg-gray-900">
     <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32 py-12 mt-24">
       <div class="flex items-center gap-4 mb-8">
         <div class="bg-primary/10 p-3 rounded-full">
           <i class="fas fa-credit-card text-xl sm:text-2xl text-primary"></i>
         </div>
-        <h1 class="text-2xl sm:text-3xl font-bold text-slate-800">{{ $t('checkout.checkout') }}</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white">{{ $t('checkout.checkout') }}</h1>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 mb-6">

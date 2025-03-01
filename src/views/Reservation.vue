@@ -1,22 +1,27 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
-import InputField from '../components/UI/InputField.vue';
-import TextArea from '../components/UI/TextArea.vue';
-import { useReservation } from '@/composables/useReservation';
+import { useRouter } from "vue-router";
+import InputField from "../components/UI/InputField.vue";
+import TextArea from "../components/UI/TextArea.vue";
+import { useReservation } from "@/composables/useReservation";
 import Swal from "sweetalert2";
-import { useI18n } from 'vue-i18n';
-const router = useRouter();
-const { formData, errors, touched, markTouched, saveReservation } = useReservation();
 
-const $t = useI18n().t;
+const router = useRouter();
+
+// Call the composable and extract variables from it
+const { formData, errors, touched, markTouched, saveReservation } =
+  useReservation();
 
 const handleSubmit = async () => {
-  ['firstName', 'lastName', 'phoneNumber', 'reservationDateTime', 'peopleCount'].forEach(field => {
-    markTouched(field);
-  });
+  // Mark all fields as touched to show errors if they exist
+  Object.keys(formData.value).forEach(markTouched);
 
-  if (Object.values(errors.value).some(error => error)) {
-    alert($t('required_fields'));
+  if (Object.values(errors.value).some((error) => error)) {
+    Swal.fire({
+      title: 'Error!',
+      text: 'Please fill in all required fields correctly',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
     return;
   }
 
@@ -28,7 +33,6 @@ const handleSubmit = async () => {
      * Returns `true` on success and throws an error if it fails.
      */
     await saveReservation();
-
     Swal.fire({
       title: 'Reservation Confirmed!',
       text: 'Your reservation has been confirmed successfully.',
@@ -75,62 +79,62 @@ const handleSubmit = async () => {
 
       <div class="w-full md:w-1/2 p-6 md:p-8 animate-right-section">
         <h2 class="text-2xl font-bold text-gray-900 text-center mb-4">
-            {{ $t("make_a_reservation") }}
+          Make a reservation
         </h2>
 
         <form @submit.prevent="handleSubmit" class="space-y-4">
           <div class="mb-2">
             <label class="font-medium text-lg text-gray-700 block mb-1">
-              {{ $t("first_name") }} <span class="text-red-500">*</span>
+              First Name <span class="text-red-500">*</span>
             </label>
             <InputField
               v-model="formData.firstName"
-              :placeholder="$t('enter_your_first_name')"
+              placeholder="Enter your first name"
               @blur="markTouched('firstName')"
             />
             <div class="h-2">
               <p v-if="errors.firstName" class="text-red-500 text-sm">
-                {{ $t("first_name_required") }}
+                First name is required
               </p>
             </div>
           </div>
 
           <div class="mb-2">
             <label class="font-medium text-lg text-gray-700 block mb-1">
-              {{ $t("last_name") }} <span class="text-red-500">*</span>
+              Last Name <span class="text-red-500">*</span>
             </label>
             <InputField
               v-model="formData.lastName"
-              :placeholder="$t('enter_your_last_name')"
+              placeholder="Enter your last name"
               @blur="markTouched('lastName')"
             />
             <div class="h-2">
               <p v-if="errors.lastName" class="text-red-500 text-sm">
-                {{ $t("last_name_required") }}
+                Last name is required
               </p>
             </div>
           </div>
 
           <div class="mb-2">
             <label class="font-medium text-lg text-gray-700 block mb-1">
-              {{ $t("phone_number") }} <span class="text-red-500">*</span>
+              Phone Number <span class="text-red-500">*</span>
             </label>
             <InputField
               type="number"
               v-model="formData.phoneNumber"
-              :placeholder="$t('enter_your_phone_number')"
+              placeholder="Enter your phone number"
               @blur="markTouched('phoneNumber')"
             />
             <div class="h-2">
               <p v-if="errors.phoneNumber" class="text-red-500 text-sm">
-                {{ $t("phone_number_required") }}
+                Please enter a valid phone number (minimum 8 digits)
               </p>
             </div>
           </div>
 
           <div class="mb-2">
             <label class="font-medium text-lg text-gray-700 block mb-1">
-              {{ $t("reservation_date_time") }} <span class="text-red-500">*</span>
+              Reservation Date & Time <span class="text-red-500">*</span>
             </label>
             <input
               type="datetime-local"
@@ -142,12 +146,12 @@ const handleSubmit = async () => {
 
           <div class="mb-2">
             <label class="font-medium text-lg text-gray-700 block mb-1">
-              {{ $t("number_of_guests") }} <span class="text-red-500">*</span>
+              Number of Guests <span class="text-red-500">*</span>
             </label>
             <InputField
               type="number"
               v-model="formData.peopleCount"
-              :placeholder="$t('enter_number_of_guests')"
+              placeholder="Enter number of guests"
               required
               @blur="markTouched('peopleCount')"
             />
@@ -155,9 +159,9 @@ const handleSubmit = async () => {
 
           <div class="mb-2">
             <TextArea
-              :label="$t('message')"
+              label="Message (Optional)"
               v-model="formData.message"
-              :placeholder="$t('type_your_message_here')"
+              placeholder="Type your message here"
               :rows="3"
             />
           </div>
@@ -166,7 +170,7 @@ const handleSubmit = async () => {
             type="submit"
             class="w-full flex justify-center items-center button-hover-effect bg-primary text-white py-2 px-4 rounded-lg font-semibold hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
           >
-            {{ $t("send") }}
+            Send
           </button>
         </form>
       </div>
