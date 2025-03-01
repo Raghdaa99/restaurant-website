@@ -23,6 +23,7 @@ export interface Food {
   price: number;
   image: string;
   category: {
+    id: number;
     en: string;
     ar: string;
   };
