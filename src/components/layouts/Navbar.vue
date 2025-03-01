@@ -1,18 +1,83 @@
+<script setup lang="ts">
+import { ref, computed, onMounted } from "vue";
+import { useRoute, RouterLink, useRouter } from "vue-router";
+import logo from "@/assets/images/LazeezLogo.svg";
+import Button from "../ui/Button.vue";
+import { useUserStore } from '@/stores/useUserStore'
+import Swal from 'sweetalert2'
+import { useDark, useToggle } from "@vueuse/core";
+const isDark = useDark();
+const toggleDark = useToggle(isDark); 
+
+const isMenuOpen = ref(false);
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
+const closeMenu = () => {
+  isMenuOpen.value = false;
+};
+
+const route = useRoute();
+const router = useRouter();
+const isHome = computed(() => route.name === "Home");
+
+const userStore = useUserStore()
+const isUserMenuOpen = ref(false)
+
+function toggleUserMenu() {
+  isUserMenuOpen.value = !isUserMenuOpen.value
+}
+const changeBackgroundNavbarWhenScroll = ref(false)
+const handleScroll = () => {
+  changeBackgroundNavbarWhenScroll.value = window.scrollY > 550
+}
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+const handleLogout = () => {
+  Swal.fire({
+    title: 'Logout',
+    text: 'Are you sure you want to logout?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes',
+    cancelButtonText: 'Cancel'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      userStore.logout();
+      router.push('/');
+      closeMenu();
+      Swal.fire({
+        title: 'Logged Out',
+        text: 'You have been successfully logged out',
+        icon: 'success',
+        timer: 1500,
+        showConfirmButton: false
+      });
+    }
+  });
+};
+</script>
+
 <template>
-  <div
+  <div 
+    @scroll="handleScroll"
     class="font-salsa scroll-m-6 fixed p-1 font-medium z-10 text-white backdrop-blur-md border-b-[1px] w-full"
-    :class="{ 'bg-transparent': isHome, ' bg-primary': !isHome },$darkClass"
+    :class="{ 'bg-transparent': isHome, 'bg-primary': !isHome, 'bg-primary/100': changeBackgroundNavbarWhenScroll, 'dark:bg-slate-900': isDark}"
   >
     <nav class="flex justify-between items-center px-5">
       <!-- Logo -->
       <div>
-        <a href="/">
+        <router-link to="/">
           <img
             class="w-24 h-20 md:w-36 md:h-20"
             :src="logo"
             alt="Lazeez Restaurant Logo"
           />
-        </a>
+        </router-link>
       </div>
 
       <!-- Mobile Menu Button (bar icon) -->
@@ -33,40 +98,34 @@
       <div class="hidden md:flex space-x-9">
         <ul class="md:flex items-center space-x-9 capitalize dark:hover:text-white">
           <li>
-            <a
-              class="dark:hover:text-slate-500"
+            <router-link to="/"
+              class="hover:bg-white p-2 rounded-md dark:hover:text-slate-500"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
                 'hover:text-primary': isHome,
               }"
-              href="/"
-              >home</a
-            >
+            >home</router-link>
           </li>
           <li>
-            <a
-              class="dark:hover:text-slate-500"
+            <router-link to="/menu"
+              class="hover:bg-white p-2 rounded-md dark:hover:text-slate-500"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
                 'hover:text-primary': isHome,
               }"
-              href="/menu"
-              >menu</a
-            >
+            >menu</router-link>
           </li>
           <li>
-            <a
-              class="dark:hover:text-slate-500"
+            <router-link to="/reservation"
+              class="hover:bg-white p-2 rounded-md dark:hover:text-slate-500"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
                 'hover:text-primary': isHome,
               }"
-              href="/reservation"
-              >reservation</a
-            >
+            >reservation</router-link>
           </li>
           <li>
             <a
@@ -99,10 +158,10 @@
               icon="shopping-cart"
               :class="{
                 'text-white': true,
-                'hover:text-black': isHome,
+                'hover:text-black': !isHome,
                 'hover:text-primary': isHome,
               }"
-              class="hover:bg-transparent bg-transparent border-none"
+              class=" bg-transparent border-none"
             />
             </router-link>
           </li>
@@ -115,7 +174,7 @@
                   'hover:text-black': !isHome,
                   'hover:text-primary': isHome,
                 }"
-                class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize "
+                class="flex justify-center items-center w-[83px] h-[40px] rounded-xl shadow-2xl capitalize"
               />
             </router-link>
           </li>
@@ -128,7 +187,7 @@
                 'hover:text-black': !isHome,
                 'hover:text-primary': isHome,
               }"
-              class="flex justify-center items-center w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
+              class="flex justify-center items-center w-[83px] h-[40px] rounded-xl shadow-2xl capitalize"
             />
           </li>
           <li>
@@ -171,7 +230,7 @@
       >
         <li>
           <a
-            class="hover:border border-white hover:text-primary rounded-md p-2"
+            class=" hover:text-primary rounded-md p-2"
             href="/"
             @click="closeMenu"
             >home</a
@@ -179,7 +238,7 @@
         </li>
         <li>
           <a
-            class="hover:border border-white hover:text-primary rounded-md p-2"
+            class="hover:text-primary rounded-md p-2"
             href="/menu"
             @click="closeMenu"
             >menu</a
@@ -278,73 +337,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, computed } from "vue";
-import { useRoute, RouterLink, useRouter } from "vue-router";
-import logo from "@/assets/images/LazeezLogo.svg";
-import Button from "../ui/Button.vue";
-import { useUserStore } from '@/stores/useUserStore'
-import Swal from 'sweetalert2'
-import { useDark, useToggle } from "@vueuse/core";
-const isDark = useDark();
-const toggleDark = useToggle(isDark); 
-
-const isMenuOpen = ref(false);
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value;
-};
-const closeMenu = () => {
-  isMenuOpen.value = false;
-};
-
-const route = useRoute();
-const router = useRouter();
-const isHome = computed(() => route.name === "Home");
-
-const userStore = useUserStore()
-const isUserMenuOpen = ref(false)
-
-const navigationItems = [
-  { name: 'Home', path: '/' },
-  { name: 'Menu', path: '/menu' },
-  { name: 'About', path: '/about' },
-  { name: 'Contact', path: '/contact' }
-]
-
-function isCurrentRoute(path: string): boolean {
-  return route.path === path
-}
-
-function toggleUserMenu() {
-  isUserMenuOpen.value = !isUserMenuOpen.value
-}
-
-const handleLogout = () => {
-  Swal.fire({
-    title: 'Logout',
-    text: 'Are you sure you want to logout?',
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes',
-    cancelButtonText: 'Cancel'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      userStore.logout();
-      router.push('/');
-      closeMenu();
-      Swal.fire({
-        title: 'Logged Out',
-        text: 'You have been successfully logged out',
-        icon: 'success',
-        timer: 1500,
-        showConfirmButton: false
-      });
-    }
-  });
-};
-</script>
 
 <style scoped>
 .router-link-active {

@@ -4,7 +4,9 @@
       <Navbar />
     </div>
     <router-view />
-    <ChatBot />
+    <div>
+      <ChatBot />
+    </div>
     <div>
       <Footer/>
     </div>
