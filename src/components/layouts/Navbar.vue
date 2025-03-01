@@ -1,6 +1,6 @@
 <template>
   <div
-    class="font-salsa scroll-m-6 fixed p-1 font-medium z-10 text-white backdrop-blur-md border-b-[1px] w-full"
+    class="font-salsa scroll-m-6 fixed p-1 font-medium z-40 text-white backdrop-blur-md border-b-[1px] w-full"
     :class="({ 'bg-transparent': isHome, ' bg-primary': !isHome }, $darkClass)"
   >
     <nav class="flex justify-between items-center px-5">
