@@ -1,19 +1,21 @@
 <template>
-  <div 
-    @scroll="handleScroll"
-    class="font-salsa scroll-m-6 fixed p-1 font-medium z-10 text-white backdrop-blur-md border-b-[1px] w-full"
-    :class="{ 'bg-transparent': isHome, 'bg-primary': !isHome, 'bg-primary/100': changeBackgroundNavbarWhenScroll, 'dark:bg-slate-900': isDark}"
+  <div id="navbar"
+    class="font-salsa scroll-m-6 fixed p-1 font-medium z-40 text-white backdrop-blur-md border-b-[1px] w-full transition-all duration-500 ease-in-out"
+    :class="{
+      'bg-transparent': isHome && !isScrolled,
+      'bg-primary': (isHome && isScrolled) || !isHome,
+    }"
   >
     <nav class="flex justify-between items-center px-5">
       <!-- Logo -->
       <div>
-        <router-link to="/">
+        <a href="/">
           <img
             class="w-24 h-20 md:w-36 md:h-20"
             :src="logo"
             alt="Lazeez Restaurant Logo"
           />
-        </router-link>
+        </a>
       </div>
 
       <!-- Mobile Menu Button (bar icon) -->
@@ -32,40 +34,39 @@
 
       <!-- Desktop Menu -->
       <div class="hidden md:flex space-x-9">
-        <ul
-          class="md:flex items-center space-x-9 capitalize dark:hover:text-white"
-        >
+        <ul class="md:flex items-center space-x-9 capitalize">
           <li>
-            <router-link to="/"
-              class="hover:bg-white p-2 rounded-md dark:hover:text-slate-500"
+            <a
+              class="hover:border border-white rounded-md p-2"
               :class="{
                 'text-white': true,
-                'hover:text-black': !isHome,
-                'hover:text-primary': isHome,
+                'hover:text-black': !isHome || (isHome && isScrolled),
+                'hover:text-primary': isHome && !isScrolled,
+
               }"
               href="/"
               >{{ t('home') }}</a
             >
-
           </li>
           <li>
-            <router-link to="/menu"
-              class="hover:bg-white p-2 rounded-md dark:hover:text-slate-500"
+            <a
+              class="hover:border border-white rounded-md p-2"
               :class="{
                 'text-white': true,
-                'hover:text-black': !isHome,
-                'hover:text-primary': isHome,
+                'hover:text-black': !isHome || (isHome && isScrolled),
+                'hover:text-primary': isHome && !isScrolled,
               }"
               href="/menu"
-              >{{ t('menu') }}</a>
+              >{{ t('menu') }}</a
+            >
           </li>
           <li>
-            <router-link to="/reservation"
-              class="hover:bg-white p-2 rounded-md dark:hover:text-slate-500"
+            <a
+              class="hover:border border-white rounded-md p-2"
               :class="{
                 'text-white': true,
-                'hover:text-black': !isHome,
-                'hover:text-primary': isHome,
+                'hover:text-black': !isHome || (isHome && isScrolled),
+                'hover:text-primary': isHome && !isScrolled,
               }"
               href="/reservation"
               >{{ t('reservation') }}</a
@@ -73,11 +74,11 @@
           </li>
           <li>
             <a
-              class="dark:hover:text-slate-500"
+              class="hover:border border-white rounded-md p-2"
               :class="{
                 'text-white': true,
-                'hover:text-black': !isHome,
-                'hover:text-primary': isHome,
+                'hover:text-black': !isHome || (isHome && isScrolled),
+                'hover:text-primary': isHome && !isScrolled,
               }"
               href="/about"
               >{{ t('about_us') }}</a
@@ -85,11 +86,11 @@
           </li>
           <li>
             <a
-              class="dark:hover:text-slate-500"
+              class="hover:border border-white rounded-md p-2"
               :class="{
                 'text-white': true,
-                'hover:text-black': !isHome,
-                'hover:text-primary': isHome,
+                'hover:text-black': !isHome || (isHome && isScrolled),
+                'hover:text-primary': isHome && !isScrolled,
               }"
               href="/contact"
               >{{ t('contact_us') }}</a
@@ -97,29 +98,29 @@
           </li>
           <li>
             <router-link to="/cart">
-            <Button
-              title=""
-              icon="shopping-cart"
-              :class="{
-                'text-white': true,
-                'hover:text-black': !isHome,
-                'hover:text-primary': isHome,
-              }"
-              class=" bg-transparent border-none"
-            />
+              <Button
+                title=""
+                icon="shopping-cart"
+                to="/cart"
+                :class="{
+                  'text-white': true,
+                  'hover:text-black': !isHome || (isHome && isScrolled),
+                  'hover:text-primary': isHome && !isScrolled,
+                }"
+                class="hover:border border-white rounded-md"
+              />
             </router-link>
           </li>
-
           <li v-if="!userStore.isAuthenticated">
             <router-link to="/signin">
               <Button
                 :title="t('sign_in')"
                 :class="{
                   'text-white': true,
-                  'hover:text-black': !isHome,
-                  'hover:text-primary': isHome,
+                  'hover:text-black': !isHome || (isHome && isScrolled),
+                  'hover:text-primary': isHome && !isScrolled,
                 }"
-                class="flex justify-center items-center w-[83px] h-[40px] rounded-xl shadow-2xl capitalize"
+                class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
               />
             </router-link>
           </li>
@@ -129,13 +130,12 @@
               :title="t('logout')"
               :class="{
                 'text-white': true,
-                'hover:text-black': !isHome,
-                'hover:text-primary': isHome,
+                'hover:text-black': !isHome || (isHome && isScrolled),
+                'hover:text-primary': isHome && !isScrolled,
               }"
-              class="flex justify-center items-center w-[83px] h-[40px] rounded-xl shadow-2xl capitalize"
+              class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
             />
           </li>
-
           <li>
             <button
               @click="toggleDark()"
@@ -201,7 +201,7 @@
       >
         <li>
           <a
-            class=" hover:text-primary rounded-md p-2"
+            class="hover:border border-white hover:text-primary rounded-md p-2"
             href="/"
             @click="closeMenu"
             >{{ t('home') }}</a
@@ -209,7 +209,7 @@
         </li>
         <li>
           <a
-            class="hover:text-primary rounded-md p-2"
+            class="hover:border border-white hover:text-primary rounded-md p-2"
             href="/menu"
             @click="closeMenu"
             >{{ t('menu') }}</a
@@ -297,24 +297,17 @@
         </li>
 
         <li v-if="!userStore.isAuthenticated">
-            <a
-              href="/signin"
-              class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white text-white hover:text-black bg-primary"
-            >
-              Sign In
-            </a>
-          </li>
-          <li v-else>
+          <router-link to="/signin">
             <Button
-               @click="handleLogout"
-              :title="t('logout')"
+              :title="t('sign_in')"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
                 'hover:text-primary': isHome,
               }"
-              class="flex justify-center items-center w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-whit"
+              class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
             />
+          </router-link>
         </li>
 
         <li v-else>
@@ -329,11 +322,11 @@
             class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
           />
         </li>
-
       </ul>
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useRoute, RouterLink, useRouter } from "vue-router";
