@@ -6,22 +6,20 @@
 
       <!-- Filters Section -->
       <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
-        <div
-          class="flex flex-col md:flex-row md:justify-between md:items-center gap-6"
-        >
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-6">
           <div class="flex flex-wrap gap-2">
             <button
               v-for="category in categories"
-              :key="category"
+              :key="category.id"
               :class="[
                 'px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105',
-                selectedCategory === category
+                selectedCategory == category.id
                   ? 'bg-primary text-white shadow-md hover:bg-primary'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
               ]"
-              @click="selectCategory(category)"
+              @click="selectCategory(category.id)"
             >
-              {{ category }}
+              {{ category.name[locale] }}
             </button>
           </div>
 
@@ -41,12 +39,15 @@
       </div>
 
       <!-- Menu Items Grid -->
-      <MenuCard :items="paginatedItems" />
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <FoodCard v-for="item in paginatedItems" :key="item.id" :food="item" />
+      </div>
+
       <!-- Empty State -->
-      <EmptyState :items="paginatedItems.length" />
+      <EmptyState v-if="paginatedItems.length === 0" />
 
       <!-- Pagination -->
-      <Pagination
+      <Pagination v-if="paginatedItems.length > 0"
         v-model:currentPage="currentPage"
         :totalPages="totalPages"
         :paginatedItems="paginatedItems"
@@ -56,27 +57,39 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from "vue";
-import pizza from "@/assets/images/foods/pizza.jpg";
+import { ref, computed, watch, onMounted } from "vue";
 import Header from "@/components/menu/HeaderSection.vue";
-import MenuCard from "@/components/menu/MenuCard.vue";
 import EmptyState from "@/components/menu/EmptyState.vue";
 import Pagination from "@/components/menu/Pagination.vue";
-import menuItems from "@/data/menuData.ts";
+import FoodCard from "@/components/Home/FoodCard.vue";
+import { fetchCategories, fetchFoods } from "@/services/apiService";
+import { useI18n } from 'vue-i18n';
+import type { Food } from "@/types/food";
 
-// Categories
-const categories = ["All", "Pizza", "Burger", "Pasta", "Salads", "Desserts"];
-const selectedCategory = ref("All");
+const { locale } = useI18n();
+
+const categories = ref([]);
+const menuItems = ref([]);
+
+onMounted(async () => {
+  try {
+    categories.value = await fetchCategories();
+    menuItems.value = await fetchFoods();
+  } catch (error) {
+    console.error("Failed to fetch data:", error);
+  }
+});
+
+const selectedCategory = ref(1);
 const priceRange = ref("all");
 const currentPage = ref(1);
-const itemsPerPage = 9;
+const itemsPerPage = 8;
 
-// Filtered items based on category and price
 const filteredItems = computed(() => {
-  return menuItems.value.filter((item) => {
+  return menuItems.value.filter((item: Food) => {
     const categoryMatch =
-      selectedCategory.value === "All" ||
-      item.category === selectedCategory.value;
+      !selectedCategory.value || (item.category && item.category.id === Number(selectedCategory.value));
+
     const priceMatch = (() => {
       switch (priceRange.value) {
         case "low":
@@ -89,21 +102,18 @@ const filteredItems = computed(() => {
           return true;
       }
     })();
+
     return categoryMatch && priceMatch;
   });
 });
 
-// Pagination
-const totalPages = computed(() =>
-  Math.ceil(filteredItems.value.length / itemsPerPage)
-);
+const totalPages = computed(() => Math.ceil(filteredItems.value.length / itemsPerPage));
 const paginatedItems = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   return filteredItems.value.slice(start, end);
 });
 
-// Watch filtered items and update currentPage
 watch(filteredItems, (items) => {
   if (items.length === 0) {
     currentPage.value = 0;
@@ -112,7 +122,10 @@ watch(filteredItems, (items) => {
   }
 });
 
-// Methods
+watch(priceRange, () => {
+  currentPage.value = 1;
+});
+
 const selectCategory = (category: string) => {
   selectedCategory.value = category;
   currentPage.value = 1;
