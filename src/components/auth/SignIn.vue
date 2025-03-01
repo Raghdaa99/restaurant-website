@@ -16,21 +16,18 @@ const touched = ref<{ [key: string]: boolean }>({});
 
 const errors = computed(() => ({
   phone:
-    loginData.value.phone.trim().length === 0
+    touched.value.phone && loginData.value.phone.trim().length === 0
       ? "Phone number is required"
-      : isNaN(parseInt(loginData.value.phone))
+      : touched.value.phone && isNaN(parseInt(loginData.value.phone))
       ? "Phone number must be numeric"
-      : loginData.value.phone.length !== 8
-      ? "Phone number must be 8 digits"
       : "",
   password:
-    loginData.value.password.trim().length === 0
+    touched.value.password && loginData.value.password.trim().length === 0
       ? "Password is required"
-      : loginData.value.password.trim().length < 6
+      : touched.value.password && loginData.value.password.trim().length < 6
       ? "Password must be at least 6 characters"
       : "",
 }));
-
 function markTouched(field: string) {
   touched.value[field] = true;
 }
