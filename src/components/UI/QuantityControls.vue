@@ -3,14 +3,14 @@
     <button 
       v-if="quantity > 1"
       @click="$emit('decrease')"
-      class="quantity-btn rounded-l-lg"
+      class="quantity-btn rounded-s-lg"
     >
       -
     </button>
     <button 
       v-else 
       @click="$emit('remove')"
-      class="quantity-btn rounded-l-lg"
+      class="quantity-btn rounded-s-lg"
     >
       <i class="fas fa-trash"></i>
     </button>
@@ -19,7 +19,7 @@
     </span>
     <button
       @click="$emit('increase')"
-      class="quantity-btn rounded-r-lg"
+      class="quantity-btn rounded-e-lg"
     >
       +
     </button> 

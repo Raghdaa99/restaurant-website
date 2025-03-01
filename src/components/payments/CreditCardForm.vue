@@ -1,21 +1,21 @@
 <template>
   <div>
-    <h3 class="text-lg font-semibold mb-2">Enter Card Details</h3>
+    <h3 class="text-lg font-semibold mb-2">{{ $t('checkout.enterCardDetails') }}</h3>
     <form @submit.prevent="handleSubmit">
       <InputField
-        label="Card Number *"
+        :label="$t('checkout.cardNumber')"
         type="number"
         v-model="cardDetails.number"
-        placeholder="XXXX XXXX XXXX XXXX"
+        :placeholder="$t('checkout.enterCardNumber')"
         :error="errors.number"
         @blur="validateCardNumber(cardDetails.number)"
         @input="errors.number = ''"
         :class="{ 'border-red-500': errors.number }"
       />
       <InputField
-        label="Card Holder Name *"
+        :label="$t('checkout.cardHolderName')"
         v-model="cardDetails.holderName"
-        placeholder="Enter Card Holder Name"
+        :placeholder="$t('checkout.enterCardHolderName')"
         :error="errors.holderName"
         @blur="validateCardHolderName(cardDetails.holderName)"
         @input="errors.holderName = ''"
@@ -23,19 +23,19 @@
       />
       <div class="grid grid-cols-2 gap-4">
         <InputField
-          label="Expiry Date *"
+          :label="$t('checkout.expiryDate')"
           v-model="cardDetails.expiry"
-          placeholder="MM/YY"
+          :placeholder="$t('checkout.enterExpiryDate')"
           :error="errors.expiry"
           @blur="validateExpiryDate(cardDetails.expiry)"
           @input="errors.expiry = ''"
           :class="{ 'border-red-500': errors.expiry }"
         />
         <InputField
-          label="CVV *"
+          :label="$t('checkout.cvv')"
           v-model="cardDetails.cvv"
           type="number"
-          placeholder="CVV"
+          :placeholder="$t('checkout.enterCvv')"
           :error="errors.cvv"
           @blur="validateCVV(cardDetails.cvv)"
           @input="errors.cvv = ''"
@@ -45,10 +45,10 @@
       <Button
         type="submit"
         class="w-full mt-4"
-        title="Pay Now"
+        :title="$t('checkout.payNow')"
         :disabled="!isFormValid || isProcessing"
       >
-        {{ isProcessing ? "Processing..." : "Pay Now" }}
+        {{ isProcessing ? $t('checkout.processing') : $t('checkout.payNow') }}
       </Button>
     </form>
   </div>

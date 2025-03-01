@@ -6,14 +6,14 @@
       <div class="relative">
         <img 
           :src="food.image" 
-          :alt="food.name"
+          :alt="food.name[locale]"
           class="w-full h-[300px] md:h-[450px] object-cover rounded-xl shadow-lg"
         />
       </div>
 
       <!-- Food Details -->
       <div class="space-y-4 md:space-y-6">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-800">{{ food.name }}</h1>
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-800">{{ food.name[locale] }}</h1>
         
         <!-- Overall Rating -->
         <div class="flex items-center gap-2">
@@ -32,13 +32,13 @@
         
         <!-- Description Card -->
         <FoodDetailsCard>
-          <h2 class="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-gray-800">Description</h2>
-          <p class="text-sm md:text-base text-gray-600 leading-relaxed">{{ food.description }}</p>
+          <h2 class="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-gray-800"> {{ $t('foodDetails.description') }}</h2>
+          <p class="text-sm md:text-base text-gray-600 leading-relaxed">{{ food.description[locale] }}</p>
           
           <FoodAttributes 
-            :prep-time="food.prepTime"
-            :calories="food.calories"
-            :category="food.category"
+            :prep-time="food.prepTime[locale]"
+            :calories="food.calories[locale]"
+            :category="food.category[locale]"
           />
         </FoodDetailsCard>
 
@@ -46,7 +46,7 @@
         <FoodDetailsCard>
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <div class="text-xs md:text-sm text-gray-500 mb-1">Price : 
+              <div class="text-xs md:text-sm text-gray-500 mb-1"> {{ $t('foodDetails.price') }} : 
                 <span class="text-xl font-semibold text-primary">${{ food.price }}</span>
               </div>
               
@@ -54,7 +54,7 @@
             <div class="flex flex-col items-end gap-2">
               <div @click.stop>
                 <template v-if="!isItemInCart(food.id)">
-                  <AddToCartButton :item="cartItem" title="Add to Cart" />
+                  <AddToCartButton :item="cartItem" :title="$t('foodDetails.addToCart')" />
                 </template>
                 <template v-else>
                   <div class="relative group">
@@ -67,7 +67,7 @@
                     <!-- Tooltip -->
                     <div class="absolute -top-10 left-1/2 -translate-x-1/2 hidden group-hover:block 
                                bg-gray-800 text-white text-xs py-1 px-2 rounded whitespace-nowrap">
-                      Click + to add more
+                      {{ $t('foodDetails.addMore') }}
                     </div>
                   </div>
                 </template>
@@ -75,7 +75,7 @@
               <!-- Helper Text -->
               <p v-if="isItemInCart(food.id)" class="text-xs text-gray-500 italic">
                 <i class="fas fa-info-circle mr-1"></i>
-                You can adjust quantity or remove item from cart
+                {{ $t('foodDetails.adjustQuantity') }}
               </p>
             </div>
           </div>
@@ -87,14 +87,14 @@
     <div class="mt-12">
       <div v-if="reviews" class="bg-white shadow-lg rounded-xl px-8 md:p-8">
         <div class="flex items-center justify-start mb-6 gap-8">
-          <h2 class="text-xl md:text-2xl font-bold text-gray-800">Reviews</h2>
+          <h2 class="text-xl md:text-2xl font-bold text-gray-800"> {{ $t('foodDetails.reviews') }}</h2>
           <button 
             class="px-5 py-2.5 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 
                    transition-colors font-medium flex items-center gap-2"
             @click="isReviewModalOpen = true"
           >
             <i class="fas fa-plus mr-2"></i>
-            Write a Review
+            {{ $t('foodDetails.writeReview') }}
           </button>
         </div>
         
@@ -108,18 +108,18 @@
         <div class="flex justify-center" v-if="!showAllReviews && reviews.length > 2">
           <button @click="viewAllReviews" class="px-5 py-2.5 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 
                    transition-colors font-medium flex items-center gap-2">
-            View All Reviews <i class="fas fa-arrow-right ml-2"></i>
+            {{ $t('foodDetails.viewAllReviews') }} <i class="fas fa-arrow-right ml-2"></i>
           </button>
         </div>
         <div v-if="reviews.length === 0" class="text-center py-8">
-          <p class="text-gray-500 text-lg">No reviews yet. Be the first to write a review!</p>
+          <p class="text-gray-500 text-lg"> {{ $t('foodDetails.noReviews') }}</p>
         </div>
       </div>
     </div>
 
     <!-- Related Foods -->
     <div class="mt-12">
-      <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-6">You Might Also Like</h2>
+      <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-6"> {{ $t('foodDetails.relatedFoods') }}</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <FoodCard 
           v-for="item in relatedFoods" 
@@ -154,12 +154,14 @@ import FoodAttributes from '@/components/food/FoodAttributes.vue';
 import ReviewCard from '@/components/food/ReviewCard.vue';
 import FoodCard from '@/components/Home/FoodCard.vue';
 import ReviewModal from '@/components/food/ReviewModal.vue';
+import { useI18n } from 'vue-i18n';
 
 const route = useRoute();
 const food = ref<Food | null>(null);
 const isReviewModalOpen = ref(false);
 const foods = ref<Food[]>([]);
 const showAllReviews = ref(false);
+const { locale } = useI18n();
 
 const { 
   isItemInCart, 
@@ -197,6 +199,7 @@ const displayedReviews = computed(() => {
 const loadFoodDetails = async (id: number) => {
   try {
     food.value = await fetchFoodById(id);
+    console.log(food.value);
     await loadReviews();
   } catch (error) {
     console.error('Error fetching food details:', error);

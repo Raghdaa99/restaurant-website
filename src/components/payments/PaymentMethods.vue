@@ -1,7 +1,7 @@
 <template>
     <div>
       <h3 class="text-xl font-semibold text-gray-800 bg-gray-200 p-2 rounded-lg">
-        Select Payment Method
+        {{ $t('checkout.selectPaymentMethod') }}  
       </h3>
       <div class="flex border-b mb-4">
         <button
@@ -15,8 +15,8 @@
               : 'border-transparent text-gray-500'
           "
         >
-          <img :src="method.image" :alt="method.name" class="w-15 h-10 mb-1" />
-          <span>{{ method.name }}</span>
+          <img :src="method.image" :alt="method.name[locale]" class="w-15 h-10 mb-1" />
+          <span>{{ method.name[locale] }}</span>
         </button>
       </div>
     </div>
@@ -24,21 +24,24 @@
   
   <script setup lang="ts">
   import { ref } from "vue";
-  
+  import { useI18n } from "vue-i18n";
+
+  const { locale } = useI18n();
+
   const paymentMethods = [
     {
       id: "credit-card",
-      name: "Credit Card",
+      name: { en: "Credit Card", ar: "بطاقة الائتمان" },
       image: "/src/assets/images/payments/credit-card.png",
     },
     {
       id: "paypal",
-      name: "PayPal",
+      name: { en: "PayPal", ar: "بايبال" },
       image: "/src/assets/images/payments/paypal.png",
     },
     {
       id: "cod",
-      name: "Cash on Delivery",
+      name: { en: "Cash on Delivery", ar: "الدفع عند الاستلام" },
       image: "/src/assets/images/payments/cash-on.png",
     },
   ];

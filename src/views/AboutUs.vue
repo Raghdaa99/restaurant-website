@@ -9,7 +9,7 @@
         <h1
           class="text-5xl md:text-7xl flex flex-col items-center justify-center font-bold mb-6 animate-fade-in-down drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
         >
-          About Our Restaurant
+          {{ $t('about.title') }}
         </h1>
       </div>
     </section>
@@ -24,12 +24,9 @@
                 class="absolute -inset-4 bg-gradient-to-r from-amber-500 to-red-500 rounded-lg blur-lg opacity-20 group-hover:opacity-30 transition duration-500"
               ></div>
               <div class="relative bg-white p-8 rounded-lg shadow-xl">
-                <h2 class="text-4xl font-bold mb-6 text-gray-800">Our Story</h2>
+                <h2 class="text-4xl font-bold mb-6 text-gray-800">{{ $t('about.storyTitle') }}</h2>
                 <p class="text-gray-700 leading-relaxed">
-                  Founded in 2020, Our Restaurant has been serving exceptional
-                  cuisine for over 3 years. What started as a small family dream
-                  has grown into one of the city's most beloved dining
-                  destinations.
+                  {{ $t('about.storyText') }}
                 </p>
               </div>
             </div>
@@ -41,13 +38,10 @@
               ></div>
               <div class="relative bg-white p-8 rounded-lg shadow-xl">
                 <h2 class="text-4xl font-bold mb-6 text-gray-800">
-                  Our Heritage
+                  {{ $t('about.heritageTitle') }}
                 </h2>
                 <p class="text-gray-700 leading-relaxed">
-                  Our commitment to quality and service has made us a
-                  cornerstone of the local dining scene. We take pride in
-                  creating memorable experiences through exceptional food and
-                  hospitality.
+                  {{ $t('about.heritageText') }}
                 </p>
               </div>
             </div>
@@ -60,7 +54,7 @@
     <section class="py-24 px-4 bg-white">
       <div class="container mx-auto ">
         <h2 class="text-4xl font-bold text-center mb-16 animate-fade-in">
-          Meet Our Director
+          {{ $t('about.directorTitle') }}
         </h2>
         <div class="group relative max-w-4xl mx-auto">
           <div
@@ -79,11 +73,12 @@
                 class="relative w-full h-full rounded-full object-cover shadow-lg transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
               />
             </div>
-            <div class="flex-1 text-center md:text-left animate-slide-in-right">
-              <h3 class="text-3xl font-bold mb-4 text-gray-800">John Smith</h3>
+            <div class="flex-1 text-center md:text-left rtl:text-right animate-slide-in-right">
+              <h3 class="text-3xl font-bold mb-4 text-gray-800">
+                {{ $t('about.directorName') }}
+              </h3>
               <p class="text-gray-700 leading-relaxed mb-4">
-                With over 20 years of culinary experience, John has transformed
-                his passion for food into a successful enterprise.
+                {{ $t('about.directorText') }}
               </p>
             </div>
           </div>
@@ -159,7 +154,7 @@ import { ref, onMounted } from "vue";
 import chef1Image from "@/assets/images/chefs/Chef1.png";
 import chef2Image from "@/assets/images/chefs/Chef2.png";
 import chef3Image from "@/assets/images/chefs/Chef3.webp";
-
+ 
 interface Chef {
   id: number;
   name: string;

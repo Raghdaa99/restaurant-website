@@ -133,17 +133,17 @@ async function handleSubmit() {
         alt=""
       />
       <h1 class="text-2xl font-bold text-center text-black mb-4">
-        Create an Account
+        {{ $t('auth.signUp') }}
       </h1>
 
       <form @submit.prevent="handleSubmit">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div>
             <InputField
-              label="First Name"
+              :label="$t('auth.firstName')"
               v-model="userData.firstname"
               @blur="markTouched('firstname')"
-              placeholder="Enter your first name"
+              :placeholder="$t('auth.enterFirstName')"
             />
             <p v-if="errors.firstname" class="text-danger text-sm">
               {{ errorMessages.firstname }}
@@ -151,10 +151,10 @@ async function handleSubmit() {
           </div>
           <div>
             <InputField
-              label="Last Name"
+              :label="$t('auth.lastName')"
               v-model="userData.lastname"
               @blur="markTouched('lastname')"
-              placeholder="Enter your last name"
+              :placeholder="$t('auth.enterLastName')"
             />
             <p v-if="errors.lastname" class="text-danger text-sm">
               {{ errorMessages.lastname }}
@@ -164,11 +164,11 @@ async function handleSubmit() {
 
         <div class="mb-4">
           <InputField
-            label="Phone Number"
+            :label="$t('auth.phoneNumber')"
             type="tel"
             v-model="userData.phone"
             @blur="markTouched('phone')"
-            placeholder="Enter your phone number"
+            :placeholder="$t('auth.enterPhoneNumber')"
           />
           <p v-if="errors.phone" class="text-danger text-sm">
             {{ errorMessages.phone }}
@@ -177,11 +177,11 @@ async function handleSubmit() {
 
         <div class="mb-4">
           <InputField
-            label="Password"
+            :label="$t('auth.password')"
             type="password"
             v-model="userData.password"
             @blur="markTouched('password')"
-            placeholder="Enter your password"
+            :placeholder="$t('auth.enterPassword')"
           />
           <p v-if="errors.password" class="text-danger text-sm">
             {{ errorMessages.password }}
@@ -190,34 +190,143 @@ async function handleSubmit() {
 
         <div class="mb-6">
           <InputField
-            label="Confirm Password"
+            :label="$t('auth.confirmPassword')"
             type="password"
             v-model="userData.confirmPassword"
             @blur="markTouched('confirmPassword')"
-            placeholder="Confirm your password"
+            :placeholder="$t('auth.confirmPassword')"
           />
           <p v-if="errors.confirmPassword" class="text-danger text-sm">
             {{ errorMessages.confirmPassword }}
           </p>
         </div>
+        <button 
+  type="submit"
+  class="w-full flex justify-center items-center button-hover-effect bg-primary text-white py-2 px-4 rounded-lg font-semibold hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+>
+  <span>{{ $t('auth.createAccount') }}</span>
+</button>
 
-        <button
-          type="submit"
-          class="w-full flex justify-center items-center button-hover-effect bg-primary text-white py-2 px-4 rounded-lg font-semibold hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
-        >
-          <span>Create Account</span>
-        </button>
       </form>
 
       <p class="mt-4 text-center text-gray text-sm">
-        Already have an account?
+        {{ $t('auth.alreadyHaveAccount') }}
         <a href="/signin" class="text-primary hover:text-primary font-semibold"
-          >Sign in</a
+          >{{ $t('auth.signIn') }}</a
         >
       </p>
     </div>
   </div>
 </template>
+<script lang="ts" setup>
+import { ref, computed } from "vue";
+import { useUserStore } from "@/stores/useUserStore";
+import { useRouter } from "vue-router";
+import InputField from "@/components/UI/InputField.vue";
+import Swal from "sweetalert2";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+
+const userStore = useUserStore();
+const router = useRouter();
+
+const userData = ref({
+  firstname: "",
+  lastname: "",
+  phone: "",
+  password: "",
+  confirmPassword: ""
+});
+
+const touched = ref<{ [key: string]: boolean }>({});
+
+const containsOnlyLetters = (text: string) => /^[\u0600-\u06FFa-zA-Z\s]+$/.test(text);
+
+const errors = computed(() => ({
+  firstname: touched.value.firstname && 
+    (userData.value.firstname.trim().length === 0 || !containsOnlyLetters(userData.value.firstname)),
+  lastname: touched.value.lastname && 
+    (userData.value.lastname.trim().length === 0 || !containsOnlyLetters(userData.value.lastname)),
+  phone: touched.value.phone && 
+    (isNaN(parseInt(userData.value.phone)) || userData.value.phone.length < 8),
+  password: touched.value.password && userData.value.password.length < 6,
+  confirmPassword: touched.value.confirmPassword && 
+    userData.value.confirmPassword !== userData.value.password,
+}));
+
+const errorMessages = computed(() => ({
+  firstname: touched.value.firstname && userData.value.firstname.trim().length === 0 
+    ? t('auth.firstnameRequired') 
+    : !containsOnlyLetters(userData.value.firstname) 
+    ? t('auth.firstnameMustBeLettersOnly')
+    : "",
+  lastname: touched.value.lastname && userData.value.lastname.trim().length === 0
+    ? t('auth.lastnameRequired')
+    : !containsOnlyLetters(userData.value.lastname)
+    ? t('auth.lastnameMustBeLettersOnly')
+    : "",
+  phone: t('auth.invalidPhoneNumber'),
+  password: t('auth.passwordValidation'),
+  confirmPassword: t('auth.passwordsDoNotMatch')
+}));
+
+function markTouched(field: string) {
+  touched.value[field] = true;
+}
+
+async function handleSubmit() {
+  Object.keys(userData.value).forEach(markTouched);
+
+  if (Object.values(errors.value).some((err) => err)) {
+    await Swal.fire({
+      icon: "error",
+      title: t('auth.validationError'),
+      text: t('auth.pleaseFixErrorsBeforeSubmitting'),
+      confirmButtonColor: "#c70039",
+    });
+    return;
+  }
+
+  try {
+    const result = await userStore.register({
+      firstname: userData.value.firstname,
+      lastname: userData.value.lastname,
+      phone: userData.value.phone,
+      password: userData.value.password
+    });
+
+    if (result.success) {
+      await Swal.fire({
+        icon: "success",
+        title: t('auth.accountCreated'),
+        text: t('auth.pleaseSignInToContinue'),
+        timer: 2000,
+        showConfirmButton: false,
+      });
+      router.push({ 
+        name: "SignIn",
+        query: { phone: userData.value.phone }
+      });
+      window.scrollTo(0, 0);
+    } else {
+      await Swal.fire({
+        icon: "error",
+        title: t('auth.registrationFailed'),
+        text: result.error || t('auth.failedToCreateAccount'),
+        confirmButtonColor: "#c70039",
+      });
+    }
+  } catch (error) {
+    await Swal.fire({
+      icon: "error",
+      title: t('auth.error'),
+      text: t('auth.anErrorOccurredWhileCreatingYourAccount'),
+      confirmButtonColor: "#c70039",
+    });
+  }
+}
+</script>
 
 <style scoped>
 @keyframes fadeIn {

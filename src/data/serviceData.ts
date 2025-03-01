@@ -2,23 +2,47 @@ import { CheckCircleIcon, ClockIcon, FireIcon, GlobeAltIcon } from "@heroicons/v
 
 export const services = [
     {
-        title: "Fresh Ingredients",
-        description: "We use only the freshest, locally-sourced ingredients.",
+        title: {
+            en: "Fresh Ingredients",
+            ar: "المكونات الطازجة"
+        },
+        description: {
+            en: "We use only the freshest, locally-sourced ingredients.",
+            ar: "نحن نستخدم فقط المكونات الطازجة المحلية"
+        },
         icon: CheckCircleIcon,
     },
     {
-        title: "Fast Service",
-        description: "We serve your meals quickly and efficiently.",
+        title: {
+            en: "Fast Service",
+            ar: "الخدمة السريعة"
+        },
+        description: {
+            en: "We serve your meals quickly and efficiently.",
+            ar: "نقدم لك الطعام بسرعة وفعالية"
+        },
         icon: ClockIcon,
     },
     {
-        title: "Handcrafted Dishes",
-        description: "Each dish is meticulously crafted with care and precision.",
+        title: {
+            en: "Handcrafted Dishes",
+            ar: "الأطباق اليدوية"
+        },
+        description: {
+            en: "Each dish is meticulously crafted with care and precision.",
+            ar: "كل طبق يتم تصنيعه بعناية ودقة"
+        },
         icon: FireIcon,
     },
     {
-        title: "Sustainable Practices",
-        description: "We support sustainable practices in sourcing and operations.",
+        title: {
+            en: "Sustainable Practices",
+            ar: "الممارسات المستدامة"
+        },
+        description: {
+            en: "We support sustainable practices in sourcing and operations.",
+            ar: "ندعم الممارسات المستدامة في التوريد والعمليات"
+        },
         icon: GlobeAltIcon,
     },
 ];

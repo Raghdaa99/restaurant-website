@@ -1,3 +1,65 @@
+<template>
+  <div
+    class="main-section flex justify-center items-center min-h-screen pt-48 pb-24 font-salsa"
+  >
+    <div
+      class="w-full max-w-lg p-8 bg-white rounded-lg shadow-md animate-fade-in"
+    >
+      <img
+        class="block mx-auto w-32 my-0 p-0"
+        src="../../assets/images/LazeezLogo.svg"
+        alt=""
+      />
+      <h1 class="text-2xl font-bold text-center text-black mb-4">
+        {{ $t('auth.signIn') }}         
+      </h1>
+
+      <form @submit.prevent="handleLogin">
+        <div class="mb-4">
+          <InputField
+            :label="$t('auth.phoneNumber')"
+            type="tel"
+            :placeholder="$t('auth.phoneNumber')"
+            v-model="loginData.phone"
+            @blur="markTouched('phone')"
+          />
+          <p v-if="errors.phone" class="text-danger text-sm">
+            {{ $t('auth.invalidPhoneNumber') }}
+          </p>
+        </div>
+
+        <div class="mb-6">
+          <InputField
+            :label="$t('auth.password')"
+            type="password"
+            :placeholder="$t('auth.password')"
+            v-model="loginData.password"
+            @blur="markTouched('password')"
+          />
+          <p v-if="errors.password" class="text-danger text-sm">
+            {{ $t('auth.passwordValidation') }}
+          </p>
+        </div>
+
+        <button 
+          type="submit"
+          class="w-full flex justify-center items-center button-hover-effect bg-primary text-white py-2 px-4 rounded-lg font-semibold hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+        >
+          {{ $t('auth.signIn') }}
+        </button>
+      </form>
+
+      <p class="mt-4 text-center text-gray text-sm">
+        {{ $t('auth.dontHaveAccount') }}
+        <a href="/signup" class="text-primary hover:text-primary font-semibold"
+          >{{ $t('auth.signUp') }}</a
+        >
+      </p>
+    </div>
+  </div>
+</template>
+
+
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";

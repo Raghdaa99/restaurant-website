@@ -5,7 +5,7 @@
   >
     <i
         :class="'fab fa-' + icon"
-        class="text-base sm:text-lg md:text-xl mr-2"
+        class="text-base sm:text-lg md:text-xl me-2"
     ></i>
     <span class="text-sm sm:text-base md:text-lg">{{ title }}</span>
   </a>

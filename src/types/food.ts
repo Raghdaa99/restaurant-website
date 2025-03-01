@@ -1,14 +1,42 @@
+// export interface Food {
+//   id: number;
+//   name: string;
+//   price: number;
+//   image: string;
+//   description: string;
+//   category: string;
+//   prepTime?: string;
+//   calories?: string;
+//   rating?: number;
+// }
+
 export interface Food {
   id: number;
-  name: string;
+  name: {
+    en: string;
+    ar: string;
+  };
+  description: {
+    en: string;
+    ar: string;
+  };
   price: number;
   image: string;
-  description: string;
-  category: string;
-  prepTime?: string;
-  calories?: string;
+  category: {
+    en: string;
+    ar: string;
+  };
+  prepTime?: {
+    en: string;
+    ar: string;
+  };
+  calories?: {
+    en: string;
+    ar: string;
+  };
   rating?: number;
 }
+
 
 export interface Review {
   id: number;

@@ -2,10 +2,10 @@
   <div class="lg:container mt-32 mx-auto px-6 md:px-12 lg:px-28 py-6 md:py-12 font-salsa" :class="$darkClass">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Contact Information Section -->
-      <div  class="dark:text-white">
-        <h2 class="text-2xl md:text-3xl font-bold">Contact Us</h2>
+      <div class="dark:text-white">
+        <h2 class="text-2xl md:text-3xl font-bold"> {{ $t('contact_us') }}</h2>
         <h3 class="text-lg md:text-xl font-semibold mt-2">
-          We're here to help
+          {{ $t('we_are_here_to_help') }}
         </h3>
 
         <div class="mt-4">
@@ -15,25 +15,21 @@
               :icon="info.icon"
               :title="info.title"
               :content="info.content"
-              
           />
         </div>
 
         <h3 class="text-lg md:text-xl font-semibold mt-6">
-          Visit Us at Our Headquarters
+          {{ $t('visit_us') }}
         </h3>
         <ContactInfoItem 
             icon="map-marker-alt"
-            title="Address"
-            content="Lazeez, Inc. 1234 Main Street, Suite 500, Toronto, Canada"
-            
+            :title="$t('address')"
+            :content="$t('company_address')"
         />
         <h3 class="text-lg md:text-xl font-semibold mt-6">
-          Connect with Us on Social Media
+          {{ $t('connect_with_us') }}
         </h3>
-        <div
-            class="flex flex-col md:flex-row md:space-x-4 lg:flex-row lg:space-x-4 mt-2"
-        >
+        <div class="flex flex-col md:flex-row md:space-x-4 lg:flex-row lg:space-x-4 mt-2">
           <SocialItem
               v-for="(social, index) in socialLinks"
               :key="index"
@@ -46,7 +42,7 @@
 
       <!-- Location Map Section -->
       <div class="w-full h-full">
-        <LocationMap/>
+        <LocationMap />
       </div>
     </div>
 
@@ -56,9 +52,8 @@
     </div>
 
     <!-- Contact Form Title -->
-    <h3
-        class="text-2xl md:text-3xl font-semibold text-center text-gray-800 mb-6 dark:text-white">
-      Send Us a Message
+    <h3 class="text-2xl md:text-3xl font-semibold text-center text-gray-800 mb-6 dark:text-white">
+      {{ $t('send_us_a_message') }}
     </h3>
 
     <!-- Contact Form Component -->
@@ -71,26 +66,31 @@ import LocationMap from "@/components/contact/LocationMap.vue";
 import ContactInfoItem from "@/components/contact/ContactInfoItem.vue";
 import SocialItem from "@/components/contact/SocialItem.vue";
 import ContactForm from "@/components/contact/ContactForm.vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+
 const socialLinks = [
-  { icon: "facebook", title: "Facebook" },
-  { icon: "twitter", title: "Twitter" },
-  { icon: "instagram", title: "Instagram" },
+  { icon: "facebook", title: t("facebook") },
+  { icon: "twitter", title: t("twitter") },
+  { icon: "instagram", title: t("instagram") },
 ];
+
 const contactInfo = [
   {
     icon: "phone",
-    title: "Phone Number",
-    content: "For any questions or concerns, please call us at 123-456-7890",
+    title: t("phone_number"),
+    content: t("phone_details"),
   },
   {
     icon: "envelope",
-    title: "Email",
-    content: "Please email us at info@lazeez.com",
+    title: t("email"),
+    content: t("email_details"),
   },
   {
     icon: "clock",
-    title: "Opening Hours",
-    content: "Monday-Friday: 9 AM - 5 PM EST",
+    title: t("opening_hours"),
+    content: t("opening_hours_details"),
   },
 ];
 </script>

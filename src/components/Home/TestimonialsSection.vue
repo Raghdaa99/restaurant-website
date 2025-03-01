@@ -1,6 +1,6 @@
 <template>
   <div class="py-16 bg-gray-100 px-4" :class="darkClass">
-    <h2 class="text-3xl font-bold text-center text-primary mb-10">What Our Customers Say</h2>
+    <h2 class="text-3xl font-bold text-center text-primary mb-10">{{ $t("testimonials") }}</h2>
     <div class="relative max-w-4xl mx-auto">
       <!-- Swiper Carousel -->
       <swiper
