@@ -52,10 +52,9 @@ onBeforeUnmount(() => {
       <div
         class="flex flex-col rounded-l-none p-14 justify-center bg-gradient-to-r from-danger to-primary/90 rounded-se-full text-white w-full h-full"
       >
-        <h1 class="text-4xl font-bold">Welcome to Lazeez Restaurant!</h1>
-        <p class="text-sm">
-          Enjoy delicious, freshly made dishes in a warm and inviting
-          atmosphere. Great food, great vibes—every time!
+        <h1 class="text-4xl font-bold"> {{ $t("welcome_to_lazeez_restaurant") }} </h1>
+        <p class="text-xl mt-4">
+          {{ $t("welcome_to_lazeez_restaurant_description") }}
         </p>
       </div>
     </div>
