@@ -9,7 +9,6 @@ import 'leaflet/dist/leaflet.css';
 import Swal from 'sweetalert2';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
-
 import { darkClass } from '@/utils/theme';
 
 const app = createApp(App);
