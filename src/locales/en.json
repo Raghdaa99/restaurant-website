@@ -196,6 +196,19 @@
     "lastnameMustBeLettersOnly": "Last name must be letters only.",
     "passwordsDoNotMatch": "Passwords do not match",
     "error": "Error"
+  },
+  "review": {
+    "your_review": "Your Review",
+    "your_name_optional": "Your Name (Optional)",
+    "your_rating": "Your Rating",
+    "cancel": "Cancel",
+    "write_a_review": "Write a Review",
+    "your_name": "Your Name",
+    "your_review_placeholder": "Share your experience with this dish...",
+    "submit": "Submit",
+    "your_rating_placeholder": "Rate this dish...",
+    "your_review_required": "Please write a review to submit.",
+    "your_name_required": "Please enter your name."
   }
 
 }

@@ -29,7 +29,7 @@
             >
               <div class="flex justify-between items-center mb-8">
                 <DialogTitle class="text-2xl font-bold text-gray-800">
-                  Write a Review
+                  {{ $t("review.write_a_review") }}
                 </DialogTitle>
                 <button
                   @click="handleClose"
@@ -43,7 +43,7 @@
                 <!-- Rating Selection -->
                 <div>
                   <label class="font-medium text-lg text-gray-700 block mb-3"
-                    >Your Rating</label
+                    >{{ $t("review.your_rating") }}</label
                   >
                   <div class="flex gap-3">
                     <button
@@ -70,14 +70,14 @@
                 <!-- Review Text -->
                 <TextArea
                   v-model="comment"
-                  label="Your Review"
-                  placeholder="Share your experience with this dish..."
+                  :label="$t('review.your_review')"
+                  :placeholder="$t('review.your_review_placeholder')"
                   :rows="4"
                 />
                 <InputField
                   v-model="userName"
-                  label="Your Name (Optional)"
-                  placeholder="Enter your name"
+                  :label="$t('review.your_name_optional')"
+                  :placeholder="$t('review.your_name_optional')"
                 />
                 <!-- Submit Button -->
                 <div class="flex justify-end gap-4 pt-4">
@@ -86,9 +86,9 @@
                     @click="handleClose"
                     class="px-6 py-2.5 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors font-medium"
                   >
-                    Cancel
+                    {{ $t("review.cancel") }}
                   </button>
-                  <Button title="Submit" icon="paper-plane" @click.prevent="handleSubmit" />
+                  <Button :title="$t('review.submit')" icon="paper-plane" @click.prevent="handleSubmit" />
                 </div>
               </form>
             </DialogPanel>
