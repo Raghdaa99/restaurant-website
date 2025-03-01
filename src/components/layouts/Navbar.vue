@@ -1,9 +1,9 @@
 <template>
   <div id="navbar"
-    class="font-salsa scroll-m-6 fixed p-1 font-medium z-40 text-white backdrop-blur-md border-b-[1px] w-full transition-all duration-500 ease-in-out"
+    class="font-salsa scroll-m-6 fixed p-1 font-medium z-40 text-white backdrop-blur-md border-b-[1px] w-full transition-all duration-500 ease-in-out dark:bg-slate-900"
     :class="{
       'bg-transparent': isHome && !isScrolled,
-      'bg-primary': (isHome && isScrolled) || !isHome,
+      'bg-primary': (isHome && isScrolled) || !isHome
     }"
   >
     <nav class="flex justify-between items-center px-5">
