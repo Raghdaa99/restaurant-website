@@ -10,11 +10,11 @@
 
         <div class="mt-4">
           <ContactInfoItem
-              v-for="(info, index) in contactInfo"
+              v-for="(info, index) in contactInfo.slice(0, 3)"
               :key="index"
               :icon="info.icon"
-              :title="info.title"
-              :content="info.content"
+              :title="info.title[locale]"
+              :content="info.content[locale]"
           />
         </div>
 
@@ -23,8 +23,8 @@
         </h3>
         <ContactInfoItem 
             icon="map-marker-alt"
-            :title="$t('address')"
-            :content="$t('company_address')"
+            :title="contactInfo[3].title[locale]"
+            :content="contactInfo[3].content[locale]"
         />
         <h3 class="text-lg md:text-xl font-semibold mt-6">
           {{ $t('connect_with_us') }}
@@ -34,7 +34,7 @@
               v-for="(social, index) in socialLinks"
               :key="index"
               :icon="social.icon"
-              :title="social.title"
+              :title="social.title[locale]"
               class="dark:text-white"
           />
         </div>
@@ -68,29 +68,70 @@ import SocialItem from "@/components/contact/SocialItem.vue";
 import ContactForm from "@/components/contact/ContactForm.vue";
 import { useI18n } from "vue-i18n";
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const socialLinks = [
-  { icon: "facebook", title: t("facebook") },
-  { icon: "twitter", title: t("twitter") },
-  { icon: "instagram", title: t("instagram") },
+  { icon: "facebook", title: {
+      en: "Facebook", 
+      ar: "فيسبوك",
+    },
+  },
+  { icon: "twitter", title: {
+      en: "Twitter",
+      ar: "تويتر",
+    },
+  },
+  { icon: "instagram", title: {
+      en: "Instagram",
+      ar: "انستجرام",
+    },
+  },
 ];
 
 const contactInfo = [
   {
     icon: "phone",
-    title: t("phone_number"),
-    content: t("phone_details"),
+    title: {
+      en: "Phone",
+      ar: "رقم الهاتف",
+    },
+    content: {
+      en: "For any questions or concerns, please call us at 123-456-7890",
+      ar: "لأي أسئلة أو إستفسارات، يرجى الاتصال بنا على 123-456-7890",
+    },
   },
   {
     icon: "envelope",
-    title: t("email"),
-    content: t("email_details"),
+    title: {
+      en: "Email",
+      ar: "البريد الإلكتروني",
+    },
+    content: {
+      en: "Please email us at info@lazeez.com",
+      ar: "يرجى إرسال بريد إلكتروني إلى info@lazeez.com",
+    },
   },
   {
     icon: "clock",
-    title: t("opening_hours"),
-    content: t("opening_hours_details"),
+    title: {
+      en: "Opening Hours",
+      ar: "ساعات العمل",
+    },
+    content: {
+      en: "Monday-Friday: 9 AM - 5 PM EST",
+      ar: "الاثنين - الجمعة: 9 ص - 5 م",
+    },
+  },
+  {
+    icon: "map-marker-alt",
+    title: {
+      en: "Address",
+      ar: "العنوان",
+    },
+    content: {
+      en: "Lazeez, Inc. 1234 Main Street, Suite 500, Toronto, Canada",
+      ar: "Lazeez, Inc. 1234 شارع المناصير, مجمع 500, تورونتو, كندا",
+    },
   },
 ];
 </script>

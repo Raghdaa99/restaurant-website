@@ -196,6 +196,18 @@
     "lastnameMustBeLettersOnly": "الاسم الأخير يجب أن يكون حروف فقط",
     "passwordsDoNotMatch": "كلمة المرور وتأكيد كلمة المرور غير متطابقين",
     "error": "خطأ"
+  },
+  "review": {
+    "your_review": "تقييمك",
+    "your_name_optional": "الاسم (اختياري)",
+    "your_rating": "تقييمك",
+    "cancel": "إلغاء",
+    "submit": "إرسال",
+    "your_review_placeholder": "شارك تجربتك مع هذا الطعام...",
+    "your_rating_placeholder": "تقييم هذا الطعام...",
+    "your_review_required": "يرجى كتابة التقييم لإرساله.",
+    "your_name_required": "يرجى إدخال اسمك."
+
   }
 }
 
