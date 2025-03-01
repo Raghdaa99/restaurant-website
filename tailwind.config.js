@@ -16,11 +16,13 @@ colors: {
         poppins: ["Poppins", "sans-serif"],
         salsa: ["Salsa", "sans-serif"],
         "space-grotesk": ["Space Grotesk", "sans-serif"], // تمت إضافته من `tareq-add-font`
+        arabic: ["Tajawal", "sans-serif"],
       },
     },
   },
   plugins: [
     require('@tailwindcss/forms'),
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require('tailwindcss-rtl')
   ],
 };

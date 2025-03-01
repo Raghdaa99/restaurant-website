@@ -6,7 +6,7 @@
         <div class="bg-primary/10 p-3 rounded-full">
           <i class="fas fa-shopping-cart text-xl sm:text-2xl text-primary"></i>
         </div>
-        <h1 class="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white">Shopping Cart</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white">{{ $t('cart.shoppingCart') }}</h1>
       </div>
 
       <!-- Cart -->
@@ -14,9 +14,9 @@
         <div class="lg:col-span-2">
           <!-- Table Header -->
           <div class="hidden md:grid grid-cols-12 gap-2 md:gap-4 text-center bg-slate-300/80 backdrop-blur-sm py-3 md:py-4 px-4 md:px-6 rounded-t-xl font-semibold text-slate-700 shadow-lg">
-            <div class="col-span-6 text-left pl-4">Food Item</div>
-            <div class="col-span-3 text-center">Quantity</div>
-            <div class="col-span-3 text-right pr-4">Total Price</div>
+            <div class="col-span-6 text-start ps-8">{{ $t('cart.foodItem') }}</div>
+            <div class="col-span-3 text-center">{{ $t('cart.quantity') }}</div>
+            <div class="col-span-3 text-start pr-4">{{ $t('cart.totalPrice') }}</div>
           </div>
           
           <!-- Cart Content -->
@@ -27,14 +27,14 @@
                 alt="Empty Cart" 
                 class="w-32 h-32 sm:w-48 sm:h-48 mx-auto mb-4 opacity-80"
               >
-              <div class="text-base sm:text-lg text-slate-700 mb-2">Your cart is empty</div>
-              <div class="text-sm sm:text-base text-slate-600 mb-4 px-4">Looks like you haven't added any items to your cart yet.</div>
+              <div class="text-base sm:text-lg text-slate-700 mb-2">{{ $t('cart.emptyCart') }}</div>
+              <div class="text-sm sm:text-base text-slate-600 mb-4 px-4">{{ $t('cart.emptyCartMessage') }}</div>
               <router-link 
                 to="/" 
                 class="inline-flex items-center gap-2 bg-primary text-white rounded-md hover:text-primary hover:bg-white hover:border hover:border-primary px-4 sm:px-6 py-2 transition-all duration-300 text-sm"
               >
                 <i class="fas fa-arrow-left"></i>
-                <span>Continue Shopping</span>
+                <span>{{ $t('cart.continueShopping') }}</span>
               </router-link>
             </div>
 

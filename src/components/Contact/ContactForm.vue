@@ -2,27 +2,27 @@
   <form @submit.prevent="submitForm" class="mt-4 space-y-6 max-w-4xl mx-auto px-6 w-full bg-white p-6 md:p-8 rounded-lg shadow-md">
     <!-- Name & Email Fields -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-      <InputField label="Name" class="w-full" placeholder="Enter your name" />
-      <InputField label="Email" type="email" class="w-full" placeholder="Enter your Email" />
+      <InputField :label="$t('name')" class="w-full" :placeholder="$t('enter_your_name')" />
+      <InputField :label="$t('email')" type="email" class="w-full" :placeholder="$t('enter_your_email')" />
     </div>
 
     <!-- Phone & Subject Fields -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-      <InputField label="Phone Number" type="tel" class="w-full" placeholder="Enter your Phone Number" />
-      <InputField label="Subject" class="w-full" placeholder="Enter Subject" />
+      <InputField :label="$t('phone_number')" type="tel" class="w-full" :placeholder="$t('enter_your_phone_number')" />
+      <InputField :label="$t('subject')" class="w-full" :placeholder="$t('enter_your_subject')" />
     </div>
 
     <!-- Message Field -->
     <TextArea
       v-model="message"
-      label="Message"
-      placeholder="Your message"
+      :label="$t('message')"
+      :placeholder="$t('enter_your_message')"
       :rows="4"
     />
 
     <!-- Submit Button -->
     <div class="flex justify-center">
-      <Button title="Submit"/>
+      <Button :title="$t('submit')" />
     </div>
   </form>
 </template>

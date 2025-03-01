@@ -11,33 +11,33 @@
         alt=""
       />
       <h1 class="text-2xl font-bold text-center text-black mb-4">
-        Sign In to Your Account
+        {{ $t('auth.signIn') }}         
       </h1>
 
       <form @submit.prevent="handleLogin">
         <div class="mb-4">
           <InputField
-            label="Phone Number"
+            :label="$t('auth.phoneNumber')"
             type="tel"
-            placeholder="Phone Number"
+            :placeholder="$t('auth.phoneNumber')"
             v-model="loginData.phone"
             @blur="markTouched('phone')"
           />
           <p v-if="errors.phone" class="text-danger text-sm">
-            Invalid phone number
+            {{ $t('auth.invalidPhoneNumber') }}
           </p>
         </div>
 
         <div class="mb-6">
           <InputField
-            label="Password"
+            :label="$t('auth.password')"
             type="password"
-            placeholder="Password"
+            :placeholder="$t('auth.password')"
             v-model="loginData.password"
             @blur="markTouched('password')"
           />
           <p v-if="errors.password" class="text-danger text-sm">
-            Password must be at least 6 characters
+            {{ $t('auth.passwordValidation') }}
           </p>
         </div>
 
@@ -45,14 +45,14 @@
           type="submit"
           class="w-full flex justify-center items-center button-hover-effect bg-primary text-white py-2 px-4 rounded-lg font-semibold hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
         >
-          Sign In
+          {{ $t('auth.signIn') }}
         </button>
       </form>
 
       <p class="mt-4 text-center text-gray text-sm">
-        Don't have an account?
+        {{ $t('auth.dontHaveAccount') }}
         <a href="/signup" class="text-primary hover:text-primary font-semibold"
-          >Sign up</a
+          >{{ $t('auth.signUp') }}</a
         >
       </p>
     </div>

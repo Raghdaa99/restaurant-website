@@ -1,10 +1,10 @@
 <template>
     <div class="text-center">
-      <h3 class="text-lg font-semibold mb-2">Cash on Delivery</h3>
+      <h3 class="text-lg font-semibold mb-2">{{ $t('checkout.cashOnDelivery') }}</h3>
       <Button
         class="w-full"
         @click="handlePayment"
-        title="Confirm Order"
+        :title="$t('checkout.placeOrder')"
       ></Button>
     </div>
   </template>

@@ -1,17 +1,17 @@
 <template>
-  <div class="food-item-card" @click.stop="navigateToFoodDetails(food.id)" :class='$darkClass'>
+  <div class="food-item-card self-start" @click.stop="navigateToFoodDetails(food.id)" :class='$darkClass'>
     <img
       :src="food.image"
-      :alt="food.name"
+      :alt="food.name[locale]"
       class="w-full h-40 object-cover rounded-xl shadow-lg"
     />
     <div class="flex flex-col p-4 h-full">
       <div class="text-start">
         <div class="flex items-center justify-between">
-        <h3 class="text-lg font-semibold text-gray-800">{{ food.name }}</h3>
+        <h3 class="text-lg font-semibold text-gray-800">{{ food.name[locale] }}</h3>
       </div>
         <p class="text-sm text-gray-500 mt-1">
-          {{ `${food.description.slice(0, 100)}...` }}
+          {{ `${food.description[locale].slice(0, 120)}...` }}
         </p>
       </div>
 
@@ -44,7 +44,9 @@ import { useCart } from "@/composables/useCart";
 import type { Food } from "@/types/food";
 import AddToCartButton from "@/components/Cart/AddToCartButton.vue";
 import QuantityControls from "@/components/UI/QuantityControls.vue";
+import { useI18n } from "vue-i18n";
 
+const { locale } = useI18n();
 
 const props = defineProps<{
   food: Food;

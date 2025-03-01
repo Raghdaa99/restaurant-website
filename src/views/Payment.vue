@@ -7,7 +7,7 @@
           <div class="bg-primary/10 p-3 rounded-full">
             <i class="fas fa-credit-card text-xl sm:text-2xl text-primary"></i>
           </div>
-          <h1 class="text-2xl sm:text-3xl font-bold text-slate-800">Payment</h1>
+          <h1 class="text-2xl sm:text-3xl font-bold text-slate-800">{{ $t('checkout.payment') }}</h1>
         </div>
   
         <div

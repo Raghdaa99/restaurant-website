@@ -45,7 +45,7 @@
 
               }"
               href="/"
-              >home</a
+              >{{ t('home') }}</a
             >
           </li>
           <li>
@@ -57,7 +57,7 @@
                 'hover:text-primary': isHome && !isScrolled,
               }"
               href="/menu"
-              >menu</a
+              >{{ t('menu') }}</a
             >
           </li>
           <li>
@@ -69,7 +69,7 @@
                 'hover:text-primary': isHome && !isScrolled,
               }"
               href="/reservation"
-              >reservation</a
+              >{{ t('reservation') }}</a
             >
           </li>
           <li>
@@ -81,7 +81,7 @@
                 'hover:text-primary': isHome && !isScrolled,
               }"
               href="/about"
-              >about us</a
+              >{{ t('about_us') }}</a
             >
           </li>
           <li>
@@ -93,7 +93,7 @@
                 'hover:text-primary': isHome && !isScrolled,
               }"
               href="/contact"
-              >contact us</a
+              >{{ t('contact_us') }}</a
             >
           </li>
           <li>
@@ -114,7 +114,7 @@
           <li v-if="!userStore.isAuthenticated">
             <router-link to="/signin">
               <Button
-                title="Sign In"
+                :title="t('sign_in')"
                 :class="{
                   'text-white': true,
                   'hover:text-black': !isHome || (isHome && isScrolled),
@@ -127,7 +127,7 @@
           <li v-else>
             <Button
               @click="handleLogout"
-              title="Logout"
+              :title="t('logout')"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome || (isHome && isScrolled),
@@ -184,6 +184,9 @@
               </svg>
             </button>
           </li>
+          <li>
+            <LanguageSwitcher />
+          </li> 
         </ul>
       </div>
     </nav>
@@ -201,7 +204,7 @@
             class="hover:border border-white hover:text-primary rounded-md p-2"
             href="/"
             @click="closeMenu"
-            >home</a
+            >{{ t('home') }}</a
           >
         </li>
         <li>
@@ -209,7 +212,7 @@
             class="hover:border border-white hover:text-primary rounded-md p-2"
             href="/menu"
             @click="closeMenu"
-            >menu</a
+            >{{ t('menu') }}</a
           >
         </li>
         <li>
@@ -217,7 +220,7 @@
             class="hover:border border-white hover:text-primary rounded-md p-2"
             href="/reservation"
             @click="closeMenu"
-            >reservation</a
+            >{{ t('reservation') }}</a
           >
         </li>
         <li>
@@ -225,7 +228,7 @@
             class="hover:border border-white hover:text-primary rounded-md p-2"
             href="/about"
             @click="closeMenu"
-            >about us</a
+            >{{ t('about_us') }}</a
           >
         </li>
         <li>
@@ -233,7 +236,7 @@
             class="hover:border border-white hover:text-primary rounded-md p-2"
             href="/contact"
             @click="closeMenu"
-            >contact us</a
+            >{{ t('contact_us') }}</a
           >
         </li>
         <li>
@@ -241,8 +244,8 @@
             @click="toggleDark()"
             class="flex items-center space-x-2 hover:border border-white hover:text-primary rounded-md p-2"
           >
-            <span v-if="isDark">Light Mode</span>
-            <span v-else>Dark Mode</span>
+            <span v-if="isDark">{{ t('light_mode') }}</span>
+            <span v-else>{{ t('dark_mode') }}</span>
             <svg
               v-if="isDark"
               xmlns="http://www.w3.org/2000/svg"
@@ -296,7 +299,7 @@
         <li v-if="!userStore.isAuthenticated">
           <router-link to="/signin">
             <Button
-              title="Sign In"
+              :title="t('sign_in')"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -310,7 +313,7 @@
         <li v-else>
           <Button
             @click="handleLogout"
-            title="Logout"
+            :title="t('logout')"
             :class="{
               'text-white': true,
               'hover:text-black': !isHome,
@@ -332,6 +335,11 @@ import Button from "../ui/Button.vue";
 import { useUserStore } from "@/stores/useUserStore";
 import Swal from "sweetalert2";
 import { useDark, useToggle } from "@vueuse/core";
+import LanguageSwitcher from "../UI/LanguageSwitcher.vue"; 
+
+import { useI18n } from "vue-i18n";
+const { t, locale } = useI18n();
+
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 

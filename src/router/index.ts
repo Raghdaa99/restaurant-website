@@ -1,7 +1,7 @@
 import { useCheckoutGuard } from "@/composables/useCheckoutGuard";
 import { createRouter, createWebHistory } from "vue-router";
 import { useUserStore } from "@/stores/useUserStore";
-
+import { useLanguageStore } from "@/stores/useLanguageStore";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -75,6 +75,10 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  // Handle language direction (RTL/LTR)
+  const languageStore = useLanguageStore();
+  document.documentElement.setAttribute("dir", languageStore.locale === "ar" ? "rtl" : "ltr");
+
   if (to.name === "Checkout" || to.name === "Payment") {
     const { validateCheckoutAccess } = useCheckoutGuard();
     if (validateCheckoutAccess()) {
