@@ -3,6 +3,7 @@ import { useRouter } from 'vue-router';
 import InputField from '../components/UI/InputField.vue';
 import TextArea from '../components/UI/TextArea.vue';
 import { useReservation } from '@/composables/useReservation';
+import Swal from "sweetalert2";
 import { useI18n } from 'vue-i18n';
 const router = useRouter();
 const { formData, errors, touched, markTouched, saveReservation } = useReservation();
@@ -20,29 +21,55 @@ const handleSubmit = async () => {
   }
 
   try {
+    /** 
+     * saveReservation 
+     * Creates a reservation object and updates the stored reservations.
+     * Saves reservation data to localStorage using the phone number as the key.
+     * Returns `true` on success and throws an error if it fails.
+     */
     await saveReservation();
-    alert($t('reservation_success'));
-    router.push({ name: 'Home' });
-    window.scrollTo(0, 0);
 
+    Swal.fire({
+      title: 'Reservation Confirmed!',
+      text: 'Your reservation has been confirmed successfully.',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
+    router.push({ name: "Home" });
+    window.scrollTo(0, 0);
   } catch (error) {
     if (error instanceof Error) {
-      alert(error.message);
+      Swal.fire({
+        title: 'Error!',
+        text: error.message,
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
     } else {
-      alert($t('error_occurred'));
+      Swal.fire({
+        title: 'Error!',
+        text: 'An error occurred while saving the reservation. Please try again.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
     }
   }
 };
 </script>
 
+
 <template>
-  <section class="flex items-center justify-center min-h-screen w-full bg-cover bg-center bg-no-repeat main-section font-salsa pt-48 pb-24">
-    <div class="flex flex-col mb-4 md:flex-row bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-3/4 max-w-4xl mx-4 md:mx-0">
+  <section
+    class="flex items-center justify-center min-h-screen w-full bg-cover bg-center bg-no-repeat main-section font-salsa pt-48 pb-24"
+  >
+    <div
+      class="flex flex-col mb-4 md:flex-row bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-3/4 max-w-4xl mx-4 md:mx-0"
+    >
       <div class="w-full md:w-1/2 bg-gray-100 flex">
-        <img 
-          src="../assets/images/reservation/left-section.jpeg" 
-          alt="Booking Illustration" 
-          class="w-full h-48 md:h-full object-cover object-center animate-left-img" 
+        <img
+          src="../assets/images/reservation/left-section.jpeg"
+          alt="Booking Illustration"
+          class="w-full h-48 md:h-full object-cover object-center animate-left-img"
         />
       </div>
 
@@ -105,7 +132,7 @@ const handleSubmit = async () => {
             <label class="font-medium text-lg text-gray-700 block mb-1">
               {{ $t("reservation_date_time") }} <span class="text-red-500">*</span>
             </label>
-            <input 
+            <input
               type="datetime-local"
               v-model="formData.reservationDateTime"
               class="w-full px-4 py-2 border border-primary rounded-md focus:border-primary focus:ring-primary focus:ring-1 transition-all"
@@ -135,8 +162,8 @@ const handleSubmit = async () => {
             />
           </div>
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             class="w-full flex justify-center items-center button-hover-effect bg-primary text-white py-2 px-4 rounded-lg font-semibold hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
           >
             {{ $t("send") }}
@@ -149,7 +176,7 @@ const handleSubmit = async () => {
 
 <style scoped>
 .main-section {
-  background-image: url('../assets/images/reservation/background2.jpg');
+  background-image: url("../assets/images/reservation/background2.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

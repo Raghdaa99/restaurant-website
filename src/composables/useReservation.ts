@@ -45,33 +45,55 @@ export function useReservation() {
     touched.value[field] = true;
   };
 
-  const saveReservation = async () => {
-    try {
-      const reservation: Reservation = {
-        ...formData.value,
-        id: Date.now().toString(),
-        timestamp: new Date().toISOString(),
-      };
 
-      let storedReservations: { [key: string]: Reservation[] } = {};
-      const existingData = localStorage.getItem("reservations");
-      if (existingData) {
-        storedReservations = JSON.parse(existingData);
-      }
+/**
+ * Creates a reservation object and updates the stored reservations.
+ * Saves reservation data to localStorage using the phone number as the key.
+ * Returns `true` on success and throws an error if it fails.
+ */
 
-      const userPhone = formData.value.phoneNumber;
-      if (!storedReservations[userPhone]) {
-        storedReservations[userPhone] = [];
-      }
-      storedReservations[userPhone].push(reservation);
+const saveReservation = async () => {
+  try {
+    // Create a new reservation object using the form data.
+    const reservation: Reservation = {
+      ...formData.value,  // Use the form data such as first name, last name, etc.
+      id: Date.now().toString(),  // Assign a unique ID using the current timestamp.
+      timestamp: new Date().toISOString(),  // Assign the timestamp to store the reservation date and time.
+    };
 
-      localStorage.setItem("reservations", JSON.stringify(storedReservations));
-      return true;
-    } catch (error) {
-      console.error("Error saving reservation:", error);
-      throw error;
+    // Define a variable to store reservations.
+    let storedReservations: { [key: string]: Reservation[] } = {};
+
+    // Check if there are any existing reservation data in localStorage.
+    const existingData = localStorage.getItem("reservations");
+
+    // If there is existing data, load it.
+    if (existingData) {
+      storedReservations = JSON.parse(existingData);
     }
-  };
+
+    // Get the phone number from the form data.
+    const userPhone = formData.value.phoneNumber;
+
+    // If there are no reservations for this phone number, create a new array for this phone number.
+    if (!storedReservations[userPhone]) {
+      storedReservations[userPhone] = [];
+    }
+
+    // Add the new reservation to the list of reservations for the given phone number.
+    storedReservations[userPhone].push(reservation);
+
+    // Save all the updated reservations in localStorage.
+    localStorage.setItem("reservations", JSON.stringify(storedReservations));
+
+    // Return true to indicate the reservation was saved successfully.
+    return true;
+  } catch (error) {
+    // If an error occurs while saving the reservation, log it to the console and throw the error.
+    console.error("Error saving reservation:", error);
+    throw error;
+  }
+};
 
   return {
     formData,

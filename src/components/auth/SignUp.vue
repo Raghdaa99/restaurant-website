@@ -1,3 +1,125 @@
+
+<script lang="ts" setup>
+import { ref, computed } from "vue";
+import { useUserStore } from "@/stores/useUserStore";
+import { useRouter } from "vue-router";
+import InputField from "@/components/UI/InputField.vue";
+import Swal from "sweetalert2";
+
+const userStore = useUserStore();
+const router = useRouter();
+
+const userData = ref({
+  firstname: "",
+  lastname: "",
+  phone: "",
+  password: "",
+  confirmPassword: "",
+});
+
+const touched = ref<{ [key: string]: boolean }>({});
+
+const containsOnlyLetters = (text: string) =>
+  /^[\u0600-\u06FFa-zA-Z\s]+$/.test(text);
+
+const errors = computed(() => ({
+  firstname:
+    touched.value.firstname &&
+    (userData.value.firstname.trim().length === 0 ||
+      !containsOnlyLetters(userData.value.firstname)),
+  lastname:
+    touched.value.lastname &&
+    (userData.value.lastname.trim().length === 0 ||
+      !containsOnlyLetters(userData.value.lastname)),
+  phone:
+    touched.value.phone &&
+    (isNaN(parseInt(userData.value.phone)) || userData.value.phone.length < 8),
+  password: touched.value.password && userData.value.password.length < 6,
+  confirmPassword:
+    touched.value.confirmPassword &&
+    userData.value.confirmPassword !== userData.value.password,
+}));
+
+const errorMessages = computed(() => ({
+  firstname:
+    touched.value.firstname && userData.value.firstname.trim().length === 0
+      ? "First name is required"
+      : !containsOnlyLetters(userData.value.firstname)
+      ? "First name must be letters only. "
+      : "",
+  lastname:
+    touched.value.lastname && userData.value.lastname.trim().length === 0
+      ? "Last name is required"
+      : !containsOnlyLetters(userData.value.lastname)
+      ? "Last name must be letters only."
+      : "",
+  phone: "Invalid phone number",
+  password: "Password must be at least 6 characters",
+  confirmPassword: "Passwords do not match",
+}));
+
+function markTouched(field: string) {
+  touched.value[field] = true;
+}
+
+async function handleSubmit() {
+  // Mark all fields as touched to show errors if they exist
+  Object.keys(userData.value).forEach(markTouched);
+
+  if (Object.values(errors.value).some((err) => err)) {
+    await Swal.fire({
+      icon: "error",
+      title: "Validation Error",
+      text: "Please fix the errors before submitting.",
+      confirmButtonColor: "#c70039",
+    });
+    return;
+  }
+  
+  //useStore.register(firstname,lastname,phone,password);
+  // Sending the new user's data to the API.
+  // If the user already exists, the process will fail.
+  // If the user doesn't exist, the data will be successfully stored in the API.
+  try {
+    const result = await userStore.register({
+      firstname: userData.value.firstname,
+      lastname: userData.value.lastname,
+      phone: userData.value.phone,
+      password: userData.value.password,
+    });
+
+    if (result.success) {
+      await Swal.fire({
+        icon: "success",
+        title: "Account Created!",
+        text: "Please sign in to continue.",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+      router.push({
+        name: "SignIn",
+        query: { phone: userData.value.phone },
+      });
+      window.scrollTo(0, 0);
+    } else {
+      await Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: result.error || "Failed to create account",
+        confirmButtonColor: "#c70039",
+      });
+    }
+  } catch (error) {
+    await Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "An error occurred while creating your account",
+      confirmButtonColor: "#c70039",
+    });
+  }
+}
+</script>
+
 <template>
   <div
     class="main-section flex justify-center items-center min-h-screen pt-48 pb-24 font-salsa"
@@ -78,13 +200,13 @@
             {{ errorMessages.confirmPassword }}
           </p>
         </div>
-
         <button 
   type="submit"
   class="w-full flex justify-center items-center button-hover-effect bg-primary text-white py-2 px-4 rounded-lg font-semibold hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
 >
   <span>{{ $t('auth.createAccount') }}</span>
 </button>
+
       </form>
 
       <p class="mt-4 text-center text-gray text-sm">
@@ -96,7 +218,6 @@
     </div>
   </div>
 </template>
-
 <script lang="ts" setup>
 import { ref, computed } from "vue";
 import { useUserStore } from "@/stores/useUserStore";

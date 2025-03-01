@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import { useUserStore } from "@/stores/useUserStore";
 import { useLanguageStore } from "@/stores/useLanguageStore";
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -78,16 +79,30 @@ router.beforeEach((to, from, next) => {
   // Handle language direction (RTL/LTR)
   const languageStore = useLanguageStore();
   document.documentElement.setAttribute("dir", languageStore.locale === "ar" ? "rtl" : "ltr");
+  const userStore = useUserStore();
 
   if (to.name === "Checkout" || to.name === "Payment") {
     const { validateCheckoutAccess } = useCheckoutGuard();
     if (validateCheckoutAccess()) {
       next();
     } else {
-      next(false);
+      next(false); // Prevent access if validation fails
+    }
+  } 
+  // Prevent logged-in users from accessing the SignIn page
+  else if (to.name === "SignIn") {
+    // Check if the user is already logged in
+    if (userStore.isAuthenticated || localStorage.getItem("token")) {
+      // Redirect user to the homepage or dashboard if they are already logged in
+      next({ name: "Home" });
+    } else {
+      // Allow access to the SignIn page if the user is not logged in
+      next();
     }
   } else {
-    next(); 
+    // Allow access to all other routes
+    next();
   }
 });
+
 export default router;
