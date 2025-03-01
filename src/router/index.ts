@@ -2,7 +2,6 @@ import { useCheckoutGuard } from "@/composables/useCheckoutGuard";
 import { createRouter, createWebHistory } from "vue-router";
 import { useUserStore } from "@/stores/useUserStore";
 
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -75,15 +74,31 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  const userStore = useUserStore();
+  
+  // Check for Checkout and Payment pages
   if (to.name === "Checkout" || to.name === "Payment") {
     const { validateCheckoutAccess } = useCheckoutGuard();
     if (validateCheckoutAccess()) {
       next();
     } else {
-      next(false);
+      next(false); // Prevent access if validation fails
+    }
+  } 
+  // Prevent logged-in users from accessing the SignIn page
+  else if (to.name === "SignIn") {
+    // Check if the user is already logged in
+    if (userStore.isAuthenticated || localStorage.getItem("token")) {
+      // Redirect user to the homepage or dashboard if they are already logged in
+      next({ name: "Home" });
+    } else {
+      // Allow access to the SignIn page if the user is not logged in
+      next();
     }
   } else {
-    next(); 
+    // Allow access to all other routes
+    next();
   }
 });
+
 export default router;
