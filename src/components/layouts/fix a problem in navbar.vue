@@ -287,9 +287,17 @@
         </li>
 
         <li v-if="!userStore.isAuthenticated">
-          <router-link to="/signin">
+            <a
+              href="/signin"
+              class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white text-white hover:text-black bg-primary"
+            >
+              Sign In
+            </a>
+          </li>
+          <li v-else>
             <Button
-              title="Sign In"
+              @click="handleLogout"
+              title="Logout"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -297,21 +305,7 @@
               }"
               class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
             />
-          </router-link>
-        </li>
-
-        <li v-else>
-          <Button
-            @click="handleLogout"
-            title="Logout"
-            :class="{
-              'text-white': true,
-              'hover:text-black': !isHome,
-              'hover:text-primary': isHome,
-            }"
-            class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
-          />
-        </li>
+          </li>
       </ul>
     </div>
   </div>
