@@ -3,6 +3,7 @@ import { useRouter } from "vue-router";
 import InputField from "../components/UI/InputField.vue";
 import TextArea from "../components/UI/TextArea.vue";
 import { useReservation } from "@/composables/useReservation";
+import Swal from "sweetalert2";
 
 const router = useRouter();
 
@@ -10,36 +11,56 @@ const router = useRouter();
 const { formData, errors, touched, markTouched, saveReservation } =
   useReservation();
 
-  const handleSubmit = async () => {
+const handleSubmit = async () => {
   // Mark all fields as touched to show errors if they exist
   Object.keys(formData.value).forEach(markTouched);
 
   if (Object.values(errors.value).some((error) => error)) {
-    alert("Please fill in all required fields correctly");
+    Swal.fire({
+      title: 'Error!',
+      text: 'Please fill in all required fields correctly',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
     return;
   }
 
   try {
-/**  saveReservation 
- * Creates a reservation object and updates the stored reservations.
- * Saves reservation data to localStorage using the phone number as the key.
- * Returns `true` on success and throws an error if it fails.
- */
+    /** 
+     * saveReservation 
+     * Creates a reservation object and updates the stored reservations.
+     * Saves reservation data to localStorage using the phone number as the key.
+     * Returns `true` on success and throws an error if it fails.
+     */
     await saveReservation();
-    alert("Reservation confirmed successfully!");
+    Swal.fire({
+      title: 'Reservation Confirmed!',
+      text: 'Your reservation has been confirmed successfully.',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
     router.push({ name: "Home" });
     window.scrollTo(0, 0);
   } catch (error) {
     if (error instanceof Error) {
-      alert(error.message);
+      Swal.fire({
+        title: 'Error!',
+        text: error.message,
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
     } else {
-      alert(
-        "An error occurred while saving the reservation. Please try again."
-      );
+      Swal.fire({
+        title: 'Error!',
+        text: 'An error occurred while saving the reservation. Please try again.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
     }
   }
 };
 </script>
+
 
 <template>
   <section

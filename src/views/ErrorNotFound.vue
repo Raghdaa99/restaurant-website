@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center px-4 py-24 mt-10">
+  <div class="min-h-screen flex items-center justify-center px-4 py-24 mt-10" :class="$darkMode">
     <div class="text-center">
       <!-- Error Image -->
       <div class="mb-8 relative">
@@ -11,8 +11,8 @@
       </div>
 
       <!-- Error Message -->
-      <h2 class="text-3xl font-semibold text-gray-800 mb-6">Page Not Found</h2>
-      <p class="text-gray-600 mb-8 max-w-md mx-auto">
+      <h2 class="text-3xl font-semibold text-gray-800 mb-6 dark:text-white">Page Not Found</h2>
+      <p class="text-gray-600 mb-8 max-w-md mx-auto dark:text-gray-300">
         Oops! The page you're looking for seems to have vanished into thin air. 
         Let's get you back on track!
       </p>

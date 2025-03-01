@@ -136,6 +136,10 @@ export const deleteUser = async (id: string) => {
 };
 
 // Authentication Functions
+
+// Function to handle user login by verifying phone and password, 
+// generating a new authentication token, and returning user data.
+
 export const authApi = {
   login: async (phone: string, password: string) => {
     try {
@@ -163,6 +167,9 @@ export const authApi = {
       throw error;
     }
   },
+
+// The function first checks if a user with the same phone number already exists. 
+// If not, it creates a new user and returns the user's data along with the authentication token.
 
   register: async (userData: {
     firstname: string;
@@ -227,6 +234,11 @@ export const authApi = {
     }
   },
 
+  /*
+  we will use this function in useUserStore.ts  defineStore
+  this function make sure that your ID and token in localStorage
+   are the same in the API
+   */
   verifyToken: async (userId: string, token: string) => {
     try {
       const response = await userApiClient.get(`/users/${userId}`);

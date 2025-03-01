@@ -81,7 +81,7 @@ const handleLogout = () => {
       </div>
 
       <!-- Mobile Menu Button (bar icon) -->
-      <div class="h-10 w-10 md:hidden cursor-pointer " @click="toggleMenu">
+      <div class="h-10 w-10 md:hidden cursor-pointer" @click="toggleMenu">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
@@ -96,7 +96,9 @@ const handleLogout = () => {
 
       <!-- Desktop Menu -->
       <div class="hidden md:flex space-x-9">
-        <ul class="md:flex items-center space-x-9 capitalize dark:hover:text-white">
+        <ul
+          class="md:flex items-center space-x-9 capitalize dark:hover:text-white"
+        >
           <li>
             <router-link to="/"
               class="hover:bg-white p-2 rounded-md dark:hover:text-slate-500"
@@ -165,6 +167,7 @@ const handleLogout = () => {
             />
             </router-link>
           </li>
+
           <li v-if="!userStore.isAuthenticated">
             <router-link to="/signin">
               <Button
@@ -190,6 +193,7 @@ const handleLogout = () => {
               class="flex justify-center items-center w-[83px] h-[40px] rounded-xl shadow-2xl capitalize"
             />
           </li>
+
           <li>
   <button 
     @click="toggleDark()" 
@@ -254,7 +258,7 @@ const handleLogout = () => {
         </li>
         <li>
           <a
-            class="hover:border border-white hover:text-primary rounded-md p-2 "
+            class="hover:border border-white hover:text-primary rounded-md p-2"
             href="/about"
             @click="closeMenu"
             >about us</a
@@ -269,28 +273,48 @@ const handleLogout = () => {
           >
         </li>
         <li>
-  <button 
-    @click="toggleDark()" 
-    class="flex items-center space-x-2 hover:border border-white hover:text-primary rounded-md p-2"
-  >
-    <span v-if="isDark">Light Mode</span>
-    <span v-else>Dark Mode</span>
-    <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-    <svg v-else xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-    </svg>
-  </button>
-</li>
+          <button
+            @click="toggleDark()"
+            class="flex items-center space-x-2 hover:border border-white hover:text-primary rounded-md p-2"
+          >
+            <span v-if="isDark">Light Mode</span>
+            <span v-else>Dark Mode</span>
+            <svg
+              v-if="isDark"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg
+              v-else
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+        </li>
         <li>
           <Button
             :class="{
@@ -304,11 +328,19 @@ const handleLogout = () => {
             to="/cart"
           />
         </li>
-        
+
         <li v-if="!userStore.isAuthenticated">
-          <router-link to="/signin">
+            <a
+              href="/signin"
+              class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white text-white hover:text-black bg-primary"
+            >
+              Sign In
+            </a>
+          </li>
+          <li v-else>
             <Button
-              title="Sign In"
+              @click="handleLogout"
+              title="Logout"
               :class="{
                 'text-white': true,
                 'hover:text-black': !isHome,
@@ -316,27 +348,11 @@ const handleLogout = () => {
               }"
               class="flex justify-center items-center w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-whit"
             />
-          </router-link>
-        </li>
-        
-        <li v-else>
-          <Button
-            @click="handleLogout"
-            title="Logout"
-            :class="{
-              'text-white': true,
-              'hover:text-black': !isHome,
-              'hover:text-primary': isHome,
-            }"
-            class="flex justify-center items-center border w-[83px] h-[40px] rounded-xl shadow-2xl capitalize hover:border border-white"
-          />
-        </li>
-
+          </li>
       </ul>
     </div>
   </div>
 </template>
-
 
 <style scoped>
 .router-link-active {
