@@ -210,6 +210,34 @@
     "your_review_required": "يرجى كتابة التقييم لإرساله.",
     "your_name_required": "يرجى إدخال اسمك."
 
+  },
+  "footer": {
+    "welcome_to_lazeez_restaurant": "مرحبا بك في مطعم Lazeez",
+    "welcome_to_lazeez_restaurant_description": "استمتع بأطعمة طازجة، مصنوعة بأذواق مختلفة، في جو من الحرارة والترحاب. أطعمة جيدة، أذواق جيدة - في كل مرة!",
+    "copyright": "حقوق النسخ",
+    "quick_links": "الروابط السريعة",
+    "information": "المعلومات",
+    "contact": "التواصل",
+    "home": "الرئيسية",
+    "reservation": "الحجز",
+    "menu": "القائمة",
+    "cart": "العربة",
+    "faq": "الأسئلة الشائعة",
+    "about_us": "عننا",
+    "return_policy": "سياسة الاسترجاع",
+    "terms_and_conditions": "الشروط والأحكام",
+    "privacy_policy": "سياسة الخصوصية",
+    "address": "العنوان",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "phone_details": "لأي استفسارات أو مخاوف، يرجى الاتصال بنا على 123-456-7890",
+    "email_details": "يرجى إرسال بريد إلكتروني إلى info@lazeez.com",
+    "opening_hours": "ساعات العمل",
+    "opening_hours_details": "الإثنين - الجمعة: 9 صباحًا - 5 مساءً بتوقيت شرق الولايات المتحدة",
+    "facebook": "فيسبوك",
+    "twitter": "تويتر",
+    "instagram": "انستجرام",
+    "youtube": "يوتيوب",
+    "copyright_details": "حقوق النسخ © {{ currentYear }} Lazeez. كل الحقوق محفوظة."
   }
 }
-
