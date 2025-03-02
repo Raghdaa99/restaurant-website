@@ -34,7 +34,7 @@
           <div>
             <h2 class="text-lg font-semibold mb-3">{{ $t('footer.contact') }}</h2>
             <p class="text-sm opacity-80">{{ $t('footer.address') }}: {{ $t('footer.address_details') }}</p>
-            <p class="text-sm opacity-80">{{ $t('footer.email') }}: {{ $t('footer.email_details') }}</p>
+            <p class="text-sm opacity-80">{{ $t('footer.email') }}: info@lazeez.com</p>
             <p class="text-sm opacity-80">{{ $t('footer.phone') }}: {{ $t('footer.phone_details') }}</p>
 
             <!-- Social Links -->

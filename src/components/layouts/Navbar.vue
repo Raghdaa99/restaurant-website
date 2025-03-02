@@ -96,7 +96,7 @@
               >{{ t('contact_us') }}</a
             >
           </li>
-          <li>
+          <!-- <li>
             <router-link to="/cart">
               <Button
                 title=""
@@ -186,8 +186,12 @@
           </li>
           <li>
             <LanguageSwitcher />
-          </li> 
+          </li> -->
+          <li>
+            <NavbarMenu />
+          </li>
         </ul>
+
       </div>
     </nav>
 
@@ -336,6 +340,7 @@ import { useUserStore } from "@/stores/useUserStore";
 import Swal from "sweetalert2";
 import { useDark, useToggle } from "@vueuse/core";
 import LanguageSwitcher from "../UI/LanguageSwitcher.vue"; 
+import NavbarMenu from "@/components/layouts/NavbarMenu.vue";
 
 import { useI18n } from "vue-i18n";
 const { t, locale } = useI18n();
@@ -356,7 +361,6 @@ const router = useRouter();
 const isHome = computed(() => route.name === "Home");
 
 const userStore = useUserStore();
-const isUserMenuOpen = ref(false);
 
 // Change navbar background color when scrolling
 const isScrolled = ref(false);
@@ -378,21 +382,6 @@ onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
 });
 
-
-const navigationItems = [
-  { name: "Home", path: "/" },
-  { name: "Menu", path: "/menu" },
-  { name: "About", path: "/about" },
-  { name: "Contact", path: "/contact" },
-];
-
-function isCurrentRoute(path: string): boolean {
-  return route.path === path;
-}
-
-function toggleUserMenu() {
-  isUserMenuOpen.value = !isUserMenuOpen.value;
-}
 
 const handleLogout = () => {
   Swal.fire({

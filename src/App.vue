@@ -17,5 +17,15 @@
 import Navbar from "@/components/layouts/Navbar.vue";
 import Footer from "@/components/layouts/Footer.vue"
 import ChatBot from "@/components/layouts/ChatBot.vue"
+
+import { useLanguageStore } from "@/stores/useLanguageStore";
+import { watch, onMounted } from "vue";
+
+const languageStore = useLanguageStore();
+const updateDirection = () => {
+  document.documentElement.setAttribute("dir", languageStore.locale === "ar" ? "rtl" : "ltr");
+};
+watch(() => languageStore.locale, updateDirection, { immediate: true });
+onMounted(updateDirection);
 </script>
 
