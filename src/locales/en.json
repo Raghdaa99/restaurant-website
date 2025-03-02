@@ -211,6 +211,35 @@
     "your_rating_placeholder": "Rate this dish...",
     "your_review_required": "Please write a review to submit.",
     "your_name_required": "Please enter your name."
+  },
+  "footer": {
+    "welcome_to_lazeez_restaurant": "Welcome to Lazeez Restaurant",
+    "welcome_to_lazeez_restaurant_description": "Enjoy delicious, freshly made dishes in a warm and inviting atmosphere. Great food, great vibes—every time!",
+    "copyright": "Copyright",
+    "quick_links": "Quick Links",
+    "information": "Information",
+    "contact": "Contact",
+    "home": "Home",
+    "reservation": "Reservation",
+    "menu": "Menu",
+    "cart": "Cart",
+    "faq": "FAQ",
+    "about_us": "About Us",
+    "return_policy": "Return Policy",
+    "terms_and_conditions": "Terms & Conditions",
+    "privacy_policy": "Privacy Policy",
+    "address": "Address",
+    "address_details": "Lazeez, Inc. 1234 Main Street, Suite 500, Toronto, Canada",
+    "phone": "Phone",
+    "email": "Email",
+    "phone_details": "For any questions or concerns, please call us at 123-456-7890",
+    "email_details": "Please email us at info@lazeez.com",
+    "opening_hours": "Opening Hours",
+    "opening_hours_details": "Monday-Friday: 9 AM - 5 PM EST",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "youtube": "Youtube",
+    "copyright_details": "© {{ currentYear }} Lazeez. All Rights Reserved."
   }
-
 }
