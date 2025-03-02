@@ -117,17 +117,22 @@
       </div>
     </div>
 
-    <!-- Related Foods -->
-    <div class="mt-12">
-      <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-6"> {{ $t('foodDetails.relatedFoods') }}</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <FoodCard 
-          v-for="item in relatedFoods" 
-          :key="item.id" 
-          :food="item" 
-        />
-      </div>
+   <!-- Related Foods -->
+<div class="mt-12">
+  <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-6">
+    {{ $t('foodDetails.relatedFoods') }}
+  </h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center items-center">
+    <div 
+      v-for="item in relatedFoods" 
+      :key="item.id" 
+      class="max-w-[300px] min-h-[200px] mx-auto transform scale-90 sm:scale-100 transition-all"
+    >
+      <FoodCard :food="item" />
     </div>
+  </div>
+</div>
 
     <ReviewModal 
       :is-open="isReviewModalOpen"
@@ -186,7 +191,7 @@ const relatedFoods = computed(() => {
   if (!food.value) return [];
   return foods.value
     .filter(item => 
-      item.category === food.value?.category && 
+      item.category.id === food.value?.category.id && 
       item.id !== food.value?.id
     )
     .slice(0, 4);
@@ -208,6 +213,7 @@ const loadFoodDetails = async (id: number) => {
 
 onMounted(() => {
   loadFoodDetails(Number(route.params.id));
+  loadFoods();
 });
 
 watch(() => route.params.id, (newId) => {
@@ -225,6 +231,10 @@ const handleAddReview = async (review: Omit<Review, 'id'>) => {
 
 const viewAllReviews = () => {
   showAllReviews.value = true;
+};
+
+const loadFoods = async () => {
+  foods.value = await fetchFoods();
 };
 
 </script>
