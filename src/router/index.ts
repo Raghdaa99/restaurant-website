@@ -76,11 +76,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  // Handle language direction (RTL/LTR)
-  const languageStore = useLanguageStore();
-  document.documentElement.setAttribute("dir", languageStore.locale === "ar" ? "rtl" : "ltr");
   const userStore = useUserStore();
-
   if (to.name === "Checkout" || to.name === "Payment") {
     const { validateCheckoutAccess } = useCheckoutGuard();
     if (validateCheckoutAccess()) {
